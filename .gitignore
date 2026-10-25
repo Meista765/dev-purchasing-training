@@ -1,0 +1,9 @@
+# 배포용 HTML만 올린다. 원본 PDF·빌드 소스·메모는 제외(저작권·내부 자료).
+/*
+!/.gitignore
+!/.nojekyll
+!/index.html
+!/개발구매 금형편.html
+!/개발구매 실무편.html
+!/개발구매 재료편.html
+!/개발구매 러닝맵.html
