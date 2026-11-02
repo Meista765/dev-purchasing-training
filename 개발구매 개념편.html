@@ -3007,7 +3007,10 @@ function selectNode(id, quiet){
   $$("[data-go]", pv).forEach(b => b.onclick = () => { selectNode(b.dataset.go); const n = $(`.node[data-id="${b.dataset.go}"]`); n && n.scrollIntoView({block:"center", behavior:"smooth"}); });
   if(!quiet){ const n = $(`.node[data-id="${id}"]`); n && n.focus({preventScroll:true}); }
 }
-let rzT; window.addEventListener("resize", () => { clearTimeout(rzT); rzT = setTimeout(() => { if($("#map")){ drawEdges(); hoverEdges(mapSel); } }, 120); });
+let rzT; const redrawEdges = () => { clearTimeout(rzT); rzT = setTimeout(() => { if($("#map")){ drawEdges(); hoverEdges(mapSel); } }, 120); };
+window.addEventListener("resize", redrawEdges);
+// web fonts (display=swap) land after the first draw and resize the nodes, so redraw once they finish loading
+if(document.fonts) document.fonts.addEventListener("loadingdone", redrawEdges);
 
 /* ---------- concept page ---------- */
 function renderConcept(id){
