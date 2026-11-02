@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16">
+  <title>양극산화 피막 단면 — 장벽층 위 다공층, 봉공 전(구멍 열림)과 봉공 후(구멍 막힘) 비교(두께·구멍 과장 개념도)</title>
+  <defs><pattern id="h" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#8D9AA8" stroke-width="1"/></pattern></defs>
+  <rect width="100%" height="100%" fill="#FAFCFB"/>
+  <text x="24" y="34" font-size="17" font-weight="700" fill="#18202A">양극산화 피막 — 장벽층 위에 구멍 뚫린 다공층</text>
+  <text x="24" y="56" font-size="14" fill="#465260">단면 개념도 · 피막 두께와 구멍 크기는 과장</text>
+  <text x="140" y="134" text-anchor="middle" font-size="15" font-weight="700" fill="#465260">봉공 전 — 구멍이 열려 있다</text>
+  <text x="360" y="134" text-anchor="middle" font-size="15" font-weight="700" fill="#1C7448">봉공 후 — 구멍이 막혔다</text>
+  <!-- 알루미늄 소지 -->
+  <rect x="30" y="300" width="440" height="56" fill="#C9D2DB" stroke="#465260"/>
+  <rect x="30" y="300" width="440" height="56" fill="url(#h)" opacity=".5"/>
+  <!-- 피막 -->
+  <rect x="30" y="150" width="440" height="150" fill="#B9A6D6" stroke="#465260"/>
+  <g stroke="#465260" stroke-opacity=".45" stroke-width="1">
+    <line x1="85" y1="150" x2="85" y2="292"/><line x1="140" y1="150" x2="140" y2="292"/><line x1="195" y1="150" x2="195" y2="292"/>
+    <line x1="305" y1="150" x2="305" y2="292"/><line x1="360" y1="150" x2="360" y2="292"/><line x1="415" y1="150" x2="415" y2="292"/>
+  </g>
+  <!-- 열린 구멍 -->
+  <g fill="#FAFCFB" stroke="#465260" stroke-width=".8">
+    <rect x="52.5" y="150" width="10" height="134" rx="5"/><rect x="107.5" y="150" width="10" height="134" rx="5"/>
+    <rect x="162.5" y="150" width="10" height="134" rx="5"/><rect x="217.5" y="150" width="10" height="134" rx="5"/>
+  </g>
+  <!-- 막힌 구멍 -->
+  <g fill="#77838F" fill-opacity=".45" stroke="#465260" stroke-width=".8">
+    <rect x="272.5" y="150" width="10" height="134" rx="5"/><rect x="327.5" y="150" width="10" height="134" rx="5"/>
+    <rect x="382.5" y="150" width="10" height="134" rx="5"/><rect x="437.5" y="150" width="10" height="134" rx="5"/>
+  </g>
+  <line x1="250" y1="116" x2="250" y2="300" stroke="#77838F" stroke-dasharray="5 4"/>
+  <!-- 이름표 -->
+  <g stroke="#77838F"><line x1="472" y1="186" x2="486" y2="186"/><line x1="472" y1="292" x2="486" y2="292"/><line x1="472" y1="330" x2="486" y2="330"/></g>
+  <text x="492" y="180" font-weight="700" fill="#18202A">다공층</text>
+  <text x="492" y="200" font-size="14" fill="#465260">육각 기둥 셀 가운데 구멍</text>
+  <text x="492" y="218" font-size="14" fill="#465260">지름 약 10~150nm</text>
+  <text x="492" y="290" font-weight="700" fill="#18202A">장벽층</text>
+  <text x="492" y="310" font-size="14" fill="#465260">구멍 없는 얇은 바닥층</text>
+  <text x="492" y="336" font-weight="700" fill="#18202A">알루미늄 소지</text>
+  <text x="24" y="392" font-size="15" fill="#18202A">봉공: 끓는 순수·수증기(약 96~100℃), 중온(약 70~80℃), 니켈염 용액 등으로</text>
+  <text x="24" y="414" font-size="15" fill="#18202A">구멍 벽을 수화시켜 부풀려 막는다. 덜 막히면 때·염료·염분이 스며든다.</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 422" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15">
+<title>도료 1L의 부피 구성(용제·첨가제·안료·수지)과 용제가 날아간 뒤 남는 건조 도막(고형분)의 비교 — 예시값</title>
+<rect width="100%" height="100%" fill="#FAFCFB"/>
+<defs><pattern id="h" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#8D9AA8" stroke-width="1.2"/></pattern></defs>
+<text x="30" y="34" font-size="17" fill="#18202A" font-weight="700">도료 1L가 막이 되기까지 — 부피로 본 성분(예시값)</text>
+<rect x="90" y="70" width="110" height="117" fill="#9DB7C8" fill-opacity="0.45"/>
+<rect x="90" y="187" width="110" height="5.2" fill="#2F8F5B" fill-opacity="1"/>
+<rect x="520" y="187" width="110" height="5.2" fill="#2F8F5B" fill-opacity="1"/>
+<rect x="90" y="192.2" width="110" height="39" fill="#E8A23A" fill-opacity="1"/>
+<rect x="520" y="192.2" width="110" height="39" fill="#E8A23A" fill-opacity="1"/>
+<rect x="90" y="231.2" width="110" height="98.8" fill="#5E8FC9" fill-opacity="1"/>
+<rect x="520" y="231.2" width="110" height="98.8" fill="#5E8FC9" fill-opacity="1"/>
+<rect x="90" y="70" width="110" height="260" fill="none" stroke="#465260" stroke-width="1.4"/>
+<rect x="520" y="187" width="110" height="143" fill="none" stroke="#465260" stroke-width="1.4"/>
+<line x1="90" y1="187" x2="200" y2="187" stroke="#77838F" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="214" y="122" font-size="15" fill="#18202A" font-weight="700">용제 45%</text>
+<text x="214" y="141" font-size="14" fill="#465260">칠할 점도로 녹임 · 날아감</text>
+<text x="214" y="191" font-size="14" fill="#465260">첨가제 2% — 흐름·경화 조정</text>
+<text x="214" y="212" font-size="15" fill="#18202A" font-weight="700">안료 15%</text>
+<text x="214" y="230" font-size="14" fill="#465260">색·은폐·방청</text>
+<text x="214" y="276" font-size="15" fill="#18202A" font-weight="700">수지 38%</text>
+<text x="214" y="295" font-size="14" fill="#465260">막을 만들고 붙는다</text>
+<line x1="400" y1="262" x2="499.4" y2="262" stroke="#1D5BB8" stroke-width="2"/><polygon points="505,262 497.8,258.5 497.8,265.5" fill="#1D5BB8"/>
+<text x="452" y="250" font-size="14" fill="#465260" text-anchor="middle">용제가 날아간다</text>
+<text x="452" y="284" font-size="14" fill="#465260" text-anchor="middle">고형분만 남는다</text>
+<text x="575" y="154" font-size="15" fill="#1D5BB8" font-weight="700" text-anchor="middle">고형분(VS) 55%</text>
+<text x="575" y="175" font-size="15" fill="#18202A" text-anchor="middle">= 건조 도막</text>
+<text x="640" y="214" font-size="14" fill="#465260">안료</text>
+<text x="640" y="285" font-size="14" fill="#465260">수지</text>
+<text x="640" y="194" font-size="13" fill="#465260">첨가제</text>
+<text x="145" y="352" font-size="15" fill="#18202A" font-weight="700" text-anchor="middle">칠하기 전 도료 1L</text>
+<text x="575" y="352" font-size="15" fill="#18202A" font-weight="700" text-anchor="middle">마른 뒤 남는 막 0.55L</text>
+<text x="30" y="386" font-size="15" fill="#465260">안료는 무거워 같은 도료라도 중량 고형분이 더 크게 나온다(예: 70%).</text>
+<text x="30" y="408" font-size="15" fill="#18202A" font-weight="700">도포 면적·도료비는 부피 고형분(VS)으로 계산한다.</text>
+</svg>

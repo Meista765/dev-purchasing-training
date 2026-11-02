@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 390" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" fill="#18202A">
+  <title>2mm 강판 위 8μm 아연층의 실제 비율과 확대 단면, 구매가 표면처리를 쥐는 다섯 지점</title>
+  <defs><pattern id="h" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#8D9AA8" stroke-width="1"/></pattern><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#465260"/></marker><marker id="arb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#1D5BB8"/></marker><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#C4382C"/></marker></defs>
+  <rect width="100%" height="100%" fill="#FAFCFB"/>
+  <text x="30" y="36" font-size="17" fill="#18202A" font-weight="700">2mm 강판 위 8μm 아연층 — 실제 비율</text>
+  <rect x="40" y="70" width="380" height="100" fill="#C9D2DB" stroke="#465260"/><rect x="40" y="70" width="380" height="100" fill="url(#h)" opacity=".5"/>
+  <line x1="40" y1="70" x2="420" y2="70" stroke="#9DB7C8" stroke-width="0.6"/>
+  <text x="230" y="128" font-size="16" fill="#18202A" text-anchor="middle">강판 두께 2mm</text>
+  <text x="40" y="196" font-size="15" fill="#465260">윗면의 아연층 8μm는 두께의 0.4% — 실제 비율로는 선 하나</text>
+  <rect x="110" y="62" width="24" height="16" fill="none" stroke="#C4382C" stroke-width="1.5"/>
+  <line x1="134" y1="62" x2="512" y2="76" stroke="#C4382C" stroke-dasharray="4 3"/>
+  <line x1="134" y1="78" x2="512" y2="164" stroke="#C4382C" stroke-dasharray="4 3"/>
+  <circle cx="580" cy="120" r="80" fill="#FFFFFF" stroke="#C4382C" stroke-width="1.5"/>
+  <clipPath id="c1"><circle cx="580" cy="120" r="79"/></clipPath><g clip-path="url(#c1)">
+  <rect x="490" y="128" width="180" height="80" fill="#C9D2DB" stroke="#465260"/><rect x="490" y="128" width="180" height="80" fill="url(#h)" opacity=".5"/>
+  <rect x="490" y="94" width="180" height="34" fill="#9DB7C8" stroke="#465260"/>
+  <rect x="490" y="86" width="180" height="8" fill="#B9A6D6" stroke="#465260"/>
+  </g>
+  <text x="580" y="116" font-size="15" fill="#18202A" text-anchor="middle">아연 8μm</text>
+  <text x="580" y="168" font-size="15" fill="#18202A" text-anchor="middle">강</text>
+  <text x="580" y="222" font-size="14" fill="#77838F" text-anchor="middle">확대 — 두께 과장</text>
+  <text x="670" y="64" font-size="14" fill="#465260" text-anchor="end">3가 화성 피막</text>
+  <line x1="620" y1="68" x2="612" y2="88" stroke="#77838F"/>
+  <line x1="30" y1="246" x2="690" y2="246" stroke="#E4EAE8"/>
+  <text x="30" y="276" font-size="17" fill="#18202A" font-weight="700">구매가 그 얇은 층을 쥐는 다섯 지점</text>
+  <rect x="32" y="296" width="120" height="72" rx="8" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.5"/>
+  <text x="92" y="326" font-size="17" fill="#1D5BB8" text-anchor="middle" font-weight="700">사양</text>
+  <text x="92" y="352" font-size="14" fill="#465260" text-anchor="middle">기능·두께·시험</text>
+  <line x1="153" y1="332" x2="165" y2="332" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="166" y="296" width="120" height="72" rx="8" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.5"/>
+  <text x="226" y="326" font-size="17" fill="#1D5BB8" text-anchor="middle" font-weight="700">업체</text>
+  <text x="226" y="352" font-size="14" fill="#465260" text-anchor="middle">실사·라인 형태</text>
+  <line x1="287" y1="332" x2="299" y2="332" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="300" y="296" width="120" height="72" rx="8" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.5"/>
+  <text x="360" y="326" font-size="17" fill="#1D5BB8" text-anchor="middle" font-weight="700">단가</text>
+  <text x="360" y="352" font-size="14" fill="#465260" text-anchor="middle">두께·방식별</text>
+  <line x1="421" y1="332" x2="433" y2="332" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="434" y="296" width="120" height="72" rx="8" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.5"/>
+  <text x="494" y="326" font-size="17" fill="#1D5BB8" text-anchor="middle" font-weight="700">성적서</text>
+  <text x="494" y="352" font-size="14" fill="#465260" text-anchor="middle">두께·염수 분무</text>
+  <line x1="555" y1="332" x2="567" y2="332" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="568" y="296" width="120" height="72" rx="8" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.5"/>
+  <text x="628" y="326" font-size="17" fill="#1D5BB8" text-anchor="middle" font-weight="700">클레임</text>
+  <text x="628" y="352" font-size="14" fill="#465260" text-anchor="middle">원인 단계 가르기</text>
+</svg>

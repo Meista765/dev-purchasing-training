@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="15">
+  <title>도금욕의 네 가지 성분과 가용성·불용성 양극의 차이</title>
+  <rect width="100%" height="100%" fill="#FAFCFB"/>
+  <text x="20" y="32" font-size="17" font-weight="700" fill="#18202A">도금욕은 네 가지 성분으로, 양극은 두 종류로 나뉜다</text>
+  <rect x="20" y="52" width="340" height="300" rx="8" fill="#E4EAE8"/>
+  <text x="36" y="78" font-size="16" font-weight="700" fill="#18202A">도금욕(도금액)</text>
+  <rect x="36" y="96" width="14" height="14" fill="#9DB7C8" stroke="#465260"/>
+  <text x="58" y="108" font-weight="700" fill="#18202A">① 금속염 — 쌓일 금속의 공급원</text>
+  <text x="58" y="128" font-size="13" fill="#465260">예: 산화아연, 황산니켈, 황산구리</text>
+  <rect x="36" y="158" width="14" height="14" fill="#5E8FC9" stroke="#465260"/>
+  <text x="58" y="170" font-weight="700" fill="#18202A">② 전도염·산·알칼리 — 전기 통로</text>
+  <text x="58" y="190" font-size="13" fill="#465260">예: 수산화나트륨, 염화칼륨, 황산</text>
+  <rect x="36" y="220" width="14" height="14" fill="#B9A6D6" stroke="#465260"/>
+  <text x="58" y="232" font-weight="700" fill="#18202A">③ 착화제 — 이온을 붙잡아 고르게</text>
+  <text x="58" y="252" font-size="13" fill="#465260">알칼리욕에서 금속이 녹아 있게 한다</text>
+  <rect x="36" y="282" width="14" height="14" fill="#E8A23A" stroke="#465260"/>
+  <text x="58" y="294" font-weight="700" fill="#18202A">④ 첨가제 — 광택·평활·습윤</text>
+  <text x="58" y="314" font-size="13" fill="#465260">양은 적지만 외관·물성을 좌우한다</text>
+  <text x="36" y="340" font-size="13" fill="#77838F">①②③은 화학 분석, ④는 헐셀 시험으로 관리</text>
+  <rect x="380" y="52" width="320" height="140" rx="8" fill="none" stroke="#98A8BA"/>
+  <text x="396" y="78" font-size="16" font-weight="700" fill="#18202A">가용성 양극</text>
+  <rect x="396" y="92" width="18" height="84" fill="#9DB7C8" stroke="#465260"/>
+  <circle cx="405" cy="112" r="3" fill="#C4382C"/><circle cx="410" cy="140" r="3" fill="#C4382C"/><circle cx="402" cy="160" r="3" fill="#C4382C"/>
+  <text x="428" y="104" fill="#18202A">금속판·볼이 녹아</text>
+  <text x="428" y="124" fill="#18202A">금속 이온을 보충한다</text>
+  <text x="428" y="150" font-size="13" fill="#465260">아연·니켈·구리·주석 도금</text>
+  <text x="428" y="170" font-size="13" fill="#465260">양극 소모분이 원가에 들어간다</text>
+  <rect x="380" y="212" width="320" height="140" rx="8" fill="none" stroke="#98A8BA"/>
+  <text x="396" y="238" font-size="16" font-weight="700" fill="#18202A">불용성 양극</text>
+  <rect x="396" y="252" width="18" height="84" fill="#98A8BA" stroke="#465260"/>
+  <circle cx="422" cy="270" r="3.5" fill="none" stroke="#465260"/><circle cx="426" cy="292" r="3" fill="none" stroke="#465260"/><circle cx="421" cy="316" r="4" fill="none" stroke="#465260"/>
+  <text x="436" y="264" fill="#18202A">녹지 않고 산소를 낸다</text>
+  <text x="436" y="284" fill="#18202A">금속은 약품으로 보충</text>
+  <text x="436" y="310" font-size="13" fill="#465260">6가 크롬(납 합금 양극),</text>
+  <text x="436" y="330" font-size="13" fill="#465260">알칼리 아연-니켈 등</text>
+  <rect x="20" y="368" width="680" height="56" rx="6" fill="#FFFFFF" stroke="#C9D2DB"/>
+  <text x="36" y="392" fill="#18202A"><tspan font-weight="700">욕 전압</tspan> = 양극·음극 반응에 드는 전압 + 도금액 저항에 따른 전압 강하</text>
+  <text x="36" y="413" font-size="13" fill="#465260">극간 거리가 멀거나 욕 온도·농도가 낮으면 같은 전류에도 전압이 올라 전력비와 발열이 는다</text>
+</svg>

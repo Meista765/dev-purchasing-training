@@ -3,7 +3,7 @@
 <meta name="description" content="프레스 금형을 발주·관리하는 개발구매 신입 사원을 위한 금형 교재 — 구조·전단·굽힘·드로잉·소재·개발 프로세스·금형비·관리">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: sticky top bar + one view at a time. Roadmap = 9 stage columns on graph paper with a drawing title block;
    concept = reading column + side rail (결재란 stamps, ego map). Accent = drafting blue for anything clickable; seal red only for completion stamps. */
@@ -476,6 +476,37 @@ sub{font-size:.72em;line-height:0;vertical-align:-.3em}  /* formula subscripts (
   .ck-c h3 a{color:#000}
 }
 
+
+/* ---------- design cleanup (taste-skill) ----------
+   Overrides only, so print styles and widgets keep their rules. Keeps the drawing idea (결재 stamps, title block,
+   palette, Hahmlet + Plex Sans) and drops the costume: graph paper, monospace, English eyebrows, 1px card outlines. */
+:root{--f-mono:var(--f-body)}
+body{background-image:none}
+.mono,.out .v,.score .big,.field input,.formula .e{font-variant-numeric:tabular-nums}
+/* eyebrows: the Korean heading already says it */
+.article h2 .k,.lab-h .k{display:none}
+.rail h3,.lab-list h4,.tblock .k,.stage-h .no,.brand span{text-transform:none;letter-spacing:0;font-size:13px;font-weight:600;color:var(--ink-2)}
+/* surfaces: a tone step (sheet on paper) instead of an outline */
+.top{border-bottom-color:transparent}
+.card,.lk:not(.x),.pn a,.q,details.prac,.ck-c,.ego,.vid,.map-wrap,.sres,.lab-list{border-color:transparent}
+.fig img,.drw,.anim .an-stage svg{border-color:transparent}
+a.card:hover,.lk:hover,.pn a:hover,.vid:hover{border-color:transparent;background:var(--accent-soft)}
+.tag{border-color:transparent;background:var(--sunk)}
+.keys,.chk-box,.score{border:0;border-left:3px solid var(--ink)}
+.preview{border-color:transparent}
+details.prac[open] summary{border-bottom:0}
+/* list dividers: space does the separating */
+.stage{border-bottom:0;padding:26px 0}
+.mini-list,.ncs-ref{border-top:0}
+.mini-list li,.ncs-ref li,.gl dl{border-bottom:0}
+.mini-list li,.ncs-ref li{padding-block:2px}
+.ego .cap{border-top:0}
+.formula .ex{border-top:0;padding-top:2px}
+/* reading size and contrast */
+.article{font-size:16px}
+:root:not([data-theme="dark"]){--ink-3:#5E6A75}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink-3:#8C98A4}}
+:root[data-theme="dark"]{--ink-3:#8C98A4}
 </style>
 <header class="top">
   <div class="top-in wrap">
@@ -2350,7 +2381,7 @@ function renderMap(){
       <div class="k">근거</div><div class="v">업계 관행 · 공개 규격 · 금형 설계 문헌</div>
       <div class="k">구성</div><div class="v mono">${D.stages.length}단계 · 개념 ${D.concepts.length} · 연결 ${D.edges.length}</div>
       <div class="k">실습</div><div class="v mono">인터랙티브 ${LABS.length}종</div>
-      <div class="k">짝 자료</div><div class="v">러닝맵 (NCS) · 실무편</div>
+      <div class="k">짝 자료</div><div class="v">개념편 (NCS) · 실무편</div>
       <div class="k">내 결재</div><div class="v mono">${nDone} / ${D.concepts.length}</div>
     </div>
   </div>
@@ -2402,7 +2433,7 @@ function stageCol(s){
   const ncsN = new Set(cs.flatMap(c => c.ncs || [])).size, silN = new Set(cs.flatMap(c => c.silmu || [])).size;
   return `<section class="stage" aria-label="${s.no}단계 ${esc(s.title)}">
     <div class="stage-h"><div class="no">STAGE ${sNo(s)}</div><h2>${esc(s.title)}</h2><p>${esc(s.sub)}</p>
-    <div class="mods">${silN ? `<span class="tag" title="실무편에서 함께 볼 개념 수">실무편 연결 ${silN}</span>` : ""}${ncsN ? `<span class="tag" title="NCS 러닝맵에서 함께 볼 개념 수">NCS 연결 ${ncsN}</span>` : ""}<span class="prog">결재 ${dn}/${cs.length}</span></div></div>
+    <div class="mods">${silN ? `<span class="tag" title="실무편에서 함께 볼 개념 수">실무편 연결 ${silN}</span>` : ""}${ncsN ? `<span class="tag" title="개념편에서 함께 볼 개념 수">개념편 연결 ${ncsN}</span>` : ""}<span class="prog">결재 ${dn}/${cs.length}</span></div></div>
     <div class="stage-nodes">${html}</div></section>`;
 }
 function applyMod(){
@@ -2492,7 +2523,7 @@ function renderConcept(id){
       <div><h3>결재란</h3><div id="kyul"></div></div>
       ${nbs.length ? `<div><h3>연결 지도</h3><div class="ego" id="ego"></div></div>` : ""}
       ${refBox("실무편에서 함께 볼 개념", sil, SILMU, "개발구매 실무편.html", "개발구매 실무편")}
-      ${refBox("NCS 러닝맵에서 함께 볼 개념", ncs, NCS, null, "개발구매 러닝맵")}
+      ${refBox("개념편에서 함께 볼 개념", ncs, NCS, null, "개발구매 개념편")}
       <div><h3>STAGE ${sNo(s)}의 개념</h3><ul class="mini-list">${sameStage.map(x => `<li><a href="#${x.id}" ${x.id===id?'aria-current="true"':""}><span class="st ${stDot(x.id)}"></span>${esc(x.title)}</a></li>`).join("")}</ul></div>
     </aside>
   </div>`;
@@ -2511,7 +2542,7 @@ function figsHtml(c){
   if(!im.length) return "";
   return `<div class="figs">${im.map(m => { if(m.type === "anim") return animFig(m); const cr = [m.credit, m.license].filter(Boolean).map(esc).join(" · "); return `<figure class="fig ${m.size === "half" ? "half" : ""}"><img src="${m.src}" alt="${esc(m.alt||"")}" loading="lazy">${m.caption || cr ? `<figcaption>${inline(m.caption||"")}${cr || m.source ? `<span class="cr">${cr}${m.source ? `${cr ? " · " : ""}${srcHtml(m.source)}` : ""}</span>` : ""}</figcaption>` : ""}</figure>`; }).join("")}</div>`;
 }
-/* cross-reference box. NCS 러닝맵: title only. 실무편: link when this page is opened as a local file, title only inside the hosted iframe */
+/* cross-reference box. 개념편: title only. 실무편: link when this page is opened as a local file, title only inside the hosted iframe */
 function refBox(title, ids, idx, file, book){
   if(!ids.length) return "";
   const link = !!file && CAN_PRINT;

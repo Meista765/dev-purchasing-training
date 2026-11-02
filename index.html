@@ -2,39 +2,408 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>개발구매 신입사원 교육</title>
-<meta name="description" content="판금·프레스 부품 개발구매 신입 사원 교육 자료 모음 — 러닝맵·실무편·금형편·재료편">
+<meta name="description" content="판금·프레스 부품 개발구매 신입 사원 교재 다섯 권 — 개념편·실무편·금형편·재료편·표면처리편, 개념 421개">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@700&family=IBM+Plex+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@700;800&family=IBM+Plex+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root { --bg: #f7f6f2; --fg: #1d1d1b; --muted: #5f5e58; --card: #ffffff; --line: #dcd9d0; --accent: #1f5fae; }
-@media (prefers-color-scheme: dark) {
-  :root { --bg: #161615; --fg: #ecebe6; --muted: #a5a39b; --card: #20201e; --line: #34332f; --accent: #7fb0f0; }
+/* One motif: the file-folder tab. Five volumes are five folders; the same tab cuts the photo bullets, the preview
+   frame, the button's top corners, the band between the two halves and the footer blocks. Palette = the volumes' own. */
+:root{
+  --ground:#EEF2F1; --sheet:#FAFCFB; --sunk:#E4EAE8; --ink:#18202A; --ink-2:#465260;
+  --accent:#1D5BB8; --accent-2:#164A97; --on-accent:#FFFFFF; --seal:#C4382C;
+  --hero:#18202A; --hero-ink:#EEF2F1; --hero-ink-2:#BCC6CF;
+  --f1:#1D5BB8; --f1-ink:#FFFFFF; --f2:#FAFCFB; --f3:#DFE9F8; --f4:#CFD8D6; --f5:#DDF0E5; --f-ink:#18202A;
+  --t1:#C3CDCB; --t2:#9AA8A6; --t3:#465260;
+  --display:"Hahmlet","Noto Serif KR","Nanum Myeongjo",serif;
+  --text:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  --s-display:clamp(64px,10vw,152px); --s-head:clamp(34px,3.6vw,52px); --s-lead:20px; --s-body:17px; --s-small:15px;
+  --m:clamp(16px,2.2vw,32px);
+  --tab:polygon(14px 0,calc(100% - 14px) 0,100% 100%,0 100%);
+  --folder:polygon(0 0,44% 0,54% 14%,100% 14%,100% 100%,0 100%);
+  --chamfer:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%,0 10px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light dark;
 }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--fg); font-family: "IBM Plex Sans KR", system-ui, sans-serif; line-height: 1.6; }
-main { max-width: 720px; margin: 0 auto; padding: 56px 16px; }
-h1 { font-family: Hahmlet, serif; font-size: clamp(1.6rem, 5vw, 2.2rem); margin: 0 0 8px; }
-p.lead { color: var(--muted); margin: 0 0 32px; }
-ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-a { display: block; padding: 18px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; color: inherit; text-decoration: none; }
-a:hover, a:focus-visible { border-color: var(--accent); }
-a strong { display: block; color: var(--accent); font-size: 1.1rem; }
-a span { color: var(--muted); font-size: 0.92rem; }
+@media (prefers-color-scheme:dark){:root{
+  --ground:#11161C; --sheet:#171D24; --sunk:#1B222A; --ink:#E4E9EE; --ink-2:#AAB5C0;
+  --accent:#78A6F5; --accent-2:#9BBEFA; --on-accent:#0E1520; --seal:#F06A5C;
+  --hero:#0B0F13; --hero-ink:#E4E9EE; --hero-ink-2:#AAB5C0;
+  --f1:#78A6F5; --f1-ink:#0E1520; --f2:#2A333D; --f3:#1D2B42; --f4:#232C35; --f5:#173226; --f-ink:#E4E9EE;
+  --t1:#2A333D; --t2:#3A4550; --t3:#7E8A96;
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 var(--s-body)/1.6 var(--text);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
+a{color:inherit;text-underline-offset:4px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:800;letter-spacing:-.03em;text-wrap:balance}
+p{margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- button: the tab's top corners ---------- */
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 28px;background:var(--ground);color:var(--ink);font:600 var(--s-body)/1 var(--text);text-decoration:none;clip-path:var(--chamfer);transition:transform .16s var(--ease),background .16s}
+.btn:hover{background:var(--sheet)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:-7px}
+.btn.ac{background:var(--accent);color:var(--on-accent)}
+.btn.ac:hover{background:var(--accent-2)}
+.btn.ac:focus-visible{outline-color:var(--on-accent)}
+
+/* ---------- hero: five folders ---------- */
+.hero{background:var(--hero);color:var(--hero-ink);min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:22px var(--m) 0;font-size:var(--s-small)}
+.bar .mark{grid-column:2;font-weight:600;text-decoration:none;white-space:nowrap}
+.bar .to{justify-self:end;white-space:nowrap}
+.hero h1{font-size:var(--s-display);line-height:.95;letter-spacing:-.045em;text-align:center;margin:clamp(40px,7vh,96px) var(--m) 0}
+.hero .sup{font-size:var(--s-lead);line-height:1.55;text-align:center;color:var(--hero-ink-2);max-width:31em;margin:28px auto 0;padding:0 var(--m)}
+.stack{position:relative;margin-top:auto;padding-top:clamp(48px,6vh,72px);height:max(440px,48svh);flex:none}
+.folder{--tw:232px;position:absolute;left:7vw;right:7vw;top:calc(var(--i) * 56px + 40px);bottom:0;background:var(--fc);color:var(--f-ink);text-decoration:none;display:block;transition:transform .24s var(--ease)}
+.folder.front{color:var(--f1-ink)}
+.folder .tab{position:absolute;bottom:100%;left:calc((100% - var(--tw)) * var(--p));width:var(--tw);height:40px;margin-bottom:-1px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--fc);clip-path:var(--tab);font-size:var(--s-body);white-space:nowrap}
+.folder .tab b{font-weight:600}
+.folder .tn{font-size:var(--s-small);font-variant-numeric:tabular-nums}
+.folder .strip{display:block;padding:14px 28px;font-size:var(--s-small);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:1199px){.folder .strip{visibility:hidden}}  /* below this the next folder's tab reaches the strip text */
+a.folder:hover,a.folder:focus-visible{transform:translateY(-8px)}
+a.folder:focus-visible{outline-offset:-6px}
+.folder .in{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding:26px 28px}
+.folder .in p{flex:1 1 22em;font-size:var(--s-lead);line-height:1.45}
+.resume{flex-basis:100%;font-size:var(--s-body);font-weight:600}
+
+/* ---------- reading order: volumes as menus with photo bullets ---------- */
+.order{padding:clamp(120px,13vw,200px) var(--m) 0}
+.order-h{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.order-h h2{grid-column:1/7;font-size:var(--s-head);line-height:1.05}
+.order-h p{grid-column:7/13;font-size:var(--s-lead);line-height:1.55;align-self:end;max-width:30em}
+.vol{margin-top:clamp(96px,9vw,150px)}
+.vol-h{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:baseline;gap:8px 24px}
+.vol-h h3{font-size:var(--s-head);line-height:1.05}
+.vol-h h3 a{text-decoration:none}
+.vol-h h3 a:hover{text-decoration:underline;text-decoration-thickness:3px}
+.vol-h .meta{grid-column:3;justify-self:end;font-size:var(--s-small);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.vol-h .prog:not(:empty){color:var(--seal);font-weight:600}
+.vol-h .prog:not(:empty)::before{content:" · "}
+.vol-h .desc{grid-column:1/-1;max-width:44em;margin-top:6px}
+.vol-b{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);gap:clamp(32px,4.5vw,72px);margin-top:44px;align-items:start}
+.rows{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px clamp(28px,4.5vw,64px)}
+.row{display:grid;grid-template-columns:64px minmax(0,1fr);gap:20px;text-decoration:none;color:inherit;transition:opacity .24s}
+.pic{display:block;width:64px;height:64px;clip-path:var(--folder);background:var(--sunk);transition:transform .24s var(--ease)}
+.pic img{display:block;width:100%;height:100%;object-fit:cover}
+.pic.none{background:var(--accent);opacity:.9}
+.row .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.row b{font-weight:600}
+.row .n{flex:none;font-size:var(--s-small);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.row .n.on{color:var(--seal);font-weight:600}
+.row .d{display:block;color:var(--ink-2);margin-top:2px}
+.row:hover b,.row:focus-visible b{text-decoration:underline;text-decoration-thickness:2px}
+.row:hover .pic{transform:translateY(-3px)}
+.frame{position:sticky;top:32px;margin:0}
+.win{position:relative;aspect-ratio:4/5;clip-path:polygon(0 0,40% 0,46% 6%,100% 6%,100% 100%,0 100%);background:var(--sheet)}
+.win img,.win video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .24s ease}
+.win .is-on{opacity:1}
+.win img.fit-contain{object-fit:contain;padding:12% 8% 6%}
+.win img.fit-top{object-fit:cover;object-position:left top}
+.frame figcaption{margin-top:12px;font-size:var(--s-small);line-height:1.5}
+.frame .cr{display:block;color:var(--ink-2)}
+@media (hover:hover) and (pointer:fine){.rows:hover .row:not(:hover){opacity:.4}}
+.stamp{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;border:3px solid var(--seal);color:var(--seal);font:800 15px/1.05 var(--display);transform:rotate(-14deg);align-self:center}
+.stamp[hidden]{display:none}
+.stamp b{font:600 15px/1.1 var(--text);font-variant-numeric:tabular-nums}
+
+/* ---------- how it works: the band with a tab ---------- */
+.how{position:relative;margin-top:clamp(130px,14vw,210px);background:var(--sunk);padding:clamp(72px,8vw,120px) var(--m) clamp(80px,9vw,130px)}
+.how::before{content:"";position:absolute;bottom:calc(100% - 1px);left:var(--m);width:min(340px,48vw);height:44px;background:var(--sunk);clip-path:var(--tab)}
+.how-h{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.how-h h2{grid-column:1/6;font-size:var(--s-head);line-height:1.05}
+.how-h p{grid-column:7/13;font-size:var(--s-lead);line-height:1.55;align-self:end;max-width:30em}
+.dia{display:block;width:100%;height:auto;margin-top:64px}
+.dia .t1{fill:var(--t1)} .dia .t2{fill:var(--t2)} .dia .t3{fill:var(--t3)} .dia .ac{fill:var(--accent)}
+.dia.v{display:none}
+.steps{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.steps b{display:block;font:800 var(--s-lead)/1.3 var(--display)}
+.steps p{margin-top:6px;max-width:24em}
+
+/* ---------- footer: the name, built from tabbed blocks ---------- */
+footer{background:var(--hero);color:var(--hero-ink);padding:clamp(72px,8vw,120px) var(--m) 28px}
+.blocks{display:flex;gap:4px;align-items:flex-end;height:34svh;min-height:220px}
+.blk{flex:1;height:var(--h);background:var(--c);color:var(--hero);clip-path:polygon(0 0,38% 0,calc(38% + 22px) 26px,100% 26px,100% 100%,0 100%);display:flex;align-items:flex-end;padding:0 0 .08em .12em;font:800 var(--s-display)/.8 var(--display);letter-spacing:-.04em;overflow:hidden}
+.foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px;margin-top:56px;font-size:var(--s-small);line-height:1.6}
+.foot h2{font:600 var(--s-small)/1.4 var(--text);letter-spacing:0;color:var(--hero-ink-2);margin-bottom:10px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{margin:4px 0}
+.foot a{text-decoration:none}
+.foot a:hover{text-decoration:underline}
+.c-books{grid-column:1/4} .c-tools{grid-column:4/7} .c-note{grid-column:7/13;max-width:36em}
+.c-credit{grid-column:1/13}
+.c-credit ul{columns:3 22em;column-gap:32px;color:var(--hero-ink-2)}
+.c-credit li{break-inside:avoid;margin:0 0 8px}
+.c-credit b{color:var(--hero-ink);font-weight:600;display:block}
+.c-credit a{text-decoration:underline}
+.last{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:56px;font-size:var(--s-small);color:var(--hero-ink-2)}
+
+/* ---------- phone ---------- */
+@media (max-width:860px){
+  .vol-b{grid-template-columns:1fr}
+  .frame{display:none}
+  .order-h h2,.order-h p,.how-h h2,.how-h p{grid-column:1/-1}
+}
+@media (max-width:640px){
+  .bar{grid-template-columns:1fr auto}
+  .bar .mark{grid-column:1}
+  .hero h1{font-size:15vw;margin-top:72px}
+  .hero .sup{font-size:var(--s-body)}
+  .stack{height:max(400px,48svh)}
+  .folder{--tw:46%;left:0;right:0;top:calc(var(--i) * 52px + 32px);--p:var(--mp)}
+  .folder .tab{height:32px;padding:0 16px;font-size:var(--s-small)}
+  .folder .tn{display:none}
+  .folder .strip{visibility:hidden}
+  .folder .in{padding:20px 16px}
+  .folder .in .btn{flex:1 1 100%;justify-content:center}
+  .rows{grid-template-columns:1fr;gap:26px}
+  .row{grid-template-columns:52px minmax(0,1fr);gap:16px}
+  .pic{width:52px;height:52px}
+  .vol-h h3{font-size:8.5vw}
+  .vol-h .meta{grid-column:1/-1;justify-self:start}
+  .dia.h{display:none} .dia.v{display:block;max-width:420px;margin-inline:auto}
+  .steps{grid-template-columns:1fr}
+  .blocks{height:22svh;min-height:150px}
+  .blk{font-size:15vw;clip-path:polygon(0 0,40% 0,calc(40% + 12px) 14px,100% 14px,100% 100%,0 100%)}
+  .c-books,.c-tools{grid-column:span 6} .c-note,.c-credit{grid-column:1/-1}
+}
+
+/* ---------- motion: entrances only when script runs, travel only when allowed ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .js [data-r]{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0ms)}
+  .js .folder[data-r]{transform:translateY(64px)}
+  .js [data-r].in{opacity:1;transform:none}
+  .js a.folder[data-r].in:hover{transform:translateY(-8px)}
+  .win img.is-on{animation:drift 14s ease-in-out infinite alternate}
+  .stamp.new{animation:stampin .45s cubic-bezier(.2,1.6,.4,1) both}
+}
+@media (prefers-reduced-motion:reduce){
+  .js [data-r]{opacity:0;transition:opacity .4s ease}
+  .js [data-r].in{opacity:1}
+  *{scroll-behavior:auto}
+}
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.06) translate(-1%,-1%)}}
+@keyframes stampin{from{transform:rotate(-14deg) scale(1.9);opacity:0}to{transform:rotate(-14deg) scale(1);opacity:1}}
+html{scroll-behavior:smooth}
 </style>
 </head>
 <body>
+<header class="hero" id="top">
+  <div class="bar"><a class="mark" href="#top">개발구매 신입사원 교육</a><a class="to" href="#order">읽는 순서</a></div>
+  <h1 data-r>개발구매 교재</h1>
+  <p class="sup" data-r>판금·프레스 부품을 사는 신입 사원이 개념 421개를 다섯 권에 걸쳐 읽고, 풀고, 결재받는 교재입니다.</p>
+  <nav class="stack" aria-label="교재 다섯 권">
+<a class="folder" href="개발구매%20표면처리편.html" style="--i:0;--p:1;--mp:1;--fc:var(--f5)"><span class="tab"><b>표면처리편</b><span class="tn" data-tp="pyo">개념 59</span></span><span class="strip" style="text-align:left">전처리·도금·양극산화·도장·법랑</span></a>
+<a class="folder" href="개발구매%20재료편.html" style="--i:1;--p:0.75;--mp:0;--fc:var(--f4)"><span class="tab"><b>재료편</b><span class="tn" data-tp="jae">개념 60</span></span><span class="strip" style="text-align:left">결정 구조·열처리·강종·부식·파괴</span></a>
+<a class="folder" href="개발구매%20금형편.html" style="--i:2;--p:0.5;--mp:0.5;--fc:var(--f3)"><span class="tab"><b>금형편</b><span class="tn" data-tp="geum">개념 61</span></span><span class="strip" style="text-align:right">구조·전단·굽힘·드로잉·금형비·관리</span></a>
+<a class="folder" href="개발구매%20실무편.html" style="--i:3;--p:0.25;--mp:1;--fc:var(--f2)"><span class="tab"><b>실무편</b><span class="tn" data-tp="silmu">개념 81</span></span><span class="strip" style="text-align:right">소재·도면·공정·원가계산서·실사·초도품</span></a>
+<div class="folder front" style="--i:4;--p:0;--mp:0;--fc:var(--f1)"><span class="tab"><b>개념편</b><span class="tn" data-tp="ncs">개념 160</span></span>
+      <div class="in"><p>먼저 구매 업무 전체를 NCS 구매조달 10개 학습모듈로 잡습니다.</p>
+      <a class="btn" href="개발구매%20개념편.html">개념편부터 시작</a>
+      <a class="resume" href="#" hidden></a></div></div>
+  </nav>
+</header>
+
 <main>
-<h1>개발구매 신입사원 교육</h1>
-<p class="lead">판금·프레스 부품 개발구매 신입 사원을 위한 교육 자료입니다.</p>
-<ul>
-<li><a href="개발구매%20러닝맵.html"><strong>러닝맵</strong><span>NCS 구매조달 10개 학습모듈을 개발구매 업무 흐름 하나로 엮은 로드맵</span></a></li>
-<li><a href="개발구매%20실무편.html"><strong>실무편</strong><span>소재·도면·공정·원가계산서·실사·초도품</span></a></li>
-<li><a href="개발구매%20금형편.html"><strong>금형편</strong><span>구조·전단·굽힘·드로잉·소재·개발 프로세스·금형비·관리</span></a></li>
-<li><a href="개발구매%20재료편.html"><strong>재료편</strong><span>결정 구조·기계적 성질·강화·열처리·강종·비철 금속·부식·파괴·재료 선정</span></a></li>
-</ul>
+<section class="order" id="order" aria-labelledby="order-h">
+  <div class="order-h" data-rise>
+    <h2 id="order-h">읽는 순서</h2>
+    <p>개념편으로 구매 업무의 흐름을 잡고, 실무편으로 현장을 익힌 뒤, 금형·재료·표면처리편에서 원리를 깊게 봅니다. 단계를 누르면 그 단계의 첫 개념이 열립니다.</p>
+  </div>
+
+<section class="vol" id="v-ncs" style="--fc:var(--f1)" data-rise>
+  <div class="vol-h">
+    <h3><a href="개발구매%20개념편.html">개념편</a></h3>
+    <span class="stamp" data-stamp="ncs" hidden>결재<b></b></span>
+    <p class="meta">9단계 · 개념 160<span class="prog" data-vp="ncs"></span></p>
+    <p class="desc">NCS 구매조달 10개 학습모듈을 개발구매 업무 흐름 아홉 단계로 엮었습니다. 구매 업무 전체의 큰 그림을 먼저 잡습니다.</p>
+  </div>
+  <div class="vol-b">
+    <ol class="rows"><li><a class="row" href="개발구매%20개념편.html#c01-purchasing-basics" data-full="assets/hub/ncs-s1.jpg" data-cap="개념편 로드맵의 「구매 전략 수립」 단계 — 개념 16개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s1-t.jpg" alt="개념편 로드맵 구매 전략 수립 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>구매 전략 수립</b><span class="n" data-sp="ncs.s1">개념 16</span></span><span class="d">무엇을, 어떤 방법으로 조달할지 먼저 정한다</span></span></a></li><li><a class="row" href="개발구매%20개념편.html#c06-dev-purchasing-role" data-full="assets/hub/ncs-s2.jpg" data-cap="개념편 로드맵의 「개발 기획」 단계 — 개념 16개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s2-t.jpg" alt="개념편 로드맵 개발 기획 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>개발 기획</b><span class="n" data-sp="ncs.s2">개념 16</span></span><span class="d">내부 고객의 요구를 목표 사양·품질 요구·개발 일정으로 바꾼다</span></span></a></li><li><a class="row" href="개발구매%20개념편.html#c02-supplier-importance" data-full="assets/hub/ncs-s3.jpg" data-cap="개념편 로드맵의 「협력사 소싱」 단계 — 개념 23개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s3-t.jpg" alt="개념편 로드맵 협력사 소싱 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>협력사 소싱</b><span class="n" data-sp="ncs.s3">개념 23</span></span><span class="d">만들 수 있는 업체를 찾고, 평가하고, 고른다</span></span></a></li><li><a class="row" href="개발구매%20개념편.html#c07-purchase-cost-concept" data-full="assets/hub/ncs-s4.jpg" data-cap="개념편 로드맵의 「원가 분석」 단계 — 개념 16개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s4-t.jpg" alt="개념편 로드맵 원가 분석 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>원가 분석</b><span class="n" data-sp="ncs.s4">개념 16</span></span><span class="d">적정 가격의 근거를 원가표로 만든다</span></span></a></li><li><a class="row" href="개발구매%20개념편.html#c09-rfp-supplier-selection" data-full="assets/hub/ncs-s5.jpg" data-cap="개념편 로드맵의 「협상·계약」 단계 — 개념 16개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s5-t.jpg" alt="개념편 로드맵 협상·계약 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>협상·계약</b><span class="n" data-sp="ncs.s5">개념 16</span></span><span class="d">견적을 받고 협상해 합의한 조건을 계약서로 묶는다</span></span></a></li><li><a class="row" href="개발구매%20개념편.html#c06-control-items" data-full="assets/hub/ncs-s6.jpg" data-cap="개념편 로드맵의 「개발 진척·품질 보증」 단계 — 개념 5개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s6-t.jpg" alt="개념편 로드맵 개발 진척·품질 보증 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>개발 진척·품질 보증</b><span class="n" data-sp="ncs.s6">개념 5</span></span><span class="d">양산 전까지 일정·품질을 관리하고 문제를 개선한다</span></span></a></li><li><a class="row" href="개발구매%20개념편.html#c04-market-research" data-full="assets/hub/ncs-s7.jpg" data-cap="개념편 로드맵의 「양산 조달」 단계 — 개념 27개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s7-t.jpg" alt="개념편 로드맵 양산 조달 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>양산 조달</b><span class="n" data-sp="ncs.s7">개념 27</span></span><span class="d">필요한 때, 필요한 양을, 요구한 품질로 들어오게 한다</span></span></a></li><li><a class="row" href="개발구매%20개념편.html#c08-cost-reduction-effect" data-full="assets/hub/ncs-s8.jpg" data-cap="개념편 로드맵의 「원가 절감·협력사 육성」 단계 — 개념 25개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s8-t.jpg" alt="개념편 로드맵 원가 절감·협력사 육성 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>원가 절감·협력사 육성</b><span class="n" data-sp="ncs.s8">개념 25</span></span><span class="d">더 싸게 사고, 협력사를 더 강하게 만든다</span></span></a></li><li><a class="row" href="개발구매%20개념편.html#c10-performance-management" data-full="assets/hub/ncs-s9.jpg" data-cap="개념편 로드맵의 「구매 성과관리」 단계 — 개념 16개." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/ncs-s9-t.jpg" alt="개념편 로드맵 구매 성과관리 단계 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>구매 성과관리</b><span class="n" data-sp="ncs.s9">개념 16</span></span><span class="d">구매 활동을 지표로 측정해 피드백하고 다음 전략에 반영한다</span></span></a></li></ol>
+    <figure class="frame" aria-hidden="true"><div class="win" data-fit="top"><img class="is-on" src="assets/hub/ncs-s1.jpg" alt="" loading="lazy"><img alt="" loading="lazy"></div><figcaption><span class="c">개념편 로드맵의 「구매 전략 수립」 단계 — 개념 16개.</span><span class="cr">이 교재의 화면</span></figcaption></figure>
+  </div>
+</section>
+<section class="vol" id="v-silmu" style="--fc:var(--f2)" data-rise>
+  <div class="vol-h">
+    <h3><a href="개발구매%20실무편.html">실무편</a></h3>
+    <span class="stamp" data-stamp="silmu" hidden>결재<b></b></span>
+    <p class="meta">9단계 · 개념 81 · 실습 19<span class="prog" data-vp="silmu"></span></p>
+    <p class="desc">강판과 도면에서 출발해 레이저·절곡·프레스·용접·표면처리 공정을 익히고, 그 지식으로 원가계산서를 따지고 협력사를 실사하고 초도품을 승인합니다.</p>
+  </div>
+  <div class="vol-b">
+    <ol class="rows"><li><a class="row" href="개발구매%20실무편.html#s1-steel-family" data-full="assets/hub/silmu-s1.jpg" data-cap="용융아연도금한 강재 표면에 아연이 굳으며 생긴 꽃무늬 결정(스팽글)이 보인다. 얇고 균일하게 입히는 전기아연도금(SECC)에서는 이런 무늬가 보이지 않는다." data-cr="Splarka (English Wikipedia) · Wikimedia Commons · Public domain" data-fit="cover"><span class="pic"><img src="assets/hub/silmu-s1-t.jpg" alt="구멍이 여러 개 뚫린 아연도금 철판 표면에 크고 작은 은회색 결정 무늬가 퍼져 있는 사진" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>소재·강판</b><span class="n" data-sp="silmu.s1">개념 9</span></span><span class="d">무엇으로 만드는지 안다 — 강판의 규격·품질·가격·유통 구조</span></span></a></li><li><a class="row" href="개발구매%20실무편.html#s2-drawing-anatomy" data-full="assets/hub/silmu-s2.png" data-cap="ISO 7200 형식의 표제란 예(내용은 배관 계통도). 작성자·승인자, 문서 종류, 표제, 식별 번호(도번), 개정(Rev.), 발행일, 시트 칸이 있다. 기계 부품 도면은 여기에 재질·척도·투상법·일반 공차 칸이 더해지는 경우가 많다." data-cr="Con-struct · Wikimedia Commons · CC BY-SA 3.0" data-fit="cover"><span class="pic"><img src="assets/hub/silmu-s2-t.jpg" alt="작성자, 승인자, 문서 종류, 표제, 식별 번호, 개정, 발행일, 시트 칸으로 나뉜 가로로 긴 표제란 양식" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>도면 해독</b><span class="n" data-sp="silmu.s2">개념 9</span></span><span class="d">무엇을 만들어야 하는지 도면에서 사양·공차·중요 특성을 읽는다</span></span></a></li><li><a class="row" href="개발구매%20실무편.html#s3-laser-principle" data-full="assets/hub/silmu-s3.jpg" data-cap="판금을 자르는 산업용 레이저 헤드. 노즐 끝 절단점에서 녹은 금속이 불꽃으로 튀고, 판 아래에는 톱니 모양 받침(슬랫)이 있다." data-cr="Contour · Wikimedia Commons · CC0" data-fit="cover"><span class="pic"><img src="assets/hub/silmu-s3-t.jpg" alt="레이저 절단 헤드 노즐 아래 금속판에서 불꽃이 옆으로 튀고, 판 밑에 톱니 모양 받침대가 보이는 사진" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>레이저 절단</b><span class="n" data-sp="silmu.s3">개념 8</span></span><span class="d">판재를 원하는 모양으로 자른다 — 품질과 원가는 절단 길이·두께가 정한다</span></span></a></li><li><a class="row" href="개발구매%20실무편.html#s4-press-brake" data-full="assets/hub/silmu-s4.jpg" data-cap="실제 작업장의 CNC 프레스 브레이크: 위쪽 램에 펀치가 일렬로 물려 있고 그 아래 테이블에 다이가 길게 놓이며, 앞쪽 지지 암이 긴 판을 받친다." data-cr="Asurnipal · Wikimedia Commons · CC BY-SA 4.0" data-fit="cover"><span class="pic"><img src="assets/hub/silmu-s4-t.jpg" alt="작업장에 설치된 회색·흰색 프레스 브레이크. 상부 빔 아래에 펀치가 일렬로 물려 있고 앞쪽에 판재 지지 암 두 개와 발판 스위치가 보인다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>절곡</b><span class="n" data-sp="silmu.s4">개념 8</span></span><span class="d">자른 판을 접어 형상을 만든다 — 전개 길이와 톤수를 계산할 줄 안다</span></span></a></li><li><a class="row" href="개발구매%20실무편.html#s5-press-process" data-full="assets/hub/silmu-s5.jpg" data-cap="순차 이송 금형의 상·하형(좌우)과 스크랩 스트립(앞쪽). 스트립을 따라가면 피치마다 가공이 한 단계씩 진행된 흔적이 보이고, 가운데 작은 조각들이 완성품이다." data-cr="Glenn McKechnie · Wikimedia Commons · CC BY-SA 3.0" data-fit="cover"><span class="pic"><img src="assets/hub/silmu-s5-t.jpg" alt="펼쳐 놓은 금형 두 덩어리와 그 앞에 놓인 구멍이 연속으로 뚫린 금속 스트립, 가운데 작은 프레스 부품 몇 개." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>프레스·금형</b><span class="n" data-sp="silmu.s5">개념 10</span></span><span class="d">금형으로 대량을 빠르게 찍어 낸다 — 공정 수·수율·금형비가 단가를 정한다</span></span></a></li><li><a class="row" href="개발구매%20실무편.html#s6-weld-types" data-full="assets/hub/silmu-s6.jpg" data-cap="자동차 차체 공장의 스폿 용접 로봇 라인. 지그에 고정한 박판 차체 골격을 여러 대의 로봇이 둘러싸고 점 용접을 한다." data-cr="BMW Werk Leipzig · Wikimedia Commons · CC BY-SA 2.0 de" data-fit="cover"><span class="pic"><img src="assets/hub/silmu-s6-t.jpg" alt="주황색 산업용 로봇 여러 대가 지그 위 은색 차체 골격을 둘러싸고 있는 공장 내부" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>용접·표면처리</b><span class="n" data-sp="silmu.s6">개념 9</span></span><span class="d">부품을 붙이고, 녹슬지 않게 입힌다 — 외주 공정의 품질과 원가</span></span></a></li><li><a class="row" href="개발구매%20실무편.html#s7-cost-sheet" data-full="assets/hub/silmu-s7.jpg" data-cap="실무편 원가계산서 예시표 — SPCC 1.6t 브래킷, 합계 279.25원." data-cr="이 교재의 화면" data-fit="top"><span class="pic"><img src="assets/hub/silmu-s7-t.jpg" alt="실무편 원가계산서 예시표 화면" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>원가계산서 검토</b><span class="n" data-sp="silmu.s7">개념 10</span></span><span class="d">앞에서 익힌 공정 지식으로 견적 가격의 근거를 항목별로 따진다</span></span></a></li><li><a class="row" href="개발구매%20실무편.html#s8-audit-purpose" data-full="assets/hub/silmu-s8.jpg" data-cap="화강암 정반 위에 문형(브리지) 구조를 얹은 3차원 측정기(CMM). 실사에서는 교정 상태와 함께 운용 인원·측정 프로그램 관리도 확인한다(대학 실험실)." data-cr="Adrian Grycuk · Wikimedia Commons · CC BY 3.0 pl" data-fit="cover"><span class="pic"><img src="assets/hub/silmu-s8-t.jpg" alt="검은 화강암 정반 위에 문 모양 구조와 측정 탐침이 달린 3차원 측정기" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>협력사 실사</b><span class="n" data-sp="silmu.s8">개념 12</span></span><span class="d">견적과 서류가 현장과 맞는지 직접 가서 확인한다</span></span></a></li><li><a class="row" href="개발구매%20실무편.html#s9-isir" data-full="assets/hub/silmu-s9.jpg" data-cap="정반 위에서 디지털 하이트 게이지로 부품 높이를 재는 모습(표시값 118.65mm). 정반이 기준면이 되며, 측정값은 결과표의 해당 풍선 번호 칸에 적는다." data-cr="Allopis-mipesa · Wikimedia Commons · CC BY-SA 4.0" data-fit="cover"><span class="pic"><img src="assets/hub/silmu-s9-t.jpg" alt="검은 정반 위 디지털 하이트 게이지의 측정 팔이 원통형 부품 안쪽 면에 닿아 있는 모습" width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>초도품 승인</b><span class="n" data-sp="silmu.s9">개념 6</span></span><span class="d">양산 전에 &#x27;이대로 만들어도 된다&#x27;를 자료와 샘플로 증명받는다</span></span></a></li></ol>
+    <figure class="frame" aria-hidden="true"><div class="win" data-fit="cover"><img class="is-on" src="assets/hub/silmu-s1.jpg" alt="" loading="lazy"><img alt="" loading="lazy"></div><figcaption><span class="c">용융아연도금한 강재 표면에 아연이 굳으며 생긴 꽃무늬 결정(스팽글)이 보인다. 얇고 균일하게 입히는 전기아연도금(SECC)에서는 이런 무늬가 보이지 않는다.</span><span class="cr">Splarka (English Wikipedia) · Wikimedia Commons · Public domain</span></figcaption></figure>
+  </div>
+</section>
+<section class="vol" id="v-geum" style="--fc:var(--f3)" data-rise>
+  <div class="vol-h">
+    <h3><a href="개발구매%20금형편.html">금형편</a></h3>
+    <span class="stamp" data-stamp="geum" hidden>결재<b></b></span>
+    <p class="meta">9단계 · 개념 61 · 실습 11<span class="prog" data-vp="geum"></span></p>
+    <p class="desc">프레스 금형을 발주하고 관리하는 데 필요한 구조·전단·굽힘·드로잉·소재와 개발 프로세스, 금형비 견적과 양산 중 관리까지 다룹니다.</p>
+  </div>
+  <div class="vol-b">
+    <ol class="rows"><li><a class="row" href="개발구매%20금형편.html#d1-what-is-die" data-full="assets/hub/geum-s1.jpg" data-cap="작은 순차 이송 금형을 열어 둔 모습. 오른쪽 하형에 선 두 가이드 포스트가 왼쪽 상형의 둥근 부시로 들어가 상·하형을 맞춘다. 앞쪽 스트립은 오른쪽 끝(아직 뚫리지 않은 부분)에서 왼쪽으로 갈수록 가공이 한 단계씩 진행됐다." data-cr="Glenn McKechnie · Wikimedia Commons · CC BY-SA 3.0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s1-t.jpg" alt="흰 배경에 금형 반쪽 두 개가 나란히 놓인 사진. 왼쪽 반쪽에는 둥근 부시 두 개, 오른쪽 반쪽에는 굵은 기둥 두 개가 있고, 앞쪽에 타원 모양 구멍이 차례로 뚫린 금속 띠와 작은 조각들이 놓여 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>금형 입문</b><span class="n" data-sp="geum.s1">개념 6</span></span><span class="d">금형이 무엇이고, 어떤 부품을 어떤 물량에서 금형으로 만드는지 안다</span></span></a></li><li><a class="row" href="개발구매%20금형편.html#d2-die-set" data-full="assets/hub/geum-s2.jpg" data-cap="서보 프레스에 올린 순차 이송 금형. 금형 양옆의 굵은 가이드 포스트에 강구가 촘촘히 박힌 슬리브(볼 베어링 가이드 부시)가 끼워져 상형을 정렬한다. 하형 다이 슈는 빨간 줄 홈이 난 볼스터 위에 놓였고, 오른쪽 아래 손에는 구멍이 뚫린 스트립이 들려 있다." data-cr="Mister Stanzautomat · Wikimedia Commons (일부 잘라 냄) · CC BY-SA 4.0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s2-t.jpg" alt="프레스 안에 놓인 금형을 앞에서 본 사진. 양옆에 굵은 원통 기둥과 작은 강구가 박힌 슬리브가 보이고, 금형 아래 판에는 빨간 줄무늬 홈이 있으며, 오른쪽 아래에 금속 띠를 든 손이 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>금형 구조와 표준 부품</b><span class="n" data-sp="geum.s2">개념 8</span></span><span class="d">금형을 열어 보면 무엇이 들어 있는지, 프레스에 어떻게 얹히는지 안다</span></span></a></li><li><a class="row" href="개발구매%20금형편.html#d3-blank-pierce" data-full="assets/hub/geum-s3.jpg" data-cap="주머니칼 칼날을 블랭킹으로 따낸 뒤 남은 스크랩 스트립. 칼날 모양 구멍이 일정한 간격으로 줄지어 있고, 구멍 사이 가는 다리와 양쪽 테두리만 골격으로 남았다. 블랭킹에서는 빠져나간 조각이 제품이고, 이 골격이 스크랩이다." data-cr="Isiwal · Wikimedia Commons · CC BY-SA 4.0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s3-t.jpg" alt="칼날 모양의 길쭉한 구멍이 비스듬히 줄지어 뚫린 회색 금속 띠 여러 장이 겹쳐 놓인 사진." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>전단 금형</b><span class="n" data-sp="geum.s3">개념 7</span></span><span class="d">판을 끊어 내는 금형 — 클리어런스가 버·수명·톤수를 정한다</span></span></a></li><li><a class="row" href="개발구매%20금형편.html#d4-bend-dies" data-full="assets/hub/geum-s4.jpg" data-cap="얇은 판에 세운 버링 구멍 세 개와 그 공구. 왼쪽이 끝이 가늘고 둥근 버링 펀치, 오른쪽이 다이다. 맨 왼쪽 구멍은 세운 벽 끝이 갈라졌다. 가장자리를 많이 늘리면 이렇게 끝이 갈라진다." data-cr="Douglas W. Jones · Wikimedia Commons · CC0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s4-t.jpg" alt="철판 위에 끝이 뾰족한 원통 펀치와 나사산이 있는 원통 다이가 놓여 있고, 그 앞에 판에서 위로 솟은 짧은 원통 모양 구멍 세 개가 있는 사진." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>굽힘·성형 금형</b><span class="n" data-sp="geum.s4">개념 7</span></span><span class="d">판을 굽히고 세우는 금형 — 스프링백과 균열을 어떻게 잡는지 안다</span></span></a></li><li><a class="row" href="개발구매%20금형편.html#d5-draw-principle" data-full="assets/hub/geum-s5.jpg" data-cap="스테인리스 판 한 장을 깊게 뽑아 만든 통(엎어 놓은 모습)과 뚜껑. 옆면과 바닥이 이음매 없이 한 몸이고, 바닥과 벽은 둥근 R로 이어진다. 평판의 플랜지에 있던 재료가 다이 안으로 끌려 들어가 이 벽이 되었다." data-cr="Yapparina · Wikimedia Commons · CC0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s5-t.jpg" alt="회색 천 위에 위가 막힌 은색 원통 통이 엎어져 있고, 옆에 둥근 뚜껑이 기대어 세워진 사진." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>드로잉 금형</b><span class="n" data-sp="geum.s5">개념 8</span></span><span class="d">평판을 컵·통으로 끌어내는 금형 — 블랭크 크기와 단수가 금형비를 정한다</span></span></a></li><li><a class="row" href="개발구매%20금형편.html#d6-process-plan" data-full="assets/hub/geum-s6.jpg" data-cap="프레스 다섯 대를 한 줄로 세운 탠덤 라인(가전 부품용). 부품은 프레스 한 대에서 한 공정을 마치고 다음 프레스로 넘어간다." data-cr="Sam D. Wilbur · Wikimedia Commons · CC BY-SA 4.0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s6-t.jpg" alt="넓은 공장 안에 흰색 대형 프레스들이 한 줄로 늘어서 있고, 각 프레스 앞에 노란 덮개가 달린 장치가 놓인 사진." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>공정 설계와 레이아웃</b><span class="n" data-sp="geum.s6">개념 6</span></span><span class="d">부품 하나를 몇 공정·몇 스테이션으로 나눌지 정한다 — 금형 크기와 프레스가 따라온다</span></span></a></li><li><a class="row" href="개발구매%20금형편.html#d7-tool-steel" data-full="assets/hub/geum-s7.jpg" data-cap="로크웰 경도계의 압입자(위)와 시편 받침대(아래). 옆 표에는 스케일 기호·압입자·하중이 적혀 있다. 열처리한 펀치·인서트의 경도는 이런 시험기로 재서 HRC 값으로 받는다." data-cr="Three-quarter-ten · Wikimedia Commons · CC BY-SA 3.0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s7-t.jpg" alt="검은 경도 시험기의 위쪽 압입자와 아래 둥근 받침대를 가까이서 찍은 세로 사진. 옆면에 하중 안내 표가 붙어 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>금형 소재·열처리·코팅</b><span class="n" data-sp="geum.s7">개념 5</span></span><span class="d">무슨 강으로 만들고 어떻게 단단하게 하는지가 수명과 금형비를 가른다</span></span></a></li><li><a class="row" href="개발구매%20금형편.html#d8-die-spec" data-full="assets/hub/geum-s8.jpg" data-cap="3D CAD로 그린 성형 금형 모델(차체 패널 개발용). 주황색 제품 둘레를 판이 덮고, 그 판을 모서리마다 볼트에 끼운 코일 스프링이 떠받친다. 가공에 들어가기 전 이런 3D 모델로 구조·간섭·부품을 검토한다." data-cr="PhilippBickendorf · Wikimedia Commons (여백 잘라 냄) · CC BY-SA 4.0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s8-t.jpg" alt="흰 배경에 회색 사각 금형 모델이 비스듬히 놓여 있고, 가운데 주황색 사각 성형품과 둘레의 판, 모서리의 코일 스프링이 보이는 3D 렌더링." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>금형 개발 프로세스</b><span class="n" data-sp="geum.s8">개념 7</span></span><span class="d">사양서에서 금형 승인까지 — 구매가 일정·품질·변경을 관리하는 길</span></span></a></li><li><a class="row" href="개발구매%20금형편.html#d9-cost-structure" data-full="assets/hub/geum-s9.jpg" data-cap="와이어컷 방전 가공기의 작업 탱크. 가공액에 잠긴 공작물 위로 와이어 헤드가 내려와 있고, 블록에서 형상을 따내는 가공이 끝나 가는 단계다. 다이 구멍·펀치 외곽 같은 날 형상을 이렇게 깎으며, 둘레 길이와 판두께가 가공 시간을 정한다." data-cr="Ricard1990 · Wikimedia Commons · CC BY-SA 3.0" data-fit="cover"><span class="pic"><img src="assets/hub/geum-s9-t.jpg" alt="투명 덮개가 달린 기계 헤드 아래, 액체가 찬 탱크 속에 사각 금속 블록과 구멍이 많은 고정판이 보이는 사진." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>금형비와 금형 관리</b><span class="n" data-sp="geum.s9">개념 7</span></span><span class="d">금형비를 따지고, 양산 내내 금형을 지키고 고치고 넘기고 폐기한다</span></span></a></li></ol>
+    <figure class="frame" aria-hidden="true"><div class="win" data-fit="cover"><video class="is-on" autoplay muted loop playsinline preload="metadata" poster="assets/zil-stampingpress03-poster.jpg" width="652" height="480"><source src="assets/zil-stampingpress03.webm" type="video/webm"></video><img alt="" loading="lazy"><img alt="" loading="lazy"></div><figcaption><span class="c">대형 프레스가 소재를 이송해 찍어 내는 장면 — 금형은 이 램과 베드 사이에 얹힌다.</span><span class="cr">Twdragon · Wikimedia Commons · CC BY-SA 3.0</span></figcaption></figure>
+  </div>
+</section>
+<section class="vol" id="v-jae" style="--fc:var(--f4)" data-rise>
+  <div class="vol-h">
+    <h3><a href="개발구매%20재료편.html">재료편</a></h3>
+    <span class="stamp" data-stamp="jae" hidden>결재<b></b></span>
+    <p class="meta">9단계 · 개념 60 · 실습 11<span class="prog" data-vp="jae"></span></p>
+    <p class="desc">강판과 금속이 왜 그런 성질을 갖는지 결정 구조에서 출발해 열처리·강종·비철 금속·부식·파괴를 거쳐 재료 선정과 사양 관리까지 갑니다.</p>
+  </div>
+  <div class="vol-b">
+    <ol class="rows"><li><a class="row" href="개발구매%20재료편.html#m1-why-materials" data-full="assets/hub/jae-s1.jpg" data-cap="거의 순수한 철(Armco 철)을 색 부식해 편광 현미경으로 본 페라이트 결정립(50배)이다. 색이 다른 조각 하나하나가 방향이 다른 결정립이고, 조각끼리 맞닿은 선이 결정립계다. 한 시편 안에서도 왼쪽 위는 결정립이 잘고 오른쪽 아래는 크다." data-cr="LBoron(Łukasiewicz 연구망 크라쿠프 기술연구소) · Wikimedia Commons · CC0" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s1-t.jpg" alt="파랑·보라·주황색 조각이 모자이크처럼 맞물린 현미경 사진. 왼쪽 위는 조각이 잘고 오른쪽 아래는 조각이 크다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>재료 입문</b><span class="n" data-sp="jae.s1">개념 5</span></span><span class="d">금속을 원자 배열·결정립·결함으로 보면 성질이 왜 그런지 보인다</span></span></a></li><li><a class="row" href="개발구매%20재료편.html#m2-tensile-test" data-full="assets/hub/jae-s2.jpg" data-cap="만능 시험기의 위·아래 쐐기 그립에 납작한 아령 모양 시험편을 물린 모습이다. 두 그립 사이를 벌려 시험편이 끊어질 때까지 당기면서 힘과 늘음을 기록한다." data-cr="Cdang · Wikimedia Commons (일부 잘라 냄) · Public domain" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s2-t.jpg" alt="회색 기둥 두 개 사이에 갈색 그립 두 개가 위아래로 있고, 그 사이에 가늘고 납작한 금속 띠가 물려 있는 사진." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>기계적 성질</b><span class="n" data-sp="jae.s2">개념 6</span></span><span class="d">인장·경도 시험값을 읽고, 숫자가 가공과 불량에 어떻게 이어지는지 안다</span></span></a></li><li><a class="row" href="개발구매%20재료편.html#m3-slip" data-full="assets/hub/jae-s3.jpg" data-cap="압연한 뒤 풀림한 황동의 조직(400배)이다. 결정립이 대체로 고른 다각형인 등축 결정립이고, 여러 결정립 안을 곧은 평행 띠(풀림 쌍정)가 가로지른다. 압연으로 늘어났던 결정립이 풀림 중 재결정해 새 결정립으로 바뀐 조직에서 흔히 보이는 모습이다." data-cr="Strangerhahaha · Wikimedia Commons · Public domain" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s3-t.jpg" alt="노란색과 갈색의 다각형 결정립이 빽빽이 모인 현미경 사진. 여러 결정립 안에 곧은 평행선 띠가 가로지른다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>강화·가공 경화·풀림</b><span class="n" data-sp="jae.s3">개념 6</span></span><span class="d">금속을 단단하게 만드는 방법과, 가공으로 굳은 소재를 다시 무르게 하는 방법</span></span></a></li><li><a class="row" href="개발구매%20재료편.html#m4-fe-c" data-full="assets/hub/jae-s4.jpg" data-cap="탄소 0.18%인 탄소강(A285)의 조직이다. 밝은 회색이 초석 페라이트, 검은 부분이 펄라이트다. 탄소가 적어 펄라이트가 전체의 5분의 1 남짓만 차지한다." data-cr="A. J. Duncan 외(미국 에너지부 사바나리버 사이트 보고서) · Wikimedia Commons · Public domain" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s4-t.jpg" alt="밝은 회색 덩어리 사이사이에 검은 조각이 흩어진 현미경 사진. 오른쪽 아래에 100µm 눈금이 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>철강 조직과 열처리</b><span class="n" data-sp="jae.s4">개념 7</span></span><span class="d">탄소량과 냉각 속도가 조직을 정하고, 조직이 강도·경도·인성을 정한다</span></span></a></li><li><a class="row" href="개발구매%20재료편.html#m5-steel-taxonomy" data-full="assets/hub/jae-s5.jpg" data-cap="탄소강관(ASME SA106 Gr.B) 맞대기 이음에 TIG 용접을 반 바퀴만 하다 멈춘 모습이다. 연마한 표면에서 비드 양옆으로 푸른색·금색 띠가 퍼진 범위가 용접열을 받은 영역이다. 조직이 바뀐 열영향부(HAZ)의 정확한 폭은 단면을 잘라 부식해야 보인다." data-cr="Yannick Trottier(Ytrottier) · Wikimedia Commons · CC BY 2.5" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s5-t.jpg" alt="은색으로 연마한 강관 가운데에 가로로 용접 비드가 반쯤 놓여 있고, 그 위아래로 파랑·노랑 무지개색 띠가 둘러져 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>철강 재료의 종류</b><span class="n" data-sp="jae.s5">개념 8</span></span><span class="d">탄소강·고장력강·스테인리스·주철 — 강종 이름 뒤의 성분과 쓰임새를 안다</span></span></a></li><li><a class="row" href="개발구매%20재료편.html#m6-al-series" data-full="assets/hub/jae-s6.jpg" data-cap="수도꼭지 황동 부품 단면의 마개형 탈아연 부식이다. 아래·오른쪽의 노란 결정립이 원래 황동이고, 위쪽 가운데의 분홍빛 구멍 많은 덩어리가 아연이 빠져나가고 구리만 남은 부분이다. 겉모양은 그대로여도 이 부분은 강도가 거의 없다." data-cr="Eisenbeisser · Wikimedia Commons · CC BY-SA 3.0" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s6-t.jpg" alt="현미경 단면 사진. 위쪽 가운데에 분홍빛의 구멍 많은 반원형 영역이 있고, 그 둘레에 노랗고 각진 결정립이 모자이크처럼 있다. 오른쪽 아래에 500µm 눈금이 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>비철 금속</b><span class="n" data-sp="jae.s6">개념 7</span></span><span class="d">알루미늄·구리·기타 금속의 계열·질별·가공 주의점과 가격 구조</span></span></a></li><li><a class="row" href="개발구매%20재료편.html#m7-corrosion-cell" data-full="assets/hub/jae-s7.jpg" data-cap="스테인리스 볼트로 고정한 강판. 볼트 둘레에만 붉은 녹이 생겨 세로로 번졌고, 볼트에서 떨어진 판 면은 멀쩡하다. 귀한 볼트가 음극, 그 둘레의 강판이 양극이 되어 접촉부 가까이부터 녹는 갈바닉 부식이다. 판이 볼트보다 넓어도 볼트 구멍 둘레는 주의하라는 본문 설명의 실물 예다." data-cr="D3j4vu · Wikimedia Commons · CC BY-SA 3.0" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s7-t.jpg" alt="회색 금속 띠판에 은색 볼트와 너트 여러 쌍이 박혀 있고, 각 볼트 둘레와 위아래 볼트 사이에 붉은 녹 자국이 세로로 번져 있는 사진." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>부식과 방식</b><span class="n" data-sp="jae.s7">개념 7</span></span><span class="d">녹이 생기는 원리를 알면 도금·재질·설계 사양을 근거 있게 정할 수 있다</span></span></a></li><li><a class="row" href="개발구매%20재료편.html#m8-fracture" data-full="assets/hub/jae-s8.jpg" data-cap="알루미늄 인장 시험편의 파단부. 끝이 오목한 컵 모양이고, 가장자리는 비스듬히 미끄러진 매끈한 테두리, 가운데는 거칠고 광택 없는 면이다. 크게 늘어나고 잘록해진 뒤 끊어지는 연성 파괴의 컵-콘 파단에서 컵 쪽이다." data-cr="HB TUW · Wikimedia Commons · CC BY-SA 4.0" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s8-t.jpg" alt="검은 배경에 원통형 금속 시험편 끝을 위에서 비스듬히 본 흑백 사진. 끝면이 오목한 컵처럼 패였고, 테두리는 매끈한 고리, 가운데는 거친 알갱이 면이다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>파괴·피로·열적 성질</b><span class="n" data-sp="jae.s8">개념 7</span></span><span class="d">부품이 왜 깨지는지 — 파면·피로·저온·열을 읽고 클레임에 대응한다</span></span></a></li><li><a class="row" href="개발구매%20재료편.html#m9-selection" data-full="assets/hub/jae-s9.jpg" data-cap="휴대용 XRF 분석기를 금속판에 대고 재는 모습(IAEA 장비 시연). 측정창을 표면에 붙이면 화면에 원소별 측정값 표가 뜬다. 탄소는 잴 수 없고, 도금·도장 위에서 재면 피막 성분이 섞인다는 한계를 함께 기억한다." data-cr="Dean Calma · IAEA (IAEA Imagebank) · Wikimedia Commons · CC BY 2.0" data-fit="cover"><span class="pic"><img src="assets/hub/jae-s9-t.jpg" alt="파란 셔츠를 입은 사람의 두 손이 주황색과 회색의 권총형 분석기를 금속판 위에 수직으로 대고 있다. 분석기 화면에 표 형태의 측정값이 보인다. 얼굴은 나오지 않는다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>재료 선정·사양·관리</b><span class="n" data-sp="jae.s9">개념 7</span></span><span class="d">재료를 고르고, 사양서에 적고, 바꿀 때 승인하고, 들어올 때 확인한다</span></span></a></li></ol>
+    <figure class="frame" aria-hidden="true"><div class="win" data-fit="cover"><img class="is-on" src="assets/hub/jae-s1.jpg" alt="" loading="lazy"><img alt="" loading="lazy"></div><figcaption><span class="c">거의 순수한 철(Armco 철)을 색 부식해 편광 현미경으로 본 페라이트 결정립(50배)이다. 색이 다른 조각 하나하나가 방향이 다른 결정립이고, 조각끼리 맞닿은 선이 결정립계다. 한 시편 안에서도 왼쪽 위는 결정립이 잘고 오른쪽 아래는 크다.</span><span class="cr">LBoron(Łukasiewicz 연구망 크라쿠프 기술연구소) · Wikimedia Commons · CC0</span></figcaption></figure>
+  </div>
+</section>
+<section class="vol" id="v-pyo" style="--fc:var(--f5)" data-rise>
+  <div class="vol-h">
+    <h3><a href="개발구매%20표면처리편.html">표면처리편</a></h3>
+    <span class="stamp" data-stamp="pyo" hidden>결재<b></b></span>
+    <p class="meta">9단계 · 개념 59 · 실습 7<span class="prog" data-vp="pyo"></span></p>
+    <p class="desc">전처리와 화성 처리, 전기도금과 도금 종류, 양극산화, 도료와 도장 공정, 법랑, 그리고 시험값·단가·환경 규제를 읽는 법을 다룹니다.</p>
+  </div>
+  <div class="vol-b">
+    <ol class="rows"><li><a class="row" href="개발구매%20표면처리편.html#p1-why-surface" data-full="assets/hub/pyo-s1.svg" data-cap="2mm 강판 위 8μm 아연층은 실제 비율로는 머리카락 선보다 가늘다. 그 얇은 층을 구매는 사양·업체·단가·성적서·클레임 다섯 지점에서 쥔다(위 확대 그림은 두께 과장)." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s1.svg" alt="위쪽에 2mm 강판 단면 막대와 그 윗면의 아주 가는 아연층을 실제 비율로 그리고, 확대 원 안에 아연층·화성 피막·강을 두께 과장으로 그렸다. 아래쪽에 사양, 업체, 단가, 성적서, 클레임 다섯 칸이 화살표로 이어진다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>표면처리 입문</b><span class="n" data-sp="pyo.s1">개념 6</span></span><span class="d">표면 수 μm에 부품의 수명·외관·기능이 걸려 있다 — 무엇을 왜 입히는지 안다</span></span></a></li><li><a class="row" href="개발구매%20표면처리편.html#p2-cleaning" data-full="assets/hub/pyo-s2.svg" data-cap="세정 성능은 시간·온도·농도·기계력 네 조각의 합이다. 라인 속도를 올려 시간 조각이 줄면 다른 조각을 키워야 같은 결과가 나온다(개념도)." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s2.svg" alt="왼쪽 원은 네 조각(시간·온도·농도·기계력)이 고르게 나뉜 기준 상태, 오른쪽 원은 시간 조각이 줄고 온도·농도 조각이 커져 원 전체 크기를 유지하는 모습. 아래에 라인 속도 3.0에서 4.5m/분이면 접촉 시간이 2/3로 준다는 설명." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>전처리와 화성 처리</b><span class="n" data-sp="pyo.s2">개념 6</span></span><span class="d">피막 불량의 절반은 피막 아래에서 시작된다 — 씻고, 벗기고, 붙을 자리를 만든다</span></span></a></li><li><a class="row" href="개발구매%20표면처리편.html#p3-electroplating" data-full="assets/hub/pyo-s3.svg" data-cap="도금욕은 금속염·전도염·착화제·첨가제로, 양극은 녹아서 보충하는 가용성과 녹지 않는 불용성으로 나뉜다. 욕 전압이 오르면 전력비와 발열이 는다." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s3.svg" alt="왼쪽 회색 상자에 도금욕의 네 성분(금속염·전도염·착화제·첨가제)과 역할, 오른쪽 위에 녹는 가용성 양극, 아래에 산소 기포를 내는 불용성 양극, 아래 띠에 욕 전압의 구성 설명이 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>전기도금의 원리</b><span class="n" data-sp="pyo.s3">개념 7</span></span><span class="d">전류가 금속 이온을 부품 표면에 쌓는다 — 두께·분포·수소를 숫자로 읽는다</span></span></a></li><li><a class="row" href="개발구매%20표면처리편.html#p4-zinc" data-full="assets/hub/pyo-s4.svg" data-cap="아연 위에 3가 화성 피막(백청 지연), 그 위에 실러·탑코트가 쌓인다. ISO 19598은 화성 피막을 An·Cn·Fn으로 나눈다(두께 과장)." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s4.svg" alt="강 소지 위에 두꺼운 아연층, 얇은 보라 무지개 화성 피막, 회색 실러, 파란 탑코트가 쌓인 단면과 층별 역할 설명, 아래에 투명(An)·무지개(Cn)·흑색(Fn) 색 견본이 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>도금의 종류</b><span class="n" data-sp="pyo.s4">개념 7</span></span><span class="d">아연·아연 합금·니켈·크롬·무전해·주석, 그리고 용융아연도금과 아연 플레이크</span></span></a></li><li><a class="row" href="개발구매%20표면처리편.html#p5-anodizing" data-full="assets/hub/pyo-s5.svg" data-cap="양극산화 피막은 얇은 장벽층 위에 구멍 뚫린 다공층이 선 구조다. 열린 구멍은 염료를 받지만 때·부식 이온도 받으므로 마지막에 봉공으로 막는다(두께·구멍 과장, 개념도)." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s5.svg" alt="왼쪽 절반은 구멍이 하얗게 열린 다공층, 오른쪽 절반은 구멍이 회색으로 막힌 다공층이고, 그 아래 장벽층과 빗금 친 알루미늄 소지가 있다. 오른쪽에 다공층·장벽층·소지 이름표와 봉공 방법 설명이 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>양극산화와 특수 처리</b><span class="n" data-sp="pyo.s5">개념 6</span></span><span class="d">알루미늄 양극산화, 스테인리스 마감, 흑색 산화, 도금·컬러 강판, PVD·용사</span></span></a></li><li><a class="row" href="개발구매%20표면처리편.html#p6-paint-components" data-full="assets/hub/pyo-s6.svg" data-cap="도료 1L 중 용제는 날아가고 고형분만 막으로 남는다. 안료가 무거워 중량 고형분이 더 크게 나오므로 도포 면적·도료비는 부피 고형분으로 계산한다(예시값)." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s6.svg" alt="왼쪽에 도료 1L를 용제 45%·첨가제 2%·안료 15%·수지 38%로 나눈 세로 막대, 가운데 &#x27;용제가 날아간다&#x27; 화살표, 오른쪽에 첨가제·안료·수지만 남은 0.55L 건조 도막 막대가 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>도료와 도막</b><span class="n" data-sp="pyo.s6">개념 7</span></span><span class="d">도료는 수지·안료·용제·첨가제의 설계품이다 — 성분이 성능과 값을 정한다</span></span></a></li><li><a class="row" href="개발구매%20표면처리편.html#p7-spray" data-full="assets/hub/pyo-s7.svg" data-cap="도료를 쪼개는 방법이 다르다 — 공기 분무는 공기, 에어리스는 도료 고압, HVLP는 많은 저압 공기, 회전 벨은 원심력 + 정전기로 쪼갠다(대표값, 개념도)." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s7.svg" alt="네 칸에 공기 분무(공기 줄기와 작은 방울), 에어리스(고압 도료 막과 큰 방울), HVLP(굵은 저압 공기 화살표와 중간 방울), 회전 벨(회전 컵에서 대전 방울이 곡선을 그리며 접지 부품으로 가는 모습)이 그려지고 칸마다 압력·방울 크기 대표값이 적혀 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>도장 공정</b><span class="n" data-sp="pyo.s7">개념 7</span></span><span class="d">칠하고 굳히는 방식이 품질과 도료 손실을 정한다 — 스프레이·분체·전착·경화</span></span></a></li><li><a class="row" href="개발구매%20표면처리편.html#p8-enamel-basics" data-full="assets/hub/pyo-s8.svg" data-cap="법랑은 강판 위에 유리층을 두 겹 입힌 구조가 기본이다. 하유가 강과 붙고 상유가 색·광택·내약품을 맡는다. 계면은 소성 중 거칠어져 유리가 박힌다(두께 과장, 개념도)." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s8.svg" alt="빗금 친 강판 위에 물결 모양 계면, 그 위에 짙은 청록 하유층과 옅은 청록 상유층이 있고 유리층 안에 작은 기포가 흩어져 있다. 오른쪽에 상유·하유·밀착 계면·강판 이름표와 대략의 두께가 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>법랑</b><span class="n" data-sp="pyo.s8">개념 6</span></span><span class="d">유리를 강판에 녹여 붙인다 — 법랑용 강판·유약·소성·결함을 안다</span></span></a></li><li><a class="row" href="개발구매%20표면처리편.html#p9-thickness" data-full="assets/hub/pyo-s9.svg" data-cap="같은 부품도 자리마다 두께가 다르다. 평균은 넉넉해도 최소 국부 두께는 오목부가 정한다 — 그래서 측정 위치를 사양에 적는다(두께 과장, 값은 카드 예시)." data-cr="구매팀 자체 제작" data-fit="contain"><span class="pic"><img src="assets/hub/pyo-s9.svg" alt="U자 브래킷 단면에 아연 층이 바깥 모서리에서 두껍고 안쪽 구석에서 얇게 그려져 있고, 여섯 측정점 값이 붙어 있다. 오른쪽에 유효면·기준 면적·국부 두께·최소 국부 두께의 관계, 아래에 측정값 10개를 수직선에 찍어 평균 11.1μm와 최소 7.4μm, 기준 8μm를 비교한 띠가 있다." width="64" height="64" loading="lazy"></span><span class="txt"><span class="top"><b>품질·원가·환경</b><span class="n" data-sp="pyo.s9">개념 7</span></span><span class="d">시험값을 읽고, 단가를 따지고, 업체를 평가하고, 규제를 지킨다</span></span></a></li></ol>
+    <figure class="frame" aria-hidden="true"><div class="win" data-fit="contain"><img class="is-on" src="assets/hub/pyo-s1.svg" alt="" loading="lazy"><img alt="" loading="lazy"></div><figcaption><span class="c">2mm 강판 위 8μm 아연층은 실제 비율로는 머리카락 선보다 가늘다. 그 얇은 층을 구매는 사양·업체·단가·성적서·클레임 다섯 지점에서 쥔다(위 확대 그림은 두께 과장).</span><span class="cr">구매팀 자체 제작</span></figcaption></figure>
+  </div>
+</section>
+</section>
+
+<section class="how" id="how" aria-labelledby="how-h" data-rise>
+  <div class="how-h">
+    <h2 id="how-h">읽고, 풀고,<br>결재받는다</h2>
+    <p>개념마다 결재란이 있습니다. 본문을 읽으면 학습 도장이, 확인 퀴즈를 맞히면 통과 도장이 찍히고, 둘 다 찍히면 결재 완료입니다.</p>
+  </div>
+<svg class="dia h" viewBox="0 0 1200 266" role="img" aria-label="흩어진 개념이 퀴즈로 좁혀지고, 결재로 가지런히 정리되는 흐름"><defs><path id="g" d="M0 2h5l2 -2h5v12h-12z"/></defs><use href="#g" x="123" y="49" class="t1"/><use href="#g" x="35" y="134" class="t2"/><use href="#g" x="214" y="216" class="t1"/><use href="#g" x="23" y="111" class="t1"/><use href="#g" x="94" y="137" class="t1"/><use href="#g" x="299" y="43" class="t1"/><use href="#g" x="231" y="144" class="t1"/><use href="#g" x="212" y="103" class="t1"/><use href="#g" x="26" y="205" class="t2"/><use href="#g" x="157" y="135" class="t2"/><use href="#g" x="206" y="166" class="t1"/><use href="#g" x="214" y="157" class="t2"/><use href="#g" x="44" y="173" class="t1"/><use href="#g" x="227" y="125" class="t2"/><use href="#g" x="282" y="118" class="t2"/><use href="#g" x="137" y="71" class="t1"/><use href="#g" x="255" y="70" class="t2"/><use href="#g" x="194" y="209" class="t2"/><use href="#g" x="111" y="232" class="t1"/><use href="#g" x="189" y="52" class="t2"/><use href="#g" x="63" y="124" class="t1"/><use href="#g" x="347" y="33" class="t2"/><use href="#g" x="129" y="93" class="t2"/><use href="#g" x="213" y="116" class="t1"/><use href="#g" x="341" y="120" class="t1"/><use href="#g" x="31" y="170" class="t2"/><use href="#g" x="110" y="101" class="t2"/><use href="#g" x="18" y="118" class="t1"/><use href="#g" x="224" y="125" class="t1"/><use href="#g" x="279" y="44" class="t1"/><use href="#g" x="149" y="218" class="t2"/><use href="#g" x="38" y="115" class="t2"/><use href="#g" x="319" y="196" class="t2"/><use href="#g" x="257" y="233" class="t2"/><use href="#g" x="345" y="49" class="t1"/><use href="#g" x="63" y="161" class="t1"/><use href="#g" x="180" y="146" class="t2"/><use href="#g" x="109" y="48" class="t2"/><use href="#g" x="223" y="86" class="t1"/><use href="#g" x="252" y="129" class="t1"/><use href="#g" x="170" y="208" class="t2"/><use href="#g" x="149" y="103" class="t2"/><use href="#g" x="232" y="30" class="t1"/><use href="#g" x="355" y="113" class="t1"/><use href="#g" x="129" y="28" class="t1"/><use href="#g" x="208" y="134" class="t2"/><use href="#g" x="225" y="31" class="t1"/><use href="#g" x="225" y="49" class="t2"/><use href="#g" x="344" y="149" class="t2"/><use href="#g" x="53" y="203" class="t2"/><use href="#g" x="495" y="112" class="t3"/><use href="#g" x="495" y="126" class="t3"/><use href="#g" x="495" y="140" class="t3"/><use href="#g" x="509" y="112" class="t3"/><use href="#g" x="509" y="126" class="t3"/><use href="#g" x="509" y="140" class="t3"/><use href="#g" x="523" y="112" class="t3"/><use href="#g" x="523" y="126" class="t3"/><use href="#g" x="523" y="140" class="t3"/><use href="#g" x="537" y="112" class="t3"/><use href="#g" x="537" y="126" class="t3"/><use href="#g" x="537" y="140" class="t3"/><use href="#g" x="551" y="112" class="t3"/><use href="#g" x="551" y="126" class="t3"/><use href="#g" x="551" y="140" class="t3"/><use href="#g" x="565" y="112" class="t3"/><use href="#g" x="565" y="126" class="t3"/><use href="#g" x="565" y="140" class="t3"/><use href="#g" x="579" y="112" class="t3"/><use href="#g" x="579" y="126" class="t3"/><use href="#g" x="579" y="140" class="t3"/><use href="#g" x="593" y="112" class="t3"/><use href="#g" x="593" y="126" class="t3"/><use href="#g" x="593" y="140" class="t3"/><use href="#g" x="607" y="112" class="t3"/><use href="#g" x="607" y="126" class="t3"/><use href="#g" x="607" y="140" class="t3"/><use href="#g" x="621" y="112" class="t3"/><use href="#g" x="621" y="126" class="t3"/><use href="#g" x="621" y="140" class="t3"/><use href="#g" x="635" y="112" class="t3"/><use href="#g" x="635" y="126" class="t3"/><use href="#g" x="635" y="140" class="t3"/><use href="#g" x="649" y="112" class="t3"/><use href="#g" x="649" y="126" class="t3"/><use href="#g" x="649" y="140" class="t3"/><use href="#g" x="663" y="112" class="t3"/><use href="#g" x="663" y="126" class="t3"/><use href="#g" x="663" y="140" class="t3"/><use href="#g" x="677" y="112" class="t3"/><use href="#g" x="677" y="126" class="t3"/><use href="#g" x="677" y="140" class="t3"/><use href="#g" x="691" y="112" class="t3"/><use href="#g" x="691" y="126" class="t3"/><use href="#g" x="691" y="140" class="t3"/><use href="#g" x="860" y="40" class="ac"/><use href="#g" x="860" y="80" class="ac"/><use href="#g" x="860" y="120" class="ac"/><use href="#g" x="860" y="160" class="ac"/><use href="#g" x="860" y="200" class="ac"/><use href="#g" x="896" y="40" class="ac"/><use href="#g" x="896" y="80" class="ac"/><use href="#g" x="896" y="120" class="ac"/><use href="#g" x="896" y="160" class="ac"/><use href="#g" x="896" y="200" class="ac"/><use href="#g" x="932" y="40" class="ac"/><use href="#g" x="932" y="80" class="ac"/><use href="#g" x="932" y="120" class="ac"/><use href="#g" x="932" y="160" class="ac"/><use href="#g" x="932" y="200" class="ac"/><use href="#g" x="968" y="40" class="ac"/><use href="#g" x="968" y="80" class="ac"/><use href="#g" x="968" y="120" class="ac"/><use href="#g" x="968" y="160" class="ac"/><use href="#g" x="968" y="200" class="ac"/><use href="#g" x="1004" y="40" class="ac"/><use href="#g" x="1004" y="80" class="ac"/><use href="#g" x="1004" y="120" class="ac"/><use href="#g" x="1004" y="160" class="ac"/><use href="#g" x="1004" y="200" class="ac"/><use href="#g" x="1040" y="40" class="ac"/><use href="#g" x="1040" y="80" class="ac"/><use href="#g" x="1040" y="120" class="ac"/><use href="#g" x="1040" y="160" class="ac"/><use href="#g" x="1040" y="200" class="ac"/><use href="#g" x="1076" y="40" class="ac"/><use href="#g" x="1076" y="80" class="ac"/><use href="#g" x="1076" y="120" class="ac"/><use href="#g" x="1076" y="160" class="ac"/><use href="#g" x="1076" y="200" class="ac"/><use href="#g" x="1112" y="40" class="ac"/><use href="#g" x="1112" y="80" class="ac"/><use href="#g" x="1112" y="120" class="ac"/><use href="#g" x="1112" y="160" class="ac"/><use href="#g" x="1112" y="200" class="ac"/><use href="#g" x="1148" y="40" class="ac"/><use href="#g" x="1148" y="80" class="ac"/><use href="#g" x="1148" y="120" class="ac"/><use href="#g" x="1148" y="160" class="ac"/><use href="#g" x="1148" y="200" class="ac"/></svg><svg class="dia v" viewBox="0 0 300 400" role="img" aria-label="흩어진 개념이 퀴즈로 좁혀지고, 결재로 가지런히 정리되는 흐름"><defs><path id="g" d="M0 2h5l2 -2h5v12h-12z"/></defs><use href="#g" x="139" y="40" class="t1"/><use href="#g" x="36" y="43" class="t2"/><use href="#g" x="138" y="79" class="t1"/><use href="#g" x="64" y="105" class="t2"/><use href="#g" x="48" y="63" class="t1"/><use href="#g" x="214" y="38" class="t1"/><use href="#g" x="197" y="35" class="t2"/><use href="#g" x="255" y="44" class="t1"/><use href="#g" x="153" y="87" class="t2"/><use href="#g" x="181" y="71" class="t1"/><use href="#g" x="227" y="91" class="t1"/><use href="#g" x="62" y="58" class="t1"/><use href="#g" x="277" y="89" class="t2"/><use href="#g" x="78" y="79" class="t2"/><use href="#g" x="130" y="104" class="t2"/><use href="#g" x="268" y="45" class="t1"/><use href="#g" x="36" y="56" class="t2"/><use href="#g" x="64" y="72" class="t1"/><use href="#g" x="138" y="75" class="t1"/><use href="#g" x="235" y="20" class="t2"/><use href="#g" x="221" y="85" class="t2"/><use href="#g" x="250" y="52" class="t2"/><use href="#g" x="32" y="105" class="t2"/><use href="#g" x="134" y="84" class="t1"/><use href="#g" x="205" y="25" class="t1"/><use href="#g" x="15" y="68" class="t2"/><use href="#g" x="227" y="23" class="t2"/><use href="#g" x="187" y="44" class="t1"/><use href="#g" x="14" y="90" class="t1"/><use href="#g" x="151" y="103" class="t2"/><use href="#g" x="276" y="28" class="t1"/><use href="#g" x="16" y="30" class="t1"/><use href="#g" x="216" y="41" class="t2"/><use href="#g" x="235" y="14" class="t2"/><use href="#g" x="252" y="76" class="t2"/><use href="#g" x="233" y="98" class="t1"/><use href="#g" x="153" y="61" class="t1"/><use href="#g" x="245" y="87" class="t1"/><use href="#g" x="219" y="23" class="t1"/><use href="#g" x="137" y="82" class="t1"/><use href="#g" x="129" y="128" class="t3"/><use href="#g" x="129" y="138" class="t3"/><use href="#g" x="129" y="149" class="t3"/><use href="#g" x="129" y="160" class="t3"/><use href="#g" x="129" y="170" class="t3"/><use href="#g" x="129" y="180" class="t3"/><use href="#g" x="129" y="191" class="t3"/><use href="#g" x="129" y="202" class="t3"/><use href="#g" x="129" y="212" class="t3"/><use href="#g" x="129" y="222" class="t3"/><use href="#g" x="129" y="233" class="t3"/><use href="#g" x="129" y="244" class="t3"/><use href="#g" x="143" y="128" class="t3"/><use href="#g" x="143" y="138" class="t3"/><use href="#g" x="143" y="149" class="t3"/><use href="#g" x="143" y="160" class="t3"/><use href="#g" x="143" y="170" class="t3"/><use href="#g" x="143" y="180" class="t3"/><use href="#g" x="143" y="191" class="t3"/><use href="#g" x="143" y="202" class="t3"/><use href="#g" x="143" y="212" class="t3"/><use href="#g" x="143" y="222" class="t3"/><use href="#g" x="143" y="233" class="t3"/><use href="#g" x="143" y="244" class="t3"/><use href="#g" x="157" y="128" class="t3"/><use href="#g" x="157" y="138" class="t3"/><use href="#g" x="157" y="149" class="t3"/><use href="#g" x="157" y="160" class="t3"/><use href="#g" x="157" y="170" class="t3"/><use href="#g" x="157" y="180" class="t3"/><use href="#g" x="157" y="191" class="t3"/><use href="#g" x="157" y="202" class="t3"/><use href="#g" x="157" y="212" class="t3"/><use href="#g" x="157" y="222" class="t3"/><use href="#g" x="157" y="233" class="t3"/><use href="#g" x="157" y="244" class="t3"/><use href="#g" x="14" y="290" class="ac"/><use href="#g" x="14" y="326" class="ac"/><use href="#g" x="14" y="362" class="ac"/><use href="#g" x="54" y="290" class="ac"/><use href="#g" x="54" y="326" class="ac"/><use href="#g" x="54" y="362" class="ac"/><use href="#g" x="94" y="290" class="ac"/><use href="#g" x="94" y="326" class="ac"/><use href="#g" x="94" y="362" class="ac"/><use href="#g" x="134" y="290" class="ac"/><use href="#g" x="134" y="326" class="ac"/><use href="#g" x="134" y="362" class="ac"/><use href="#g" x="174" y="290" class="ac"/><use href="#g" x="174" y="326" class="ac"/><use href="#g" x="174" y="362" class="ac"/><use href="#g" x="214" y="290" class="ac"/><use href="#g" x="214" y="326" class="ac"/><use href="#g" x="214" y="362" class="ac"/><use href="#g" x="254" y="290" class="ac"/><use href="#g" x="254" y="326" class="ac"/><use href="#g" x="254" y="362" class="ac"/></svg>
+  <ul class="steps">
+    <li><b>읽기</b><p>본문·핵심 정리·현장 사례를 읽습니다. 연결된 개념이 다른 권으로 이어 줍니다.</p></li>
+    <li><b>풀기</b><p>개념마다 확인 퀴즈 두 문항, 계산이 필요한 개념에는 실습이 붙어 있습니다.</p></li>
+    <li><b>결재</b><p>학습과 퀴즈 도장이 모두 찍히면 완료. 진도는 로그인 없이 이 브라우저에만 저장됩니다.</p></li>
+  </ul>
+</section>
 </main>
+
+<footer>
+  <div class="blocks" aria-hidden="true" data-rise>
+    <span class="blk" style="--h:100%;--c:var(--f1)">개</span><span class="blk" style="--h:74%;--c:#FAFCFB">발</span><span class="blk" style="--h:88%;--c:#DFE9F8">구</span><span class="blk" style="--h:62%;--c:#CFD8D6">매</span>
+  </div>
+  <div class="foot">
+    <div class="c-books"><h2>다섯 권</h2><ul>
+      <li><a href="개발구매%20개념편.html">개념편</a></li><li><a href="개발구매%20실무편.html">실무편</a></li><li><a href="개발구매%20금형편.html">금형편</a></li><li><a href="개발구매%20재료편.html">재료편</a></li><li><a href="개발구매%20표면처리편.html">표면처리편</a></li></ul></div>
+    <div class="c-tools"><h2>실무편에서 바로</h2><ul>
+      <li><a href="개발구매%20실무편.html#lab">실습실</a></li><li><a href="개발구매%20실무편.html#quiz">복습 퀴즈</a></li><li><a href="개발구매%20실무편.html#glossary">용어집</a></li><li><a href="개발구매%20실무편.html#check">체크리스트</a></li></ul></div>
+    <div class="c-note"><h2>진도</h2><p>결재 진도는 권마다 이 브라우저에 따로 저장됩니다. 다른 기기나 브라우저에서 열면 처음부터 시작하고, 브라우저 데이터를 지우면 함께 지워집니다.</p></div>
+    <div class="c-credit"><h2>사진 출처</h2><ul>
+<li><b>실무편 · 소재·강판</b> Splarka (English Wikipedia) · Wikimedia Commons · Public domain · <a href="https://commons.wikimedia.org/wiki/File:Galvanized_surface.jpg">원본</a></li>
+<li><b>실무편 · 도면 해독</b> Con-struct · Wikimedia Commons · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Title_block_EN_ISO_7200.svg">원본</a></li>
+<li><b>실무편 · 레이저 절단</b> Contour · Wikimedia Commons · CC0 · <a href="https://commons.wikimedia.org/wiki/File:Laserkop_van_Amada_FO-4020NT_4kW,_industri%C3%ABle_laser.jpg">원본</a></li>
+<li><b>실무편 · 절곡</b> Asurnipal · Wikimedia Commons · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Kantmaschine_LVD_PPS_200-30_02.jpg">원본</a></li>
+<li><b>실무편 · 프레스·금형</b> Glenn McKechnie · Wikimedia Commons · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:ProgressiveDieToyota-strip-scrap.jpg">원본</a></li>
+<li><b>실무편 · 용접·표면처리</b> BMW Werk Leipzig · Wikimedia Commons · CC BY-SA 2.0 de · <a href="https://commons.wikimedia.org/wiki/File:BMW_Leipzig_MEDIA_050719_Download_Karosseriebau_max.jpg">원본</a></li>
+<li><b>실무편 · 협력사 실사</b> Adrian Grycuk · Wikimedia Commons · CC BY 3.0 pl · <a href="https://commons.wikimedia.org/wiki/File:Wsp%C3%B3%C5%82rz%C4%99dno%C5%9Bciowa_maszyna_pomiarowa_Gmach_Stary_Technologiczny_2026.jpg">원본</a></li>
+<li><b>실무편 · 초도품 승인</b> Allopis-mipesa · Wikimedia Commons · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Gramil_Vertical.jpg">원본</a></li>
+<li><b>금형편 · 금형 입문</b> Glenn McKechnie · Wikimedia Commons · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:ProgressiveDieToyota-strip-scrap.jpg">원본</a></li>
+<li><b>금형편 · 금형 구조와 표준 부품</b> Mister Stanzautomat · Wikimedia Commons (일부 잘라 냄) · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Stanzen-8850.jpg">원본</a></li>
+<li><b>금형편 · 전단 금형</b> Isiwal · Wikimedia Commons · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:TrattenbachManufaktur_L%C3%B6schenkohl_Klingenfertigung_Stanzabfall-9428.jpg">원본</a></li>
+<li><b>금형편 · 굽힘·성형 금형</b> Douglas W. Jones · Wikimedia Commons · CC0 · <a href="https://commons.wikimedia.org/wiki/File:Extruded_Holes.JPG">원본</a></li>
+<li><b>금형편 · 드로잉 금형</b> Yapparina · Wikimedia Commons · CC0 · <a href="https://commons.wikimedia.org/wiki/File:Stainless_kitchen_container_with_cover.jpg">원본</a></li>
+<li><b>금형편 · 공정 설계와 레이아웃</b> Sam D. Wilbur · Wikimedia Commons · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:5_Press_Tandem_1400_ton_line_with_QDC.jpg">원본</a></li>
+<li><b>금형편 · 금형 소재·열처리·코팅</b> Three-quarter-ten · Wikimedia Commons · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Rockwell_hardness_tester_closeup_001.jpg">원본</a></li>
+<li><b>금형편 · 금형 개발 프로세스</b> PhilippBickendorf · Wikimedia Commons (여백 잘라 냄) · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Umformwerkzeug_zur_Beschleunigung_der_Produktentwicklung_von_Blechbauteilen_im_Karosseriebau.tif">원본</a></li>
+<li><b>금형편 · 금형비와 금형 관리</b> Ricard1990 · Wikimedia Commons · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Electroerosiofinal.JPG">원본</a></li>
+<li><b>재료편 · 재료 입문</b> LBoron(Łukasiewicz 연구망 크라쿠프 기술연구소) · Wikimedia Commons · CC0 · <a href="https://commons.wikimedia.org/wiki/File:Armco-iron.jpg">원본</a></li>
+<li><b>재료편 · 기계적 성질</b> Cdang · Wikimedia Commons (일부 잘라 냄) · Public domain · <a href="https://commons.wikimedia.org/wiki/File:Machine_traction_walter_bai.JPG">원본</a></li>
+<li><b>재료편 · 강화·가공 경화·풀림</b> Strangerhahaha · Wikimedia Commons · Public domain · <a href="https://commons.wikimedia.org/wiki/File:Microstructure_of_rolled_and_annealed_brass;_magnification_400X.jpg">원본</a></li>
+<li><b>재료편 · 철강 조직과 열처리</b> A. J. Duncan 외(미국 에너지부 사바나리버 사이트 보고서) · Wikimedia Commons · Public domain · <a href="https://commons.wikimedia.org/wiki/File:Ferrite-perlite-steel-A285.jpeg">원본</a></li>
+<li><b>재료편 · 철강 재료의 종류</b> Yannick Trottier(Ytrottier) · Wikimedia Commons · CC BY 2.5 · <a href="https://commons.wikimedia.org/wiki/File:Pipe_root_weld_with_HAZ.jpg">원본</a></li>
+<li><b>재료편 · 비철 금속</b> Eisenbeisser · Wikimedia Commons · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Pfropfenentzinkung.jpg">원본</a></li>
+<li><b>재료편 · 부식과 방식</b> D3j4vu · Wikimedia Commons · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Stainless-steel-mild-steel.jpg">원본</a></li>
+<li><b>재료편 · 파괴·피로·열적 성질</b> HB TUW · Wikimedia Commons · CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Aluminiumzugprobe_01.jpg">원본</a></li>
+<li><b>재료편 · 재료 선정·사양·관리</b> Dean Calma · IAEA (IAEA Imagebank) · Wikimedia Commons · CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:X-Ray_Fluorescence_Analyzer_(03010735)_(45372291722).jpg">원본</a></li>
+<li><b>금형편 · 프레스 영상</b> “ZIL StampingPress03” · Twdragon · Wikimedia Commons · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:ZIL_StampingPress03.ogv">원본</a></li>
+<li><b>표면처리편 도식 9점</b> 구매팀 자체 제작</li>
+<li><b>개념편 로드맵 · 실무편 원가계산서</b> 이 교재의 화면</li>
+    </ul></div>
+  </div>
+  <div class="last"><span>판금·프레스 부품 개발구매 신입 사원 교육 자료 · 사내 교육용</span><a class="btn ac" href="#top">맨 위로</a></div>
+</footer>
+
+<script>
+document.documentElement.classList.add("js");
+if (matchMedia("(prefers-reduced-motion: reduce)").matches) document.querySelectorAll("video[autoplay]").forEach(v => { v.removeAttribute("autoplay"); v.pause(); });
+const VOLS = [{"k":"ncs","f":"개발구매%20개념편.html","n":"개념편","s":[["s1","구매 전략 수립",["c01-purchasing-basics","c01-outsourcing","c01-make-or-buy-criteria","c01-decision-target-analysis","c01-incremental-cost","c01-make-or-buy-process","c01-break-even","c01-purchase-category","c01-portfolio-matrix","c01-group-strategy","c01-plc-strategy","c01-centralized-purchasing","c01-ordering-strategy","c01-strategy-cascade","c01-purchase-planning","c01-mrp"]],["s2","개발 기획",["c06-dev-purchasing-role","c06-internal-customer-requirements","c06-qfd","c06-dev-proposal-nda","c06-dev-feasibility","c06-supplier-pool","c06-concurrent-engineering","c06-target-spec-decision","c06-quotation-structure","c05-purchased-item-classification","c05-quality-requirements","c05-quality-info-research","c06-design-change-history","c06-project-phases","c06-supplier-sourcing-schedule","c06-dev-schedule-plan"]],["s3","협력사 소싱",["c02-supplier-importance","c02-supplier-classification","c02-relationship-management","c02-selection-procedure","c02-strategy-based-criteria","c02-evaluation-items","c02-qualitative-checklist","c02-purchase-cost-data","c02-financial-ratios","c02-operational-kpis","c02-selection-criteria-grades","c02-prospect-discovery","c02-data-collection","c02-analysis-report","c02-final-selection","c02-contracts","c03-purchasing-process","c03-evaluation-process","c03-supplier-groups","c03-evaluation-scorecard","c03-4m-5s","c03-supplier-grade","c03-diagnosis-improvement"]],["s4","원가 분석",["c07-purchase-cost-concept","c07-purchase-item-types","c07-cost-structure","c07-fixed-variable-cost","c07-material-cost","c07-work-time-allowance","c07-labor-cost","c07-manufacturing-expense","c07-cost-table","c07-scrap-loss-yield","c07-sga-profit","c07-standard-tables","c07-cost-table-use","c07-variance-analysis","c07-price-quantity-variance","c07-cost-review-sheet"]],["s5","협상·계약",["c09-rfp-supplier-selection","c09-estimate-proposal","c09-quote-issue-analysis","c09-financial-statements","c09-negotiation-goal-zopa","c09-negotiation-plan","c09-negotiation-fundamentals","c09-negotiation-strategy","c09-negotiation-tactics","c09-negotiation-evaluation","c09-buyer-role","c09-contract-law-basics","c09-contract-types-process","c09-contract-documents","c09-contract-signing","c09-clause-checkpoints"]],["s6","개발 진척·품질 보증",["c06-control-items","c06-progress-checklist","c06-dev-problem-improvement","c05-qa-system","c05-purchase-qms"]],["s7","양산 조달",["c04-market-research","c04-delivery-performance","c04-key-material","c04-abc-analysis","c04-ordering-plan","c04-eoq","c04-ordering-types","c04-supplier-selection","c04-mrp","c04-bom","c04-purchase-order","c04-expediting","c04-delay-causes","c04-load-capacity-plan","c04-delay-recovery","c04-delivery-variation","c05-inspection-standard","c05-inspection-methods","c05-sampling-inspection","c05-process-capability","c05-living-inspection","c05-measurement-system","c05-qc-seven-tools","c05-nonconformity-correction","c05-corrective-preventive-action","c05-root-cause-analysis","c05-improvement-selection"]],["s8","원가 절감·협력사 육성",["c08-cost-reduction-effect","c08-purchase-cost-analysis","c08-purchase-item-types","c08-raw-material-techniques","c08-standard-item-techniques","c08-specialty-outsourced-techniques","c08-business-plan-process","c08-target-profit-reduction-goal","c08-improvement-theme-selection","c08-ve-function-evaluation","c08-target-cost-allocation","c08-promotion-plan","c08-idea-funnel","c08-vrp","c08-target-cost-management","c08-post-management","c03-gap-analysis","c03-market-analysis","c03-bsc","c03-development-target","c03-supplier-kpi","c03-development-plan","c03-progress-control","c03-result-analysis","c03-improvement-methods"]],["s9","구매 성과관리",["c10-performance-management","c10-ksf","c10-kpi","c10-purchasing-kpi-setting","c10-bsc","c10-mbo-evaluation","c10-purchasing-kpi-catalog","c10-kpi-management-criteria","c10-performance-data-collection","c10-outlier","c10-iqr-outlier","c10-sigma-outlier","c10-kpi-calculation","c10-variance-analysis","c10-performance-feedback","c10-performance-cycle"]]]},{"k":"silmu","f":"개발구매%20실무편.html","n":"실무편","s":[["s1","소재·강판",["s1-steel-family","s1-steel-grade","s1-mech-props","s1-tolerance-surface","s1-mill-cert","s1-coil-sheet","s1-weight-cost","s1-price-linkage","s1-supply-mode"]],["s2","도면 해독",["s2-drawing-anatomy","s2-projection","s2-dim-tolerance","s2-gdt","s2-sheet-drawing","s2-special-char","s2-tolerance-stack","s2-dfm-review","s2-revision"]],["s3","레이저 절단",["s3-laser-principle","s3-fiber-co2","s3-capacity-speed","s3-cut-quality","s3-design-rules","s3-nesting","s3-laser-cost","s3-punch-laser"]],["s4","절곡",["s4-press-brake","s4-tooling","s4-tonnage","s4-flat-length","s4-springback","s4-bend-design","s4-bend-defects","s4-bend-cost"]],["s5","프레스·금형",["s5-press-process","s5-die-types","s5-press-machine","s5-press-tonnage","s5-strip-layout","s5-press-defects","s5-die-structure","s5-die-cost","s5-die-payment","s5-die-management"]],["s6","용접·표면처리",["s6-weld-types","s6-spot-quality","s6-arc-quality","s6-weld-cost","s6-coating-types","s6-pretreatment","s6-coating-test","s6-coating-cost","s6-hazmat"]],["s7","원가계산서 검토",["s7-cost-sheet","s7-material-review","s7-rate-review","s7-ct-review","s7-setup-lot","s7-outsourced-review","s7-overhead-profit","s7-red-flags","s7-should-cost","s7-price-change"]],["s8","협력사 실사",["s8-audit-purpose","s8-audit-prep","s8-finance-mgmt","s8-capa","s8-quality-system","s8-process-control","s8-die-tool-check","s8-shopfloor","s8-safety-env","s8-subtier","s8-warning-signs","s8-audit-report"]],["s9","초도품 승인",["s9-isir","s9-ppap","s9-layout-insp","s9-cp-pfmea","s9-run-at-rate","s9-approval-change"]]]},{"k":"geum","f":"개발구매%20금형편.html","n":"금형편","s":[["s1","금형 입문",["d1-what-is-die","d1-stamping-fit","d1-volume-die-choice","d1-grain-burr","d1-sheet-behavior","d1-die-terms"]],["s2","금형 구조와 표준 부품",["d2-die-set","d2-punch-die","d2-stripper","d2-pilot-guide","d2-springs","d2-standard-parts","d2-tolerance-fit","d2-press-fit"]],["s3","전단 금형",["d3-blank-pierce","d3-shearing-process","d3-clearance","d3-burr-control","d3-force-reduction","d3-fine-blanking","d3-slug-scrap"]],["s4","굽힘·성형 금형",["d4-bend-dies","d4-springback","d4-min-radius","d4-burring","d4-hem-curl","d4-emboss-bead","d4-cam-die"]],["s5","드로잉 금형",["d5-draw-principle","d5-blank-size","d5-draw-ratio","d5-blank-holder","d5-draw-defects","d5-die-radius","d5-redraw-iron","d5-box-draw"]],["s6","공정 설계와 레이아웃",["d6-process-plan","d6-progressive-strip","d6-carrier-lifter","d6-transfer-tandem","d6-die-size-press","d6-dfm-die"]],["s7","금형 소재·열처리·코팅",["d7-tool-steel","d7-carbide","d7-heat-treat","d7-coating","d7-material-select"]],["s8","금형 개발 프로세스",["d8-die-spec","d8-rfq","d8-design-review","d8-schedule","d8-tryout","d8-die-change","d8-die-approval"]],["s9","금형비와 금형 관리",["d9-cost-structure","d9-quote-review","d9-die-protection","d9-maintenance","d9-life-shots","d9-transfer-storage","d9-disposal"]]]},{"k":"jae","f":"개발구매%20재료편.html","n":"재료편","s":[["s1","재료 입문",["m1-why-materials","m1-material-classes","m1-crystal","m1-grain-defect","m1-diffusion"]],["s2","기계적 성질",["m2-tensile-test","m2-elastic","m2-yield-elong","m2-n-r-value","m2-hardness","m2-variability"]],["s3","강화·가공 경화·풀림",["m3-slip","m3-strengthening","m3-cold-work","m3-recrystallization","m3-hot-cold-rolling","m3-temper-designation"]],["s4","철강 조직과 열처리",["m4-fe-c","m4-carbon-content","m4-transformation","m4-quench-temper","m4-anneal-normalize","m4-case-hardening","m4-heat-treat-qc"]],["s5","철강 재료의 종류",["m5-steel-taxonomy","m5-alloy-elements","m5-high-strength","m5-weldability","m5-stainless-types","m5-stainless-care","m5-cast-iron","m5-electrical-steel"]],["s6","비철 금속",["m6-al-series","m6-al-temper","m6-al-fab","m6-copper","m6-other-metals","m6-metal-pricing","m6-conductivity"]],["s7","부식과 방식",["m7-corrosion-cell","m7-galvanic","m7-passivity","m7-corrosion-forms","m7-zinc-protection","m7-corrosion-design","m7-oxidation"]],["s8","파괴·피로·열적 성질",["m8-fracture","m8-dbtt","m8-fatigue","m8-fatigue-factors","m8-thermal","m8-failure-analysis","m8-creep"]],["s9","재료 선정·사양·관리",["m9-selection","m9-spec-writing","m9-substitution","m9-incoming-test","m9-polymers","m9-sustainability","m9-process-routes"]]]},{"k":"pyo","f":"개발구매%20표면처리편.html","n":"표면처리편","s":[["s1","표면처리 입문",["p1-why-surface","p1-families","p1-substrate","p1-callout","p1-selection","p1-outsourcing"]],["s2","전처리와 화성 처리",["p2-cleaning","p2-descaling","p2-phosphate","p2-thin-film","p2-al-conversion","p2-pretreat-control"]],["s3","전기도금의 원리",["p3-electroplating","p3-faraday","p3-throwing-power","p3-additives","p3-deposit-props","p3-hydrogen","p3-rack-barrel"]],["s4","도금의 종류",["p4-zinc","p4-zinc-alloy","p4-nickel-chrome","p4-electroless","p4-contact-plating","p4-hot-dip","p4-zinc-flake"]],["s5","양극산화와 특수 처리",["p5-anodizing","p5-anodize-color","p5-stainless-finish","p5-black-oxide","p5-precoated","p5-pvd-spray"]],["s6","도료와 도막",["p6-paint-components","p6-film-formation","p6-resins","p6-pigments","p6-color-gloss","p6-coating-protection","p6-voc"]],["s7","도장 공정",["p7-spray","p7-transfer-efficiency","p7-powder","p7-ecoat","p7-cure","p7-booth-env","p7-racking-masking"]],["s8","법랑",["p8-enamel-basics","p8-enamel-steel","p8-enamel-materials","p8-enamel-process","p8-enamel-defects","p8-enamel-qc"]],["s9","품질·원가·환경",["p9-thickness","p9-corrosion-tests","p9-film-tests","p9-defects","p9-cost-model","p9-supplier-audit","p9-environment"]]]}];
+
+/* live: each volume's 결재 progress, read from the same keys the volumes write */
+(function(){
+  const read = k => { try { return JSON.parse(localStorage.getItem(k + "-devbuy-progress-v1")) || {}; } catch(e) { return {}; } };
+  let last = null;
+  for (const v of VOLS) {
+    const P = read(v.k), V = P.v || {}, Q = P.q || {};
+    let n = 0, N = 0;
+    for (const [sid, title, ids] of v.s) {
+      const d = ids.filter(id => V[id] && Q[id]).length;
+      n += d; N += ids.length;
+      const el = document.querySelector(`[data-sp="${v.k}.${sid}"]`);
+      if (el && d) { el.textContent = `결재 ${d} / ${ids.length}`; el.classList.add("on"); }
+      for (const id of ids) if (typeof V[id] === "number" && (!last || V[id] > last.t)) last = {t: V[id], v, title, id};
+    }
+    if (!n) continue;
+    const tp = document.querySelector(`[data-tp="${v.k}"]`); if (tp) tp.textContent = `결재 ${n}/${N}`;
+    const vp = document.querySelector(`[data-vp="${v.k}"]`); if (vp) vp.textContent = `결재 ${n}`;
+    const st = document.querySelector(`[data-stamp="${v.k}"]`);
+    if (st) { st.querySelector("b").textContent = `${n}/${N}`; st.hidden = false; st.setAttribute("aria-label", `결재 ${n} / ${N}`); }
+  }
+  if (last) {
+    const a = document.querySelector(".resume");
+    a.href = `${last.v.f}#${last.id}`; a.textContent = `이어서 읽기 — ${last.v.n} · ${last.title}`; a.hidden = false;
+  }
+})();
+
+/* index with preview: the row under the pointer shows its picture in the volume's frame */
+document.querySelectorAll(".vol").forEach(vol => {
+  const win = vol.querySelector(".win"); if (!win) return;
+  const [a, b] = win.querySelectorAll("img"), cap = vol.querySelector(".frame .c"), cr = vol.querySelector(".frame .cr");
+  const fit = (img, f) => { img.classList.toggle("fit-contain", f === "contain"); img.classList.toggle("fit-top", f === "top"); };
+  let on = win.querySelector(".is-on"), cur = on.getAttribute("src");
+  fit(on, win.dataset.fit);
+  const show = row => {
+    const src = row.dataset.full; if (!src || src === cur) return;
+    const off = on === a ? b : a; cur = src;
+    fit(off, row.dataset.fit); off.src = src;
+    const swap = () => { on.classList.remove("is-on"); if (on.pause) on.pause(); off.classList.add("is-on"); on = off; cap.textContent = row.dataset.cap || ""; cr.textContent = row.dataset.cr || ""; };
+    off.complete ? swap() : off.addEventListener("load", swap, {once: true});
+  };
+  vol.querySelectorAll(".row").forEach(r => { r.addEventListener("pointerenter", () => show(r)); r.addEventListener("focus", () => show(r)); });
+});
+
+/* entrances: the parts of each section, staggered, once */
+(function(){
+  const groups = document.querySelectorAll("[data-rise]");
+  const parts = g => g.matches(".vol") ? g.querySelectorAll(".vol-h > *, .row, .frame") :
+                     g.matches(".how") ? g.querySelectorAll(".how-h > *, .dia, .steps li") : g.children;
+  groups.forEach(g => [...parts(g)].forEach((el, i) => { el.setAttribute("data-r", ""); el.style.setProperty("--d", Math.min(i, 12) * 70 + "ms"); }));
+  const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll("[data-r]").forEach(el => el.classList.add("in"));
+    e.target.querySelectorAll(".stamp:not([hidden])").forEach(s => s.classList.add("new"));
+    io.unobserve(e.target);
+  }), {rootMargin: "0px 0px -12% 0px"}) : null;
+  groups.forEach(g => io ? io.observe(g) : g.querySelectorAll("[data-r]").forEach(el => el.classList.add("in")));
+  /* hero: title, sentence, then the folders from the back */
+  document.querySelectorAll(".hero > [data-r]").forEach((el, i) => el.style.setProperty("--d", i * 90 + "ms"));
+  document.querySelectorAll(".folder").forEach((el, i) => { el.setAttribute("data-r", ""); el.style.setProperty("--d", 240 + i * 80 + "ms"); });
+  requestAnimationFrame(() => requestAnimationFrame(() => document.querySelectorAll(".hero [data-r]").forEach(el => el.classList.add("in"))));
+})();
+</script>
 </body>
 </html>
