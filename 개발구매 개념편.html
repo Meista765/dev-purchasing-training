@@ -3,7 +3,7 @@
 <meta name="description" content="NCS 구매조달 10개 학습모듈을 개발구매 업무 흐름의 로드맵 하나로 엮은 신입 사원 교육 자료">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700&family=Song+Myung&display=swap">
 <style>
 /* Layout: sticky top bar + one view at a time. Roadmap = 8 stage columns on graph paper with a drawing title block;
    concept = reading column + side rail (결재란 stamps, ego map). Accent = drafting blue for anything clickable; seal red only for completion stamps. */
@@ -424,7 +424,258 @@ details.prac[open] summary{border-bottom:0}
 :root:not([data-theme="dark"]){--ink-3:#5E6A75}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink-3:#8C98A4}}
 :root[data-theme="dark"]{--ink-3:#8C98A4}
+/* shell:css:start */
+/* 여섯 권 공통 틀. 여기만 고치고 `python 공용_소스/apply_shell.py` 후 다섯 권을 다시 빌드한다.
+   shortcut: 권별 CSS 위에 덮어쓰는 층이라 옛 규칙이 죽은 코드로 남는다. 권별 CSS를 정리할 일이 생기면 그때 합친다.
+   방향: 그을음 검정·흰 판·라임. 무채색 장부 앱이라 색은 결재 진도(인주 빨강)에만 쓴다. */
+:root{
+  --lime:#DAFA9C; --soot:#0F0F0F;
+  --paper:#F3F4F5; --sheet:#FFFFFF; --sunk:#E9EAEC; --ink:#0F0F0F; --ink-2:#3D3D3D;
+  --rule:#E2E3E5; --rule-2:#CBCCCF; --grid:transparent;
+  --accent:#0F0F0F; --accent-2:#000000; --accent-soft:#EEF9D6; --on-accent:#FFFFFF;
+  --seal:#C4382C; --seal-soft:#F9E7E4; --mark:#DAFA9C;
+  --shadow:0 14px 36px -18px rgba(0,0,0,.45);
+  --f-display:"Song Myung","Noto Serif KR","Nanum Myeongjo",serif;
+  --f-body:"Gothic A1","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  --f-mono:var(--f-body); --r:6px;
+}
+:root:not([data-theme="dark"]){--ink-3:#5C5C5C;--warn:#855800}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F0F0F; --sheet:#1A1A1A; --sunk:#262626; --ink:#F4F4F4; --ink-2:#C8C8C8; --ink-3:#A0A0A0;
+  --rule:#2A2A2A; --rule-2:#3D3D3D; --grid:transparent;
+  --accent:#DAFA9C; --accent-2:#E8FCC2; --accent-soft:#2B3419; --on-accent:#0F0F0F;
+  --seal:#F06A5C; --seal-soft:#3A1E1B; --mark:#4C5C1F;
+  --shadow:0 14px 36px -18px rgba(0,0,0,.9);
+}}
+:root[data-theme="dark"]{
+  --paper:#0F0F0F; --sheet:#1A1A1A; --sunk:#262626; --ink:#F4F4F4; --ink-2:#C8C8C8; --ink-3:#A0A0A0;
+  --rule:#2A2A2A; --rule-2:#3D3D3D; --grid:transparent;
+  --accent:#DAFA9C; --accent-2:#E8FCC2; --accent-soft:#2B3419; --on-accent:#0F0F0F;
+  --seal:#F06A5C; --seal-soft:#3A1E1B; --mark:#4C5C1F;
+  --shadow:0 14px 36px -18px rgba(0,0,0,.9);
+}
+html,body{background:var(--paper)}
+body{font-size:16px;line-height:1.65;background-image:none;word-break:keep-all;overflow-wrap:anywhere;font-synthesis:none}
+h1,h2,h3,h4{font-weight:400;letter-spacing:-.02em}
+h3,h4{font-family:var(--f-body);font-weight:600;letter-spacing:0}
+.lens-tech{--lc:var(--ink)} .lens-mgmt{--lc:var(--rule-2)}
+
+/* ---------- 책장: 허브와 여섯 권으로 가는 줄 ---------- */
+.shelf{background:var(--soot);color:#fff;font-size:14px}
+.shelf-in{display:flex;align-items:center;gap:2px;min-height:44px;max-width:1500px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.shelf-in::-webkit-scrollbar{display:none}
+.shelf a{flex:none;padding:6px 10px;border-radius:var(--r);color:#fff;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.shelf a:hover{background:#2A2A2A}
+.shelf a:focus-visible{outline:2px solid var(--lime);outline-offset:-2px}
+.shelf a.home{margin-right:auto;padding-left:0;font-weight:600}
+.shelf a.home:hover{background:transparent;text-decoration:underline;text-underline-offset:3px}
+.shelf a[aria-current="page"]{background:var(--lime);color:var(--soot);font-weight:600}
+.shelf a:active{transform:scale(.97)}
+
+/* ---------- 상단 바 ---------- */
+.top{background:var(--sheet);border-bottom:0}
+.brand b{font-family:var(--f-display);font-size:22px;font-weight:400;letter-spacing:-.02em}
+.brand span{font-family:var(--f-body);font-size:13px;color:var(--ink-3);letter-spacing:0}
+.nav a{font-size:15px;font-weight:400;color:var(--ink-2)}
+.nav a[aria-current="page"]{background:var(--sunk);color:var(--ink);font-weight:600}
+.search input{height:36px;border:0;background:var(--sunk);font-size:14px}
+.search svg{top:10px}
+.sres{border:0}
+.meter{font-size:13px}
+.theme-btn{border:0;background:var(--sunk);height:36px;width:36px}
+.btn{border-radius:var(--r);padding:9px 16px;font-size:15px;font-weight:600;min-height:38px;transition:transform .12s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn.sm{padding:5px 11px;font-size:14px;min-height:32px}
+
+/* ---------- 로드맵 ---------- */
+.rm-head{grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:24px 72px;align-items:start;margin:12px 0 28px}
+.rm-head h1{font-size:clamp(34px,3.4vw,48px);font-weight:400;letter-spacing:-.03em;line-height:1.08}
+.rm-head p{margin:.7em 0 0;color:var(--ink);font-size:17px;line-height:1.7;max-width:62ch}
+.rm-go{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:20px;font-size:15px}
+.tblock{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;border:0;background:transparent;font-size:14px;min-width:0;line-height:1.5}
+.tblock div{border:0!important;padding:0}
+.tblock .k{font-size:14px;font-weight:400;color:var(--ink-3)}
+.tblock .v{font-weight:500}
+.rm-tools{font-size:14px;margin:0 0 14px}
+.rm-tools select{height:36px;border:0;background:var(--sheet)}
+.legend{font-size:13px}
+
+/* 결재 현황: 이 교재만의 칸. 단계마다 결재란 한 칸, 누르면 그 단계로 간다 */
+.kstrip{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:4px}
+.kstrip li{min-width:0}
+.kstrip button{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:12px;width:100%;height:100%;min-height:96px;padding:10px 12px;text-align:left;border:0;border-radius:var(--r);background:var(--sheet);color:var(--ink);cursor:pointer;transition:background .15s,transform .12s}
+.kstrip button:hover{background:var(--sunk)}
+.kstrip button:active{transform:scale(.98)}
+.kstrip b{font-size:14px;font-weight:600;line-height:1.35}
+.kstrip span{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.kstrip .on span,.kstrip .full span{color:var(--seal);font-weight:600}
+.kstrip .full{background:var(--seal-soft)}
+
+.map-wrap{background:transparent;border:0;padding:0}
+.stage{grid-template-columns:220px minmax(0,1fr);gap:28px;padding:24px;margin-bottom:8px;background:var(--sheet);border:0;border-radius:8px;scroll-margin-top:72px}
+.stage:last-child{border:0}
+.stage-h{padding-left:0;border-left:0;z-index:3}  /* 연결선 레이어가 제목을 긋지 않도록 위로 */
+.stage:not(:last-child) .stage-h::after{display:none}
+.stage-h .no{font-size:13px;font-weight:400;color:var(--ink-3)}
+.stage-h h2{font-size:24px;line-height:1.2;margin:2px 0 6px}
+.stage-h p{font-size:14px;line-height:1.55;color:var(--ink)}
+.stage-h .mods{margin-top:10px;gap:4px 6px}
+.stage-h .prog{font-size:13px;color:var(--ink-3)}
+.tag{font-size:13px;line-height:1.5;padding:0 6px;border:0;background:var(--sunk);color:var(--ink-2)}
+.stage-nodes{gap:14px}
+.grp .gl{font-size:13px;font-weight:400;color:var(--ink-3);letter-spacing:0}
+.node{font-size:14px;line-height:1.4;max-width:340px;padding:7px 11px;border-radius:var(--r);border:1px solid transparent;background:var(--paper);color:var(--ink);transition:opacity .15s,background .15s}
+.node:hover{background:var(--sunk);border-color:transparent}
+.node:has(.st.full){background:var(--seal-soft)}
+.node .lab{font-size:13px;line-height:1;margin-top:3px;color:var(--ink-3)}
+.node .st{margin-top:5px}
+.map.focus .node.nb,.map.modf .node.mod{border-color:var(--ink);background:var(--accent-soft)}
+.map.focus .node.nb.xn{border-color:var(--seal)}
+.loop{border-top:0;padding:14px 24px 0;font-size:14px;color:var(--ink-2)}
+.preview{border:0;border-radius:8px}
+.preview h3{font-family:var(--f-display);font-weight:400;font-size:24px}
+.start{margin-top:48px}
+.start h2{font-size:28px;margin-bottom:14px}
+.start-grid{gap:8px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{border:0;border-radius:8px;padding:18px 20px}
+.card h3{font-size:17px;line-height:1.4}
+.card p{font-size:15px;color:var(--ink-2)}
+a.card{transition:background .15s}
+a.card:hover{background:var(--accent-soft)}
+
+/* ---------- 읽기 화면 ---------- */
+.crumb{font-size:13px;margin-bottom:14px}
+.c-grid{grid-template-columns:minmax(0,720px) minmax(0,300px);gap:72px}
+.article{max-width:720px;font-size:17px;line-height:1.8}
+.article h1{font-size:clamp(32px,3.1vw,46px);font-weight:400;line-height:1.16;letter-spacing:-.025em}
+.lead{font-size:20px;line-height:1.6;color:var(--ink);margin:.7em 0 1.6em}
+.article h2{font-size:26px;font-weight:400;margin:2.2em 0 .7em}
+.prose p{margin:0 0 1.1em}
+.prose strong{background:none;font-weight:700;text-decoration:underline;text-decoration-color:var(--mark);text-decoration-thickness:.42em;text-underline-offset:-.2em;text-decoration-skip-ink:none}
+.prose a.auto{text-decoration-color:var(--ink);text-decoration-thickness:1px;text-underline-offset:4px}
+.keys{border:0;border-left:0;background:var(--accent-soft);border-radius:8px;padding:18px 22px;margin:1.6em 0}
+.keys h3{font-size:15px;margin-bottom:8px;letter-spacing:0}
+.chk-box,.score{border:0;border-left:0;border-radius:8px}
+.tbl{border:0;border-radius:8px;margin:1.4em 0}
+.tbl table{font-size:15px}
+.tbl caption{font-size:14px;color:var(--ink);border-bottom:0;padding:12px 14px 4px}
+.tbl th{background:transparent;color:var(--ink-3);font-weight:500;white-space:normal}
+.tbl th,.tbl td{padding:9px 14px}
+.tbl table,.sc table,.sheet-tbl{font-variant-numeric:tabular-nums}
+.tbl th.num,.tbl td.num{text-align:right}
+.formula{border-left:0;border-radius:8px;padding:14px 18px;margin:1.2em 0}
+.formula .e{font-size:17px}
+.formula dt{color:var(--ink);font-weight:600}
+.formula dl,.formula .ex{font-size:14px}
+.example{background:var(--sheet);color:var(--ink);font-size:16px;border-radius:8px}
+.memo{font-size:14px}
+.source-note{font-size:13px;line-height:1.6;margin-top:14px}
+.pn{gap:8px}
+.pn a{border:0;font-size:15px;line-height:1.45;padding:14px 16px;border-radius:8px;transition:background .15s}
+.pn a small{font-size:13px;margin-bottom:2px}
+.lk{border:0;border-radius:8px;transition:background .15s}
+.lk.x{border:0;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--seal) 45%,transparent)}
+.lk b{font-size:15px}
+.fig img{border:0;border-radius:var(--r)}
+.fig figcaption{font-size:14px}
+.vid{border:0;border-radius:8px}
+.rail{gap:28px}
+.rail h3{font-family:var(--f-body);font-size:14px;font-weight:600;color:var(--ink);letter-spacing:0;margin-bottom:8px}
+.kyul th,.kyul td{border:1px solid var(--ink)}
+.kyul th{font-size:13px;background:transparent;padding:4px 0}
+.kyul td{height:76px}
+.kyul td .none{font-size:13px}
+.stamp{width:60px;height:60px;font-size:15px;font-weight:400}
+.stamp small{font-size:11px;line-height:1.1}
+.ego{border:0;border-radius:8px}
+.ego text{font-size:16px}
+.ego .cap{font-size:13px}
+.mini-list,.ncs-ref{font-size:14px;line-height:1.45}
+.mini-list a{padding:5px 0;transition:color .15s}
+.ncs-ref{list-style:none;margin:0;padding:0}  /* 개념편에는 이 목록의 기본 규칙이 없다 */
+.ncs-ref li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding-block:4px}
+.ncs-ref .mono{font-size:13px;padding-top:0;color:var(--ink-3)}
+.ncs-ref small{display:block;font-size:13px;color:var(--ink-3)}
+.ncs-ref a{color:var(--ink);text-decoration-thickness:1px}
+
+/* ---------- 나머지 화면: 구조는 그대로, 판과 글자만 맞춘다 ---------- */
+.page-h h1{font-size:clamp(30px,3vw,44px);font-weight:400;letter-spacing:-.025em}
+.page-h p{color:var(--ink);font-size:16px}
+.lab{border:0;border-radius:8px}
+.lab-h{background:var(--sunk);border-bottom:0}
+.lab-h h3{font-size:17px}
+.lab-list{border:0;border-radius:8px}
+.lab-list button{font-size:14px}
+.lab-list button[aria-current="true"]{background:var(--sunk);color:var(--ink)}
+.q,.ck-c,details.prac{border:0;border-radius:8px}
+.opt{font-size:15px;border:1px solid transparent;background:var(--paper);transition:background .15s}
+.opt:hover:not(:disabled){background:var(--sunk);border-color:transparent}
+.opt.right{border-color:var(--ok)} .opt.wrong{border-color:var(--bad)}
+.chip{border:0;background:var(--sunk);font-size:13px;padding:4px 10px}
+.chip:hover{background:var(--rule-2);color:var(--ink)}
+.chip.x{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--seal) 60%,transparent)}
+.chip.on{background:var(--ink);color:var(--sheet)}
+.gl dd{font-size:15px}
+.field .in{border:0;background:var(--sunk)}
+.out .v{font-size:22px}
+.ck-sec h2{font-size:24px;border-bottom:0}
+.empty{border:0;background:var(--sunk);color:var(--ink-2)}
+.toast{box-shadow:var(--shadow)}
+
+/* 13px 아래로 읽는 글자를 두지 않는다 */
+.sres small,.preview .meta,.lk .m,.lk span.w,.tbl caption,.formula .n,.cap,.fig .cr,.vid small,.field label,.field .u,.out .l,.out .s,
+.cell .cd,.cell .its .item,.bucket .its .item,.seq .n,.lab-list h4,.lab-list .dn,.ck-tools .ck-n,.ck-sec h2 .mono,.memo b,.an-cap .mono,.an-dot,.sc th,.sc td,.lab-b .hint{font-size:13px}
+.lab-list h4{letter-spacing:0;color:var(--ink-2)}
+
+@media (max-width:1180px){
+  .c-grid{gap:48px}
+}
+@media (max-width:1000px){
+  .c-grid{grid-template-columns:minmax(0,1fr)}
+  .article{max-width:none}
+  .rm-head{grid-template-columns:minmax(0,1fr);gap:20px}
+  .kstrip{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kstrip button{min-height:72px}
+}
+@media (max-width:760px){
+  .rm-head{grid-template-columns:minmax(0,1fr);gap:14px;margin:4px 0 18px}
+  .rm-head p{font-size:16px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+  .tblock div{display:none}
+  .tblock .k:nth-child(3),.tblock .v:nth-child(4){display:block}
+  /* 휴대폰은 한 줄로 밀어 본다: 첫 화면에 1단계가 보이도록 높이를 아낀다 */
+  .kstrip{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-left:16px;scrollbar-width:none;margin:0 -16px 20px;padding:0 16px}
+  .kstrip::-webkit-scrollbar{display:none}
+  .kstrip li{flex:0 0 calc((100vw - 40px)/3);scroll-snap-align:start}  /* 세 칸이 여백 안에 딱 들어가고 다음 칸은 글자 없이 살짝 보인다 */
+  .kstrip button{min-height:84px}
+  .start-grid{grid-template-columns:minmax(0,1fr)}
+  .rm-tools{gap:8px}
+  .legend{margin-left:0}
+  .stage{grid-template-columns:minmax(0,1fr);gap:14px;padding:18px 16px}
+  .node{max-width:100%}
+  .article{font-size:16.5px}
+  .lead{font-size:18px}
+}
+@media (max-width:640px){
+  .shelf a{padding:6px 8px}
+  .shelf .full{display:none}
+  .top-in{gap:8px 10px;padding-block:8px}
+  .search{order:5}
+  .nav{order:4;margin:0;scrollbar-width:none}
+  .brand b{font-size:21px}
+}
+@media print{
+  .shelf,.kstrip,.rm-go{display:none!important}
+}
+@media (prefers-reduced-motion:reduce){.btn,.kstrip button,.shelf a{transition:none}.btn:active,.kstrip button:active,.shelf a:active{transform:none}}
+
+/* shell:css:end */
 </style>
+<!-- shell:rail:start -->
+<nav class="shelf" id="shelf" aria-label="교재 여섯 권" hidden><div class="shelf-in wrap"><a class="home" href="index.html" aria-label="교재 전체">← 교재<span class="full"> 전체</span></a><a href="개발구매%20개념편.html" aria-label="개념편" aria-current="page">개념<span class="full">편</span></a><a href="개발구매%20실무편.html" aria-label="실무편">실무<span class="full">편</span></a><a href="개발구매%20금형편.html" aria-label="금형편">금형<span class="full">편</span></a><a href="개발구매%20재료편.html" aria-label="재료편">재료<span class="full">편</span></a><a href="개발구매%20표면처리편.html" aria-label="표면처리편">표면<span class="full">처리편</span></a><a href="개발구매%20도료편.html" aria-label="도료편">도료<span class="full">편</span></a></div></nav>
+<script>if(window.self===window.top)document.getElementById("shelf").hidden=false</script>
+<!-- shell:rail:end -->
+<!-- shell:back:start --><script>window.DEVBUY_BACK={"c05-purchased-item-classification":[["실무편",[["s1-steel-family","강판의 종류: 열연·냉연·도금·스테인리스·알루미늄",1,"소재·강판"]]],["재료편",[["m1-material-classes","재료의 분류: 금속·세라믹·고분자·복합재",1,"재료 입문"],["m9-polymers","판금 주변 부품 재료: 수지·고무 기초",9,"재료 선정·사양·관리"]]],["표면처리편",[["p1-families","표면처리의 분류: 금속 피막·화성 피막·유기 도막·유리질 피막",1,"표면처리 입문"]]],["도료편",[["r1-why-paint-buy","도료를 원자재로 사는 이유: 품질·원가·책임의 연결",1,"도료 구매 입문"]]]],"c05-quality-requirements":[["실무편",[["s1-steel-grade","강재 규격 기호 읽기(SPHC·SPCC·SGCC·SECC)",1,"소재·강판"],["s1-tolerance-surface","두께 공차·도금 부착량·표면 품질",1,"소재·강판"],["s2-dim-tolerance","치수 공차와 일반 공차(KS B ISO 2768)",2,"도면 해독"]]],["금형편",[["d1-grain-burr","결 방향과 버 방향: 금형 설계가 정하는 부품 품질",1,"금형 입문"],["d8-die-spec","금형 사양서: 무엇을 적어야 하나",8,"금형 개발 프로세스"]]],["재료편",[["m1-why-materials","재료를 알아야 하는 이유: 구조·성질·가공·성능의 연결",1,"재료 입문"],["m2-yield-elong","항복강도·연신율 상세: 0.2% 내력·항복점 연신·표점 거리",2,"기계적 성질"],["m3-temper-designation","조질·질별 기호 읽기: 냉연 조질, 알루미늄 O·H·T, 구리 H",3,"강화·가공 경화·풀림"],["m7-corrosion-design","부식을 막는 설계·사양·검사",7,"부식과 방식"],["m9-spec-writing","재료 사양서와 도면 재질란 작성",9,"재료 선정·사양·관리"]]],["표면처리편",[["p1-why-surface","표면처리를 알아야 하는 이유: 기능·원가·클레임의 연결",1,"표면처리 입문"],["p1-callout","도면·사양서의 표면처리 기호 읽기: ISO 2081·ISO 1461·도장 사양",1,"표면처리 입문"]]],["도료편",[["r1-tds-msds","도료 품번과 TDS·MSDS 읽기",1,"도료 구매 입문"],["r2-spec-sheet","도료 구매 사양서: 무엇을 적어야 같은 도료가 오나",2,"도료 사양"],["r4-new-paint-approval","새 도료 승인 절차: 시편 시험에서 양산 승인까지",4,"도료사 선정·승인"],["r6-coa","도료 성적서 읽기: 항목·규격값·판정",6,"성적서·수입검사"]]]],"c05-inspection-standard":[["실무편",[["s1-tolerance-surface","두께 공차·도금 부착량·표면 품질",1,"소재·강판"],["s1-mill-cert","밀시트(강재 검사 증명서) 읽기",1,"소재·강판"],["s3-cut-quality","절단면 품질: 드로스·버·테이퍼·열영향",3,"레이저 절단"],["s6-coating-test","표면처리 품질 시험: 도막 두께·부착성·염수 분무",6,"용접·표면처리"],["s9-layout-insp","전 치수 측정(레이아웃 검사)과 판정",9,"초도품 승인"]]],["금형편",[["d3-shearing-process","전단 과정과 전단면: 처짐·전단면·파단면·버",3,"전단 금형"],["d3-burr-control","버 관리: 버 높이 기준·발생 원인·연마 시점",3,"전단 금형"],["d7-heat-treat","열처리와 경도(HRC)",7,"금형 소재·열처리·코팅"]]],["재료편",[["m1-grain-defect","결정립·결함과 조직 시험: 결정립도·개재물",1,"재료 입문"],["m2-tensile-test","인장 시험과 응력-변형률 곡선",2,"기계적 성질"],["m2-hardness","경도 시험: HRB·HRC·HV·HB와 강도 추정",2,"기계적 성질"],["m4-heat-treat-qc","열처리 품질 관리: 성적서·경도·변형·탈탄과 외주 관리",4,"철강 조직과 열처리"],["m9-incoming-test","소재 수입 검사와 성분 분석: XRF·OES·인장·경도",9,"재료 선정·사양·관리"]]],["표면처리편",[["p6-color-gloss","색과 광택의 관리: L*a*b*·ΔE·광택도·메타메리즘",6,"도료와 도막"],["p8-enamel-qc","법랑 품질 시험과 설계·구매 포인트: ISO 28706·핀홀·두께",8,"법랑"],["p9-film-tests","도막 물성 시험: 부착·경도·충격·굴곡·내약품",9,"품질·원가·환경"]]],["도료편",[["r2-standards","도료 관련 규격 읽기: 고객 규격·KS·ISO 시험 방법",2,"도료 사양"],["r5-color-master","색 마스터 샘플과 한도 견본: 색 판정의 기준물",5,"색 관리"]]]],"c04-market-research":[["실무편",[["s1-coil-sheet","코일·시트와 철강 유통 구조(밀·코일센터·대리점)",1,"소재·강판"]]],["도료편",[["r1-supply-chain","도료 공급망: 원료사·도료사·대리점·도장 업체",1,"도료 구매 입문"]]]],"c02-supplier-classification":[["실무편",[["s1-coil-sheet","코일·시트와 철강 유통 구조(밀·코일센터·대리점)",1,"소재·강판"]]]],"c07-material-cost":[["실무편",[["s1-weight-cost","강판 중량과 재료비 계산",1,"소재·강판"],["s3-nesting","네스팅과 판재 수율",3,"레이저 절단"],["s5-strip-layout","스트립 레이아웃과 재료 수율",5,"프레스·금형"],["s7-material-review","재료비 검토: 투입 중량·정미 중량·스크랩 환입",7,"원가계산서 검토"],["s7-outsourced-review","외주 가공비·포장비·운반비 검토",7,"원가계산서 검토"]]],["금형편",[["d5-blank-size","드로잉 블랭크 크기 계산",5,"드로잉 금형"]]],["표면처리편",[["p7-transfer-efficiency","도착 효율과 도료 소요량",7,"도장 공정"]]],["도료편",[["r3-cost-structure","도료 원가 구조: 수지·안료·용제·첨가제·포장",3,"도료 단가"]]]],"c07-scrap-loss-yield":[["실무편",[["s1-weight-cost","강판 중량과 재료비 계산",1,"소재·강판"],["s3-nesting","네스팅과 판재 수율",3,"레이저 절단"],["s5-strip-layout","스트립 레이아웃과 재료 수율",5,"프레스·금형"],["s7-material-review","재료비 검토: 투입 중량·정미 중량·스크랩 환입",7,"원가계산서 검토"]]],["금형편",[["d6-progressive-strip","순차 이송 스트립 설계: 스테이션 배치",6,"공정 설계와 레이아웃"]]],["도료편",[["r9-consumption","도료 소요량 관리: 이론량과 실적 대조",9,"변경·원가 절감"]]]],"c03-market-analysis":[["실무편",[["s1-price-linkage","강재 시황과 단가 연동(납품대금 연동제)",1,"소재·강판"]]],["재료편",[["m6-metal-pricing","금속 가격의 구조: LME·프리미엄·합금 할증",6,"비철 금속"],["m9-sustainability","재활용·탄소 규제와 소재 구매",9,"재료 선정·사양·관리"]]]],"c09-clause-checkpoints":[["실무편",[["s1-price-linkage","강재 시황과 단가 연동(납품대금 연동제)",1,"소재·강판"],["s1-supply-mode","사급·자급과 통합 구매",1,"소재·강판"],["s5-die-payment","금형비 지급: 일시불과 단가 상각",5,"프레스·금형"],["s5-die-management","금형 관리: 대장·타수·보수·소유권·이관",5,"프레스·금형"],["s7-price-change","단가 변경 요인과 연간 인하(CR)·물량 변동",7,"원가계산서 검토"],["s8-die-tool-check","금형·지그 관리 상태 확인",8,"협력사 실사"]]],["금형편",[["d9-transfer-storage","금형 이관·보관과 소유권",9,"금형비와 금형 관리"],["d9-disposal","금형 폐기와 갱신",9,"금형비와 금형 관리"]]],["도료편",[["r1-supply-mode","도료 사급과 도장 업체 구매: 누가 살지 정하는 기준",1,"도료 구매 입문"],["r4-three-party","발주사·도장 업체·도료사의 책임 나누기",4,"도료사 선정·승인"]]]],"c08-raw-material-techniques":[["실무편",[["s1-price-linkage","강재 시황과 단가 연동(납품대금 연동제)",1,"소재·강판"]]],["재료편",[["m6-metal-pricing","금속 가격의 구조: LME·프리미엄·합금 할증",6,"비철 금속"]]],["표면처리편",[["p5-precoated","도금 강판·컬러 강판과 후처리의 선택: SECC·SGCC·GA·ZAM·PCM",5,"양극산화와 특수 처리"]]],["도료편",[["r3-index-linkage","원료 지수 연동 단가: 수지·이산화티타늄·용제 가격을 단가에 반영하기",3,"도료 단가"],["r9-cost-down","도료 원가 절감: 색 통합·품번 축소·고형분·분체 전환",9,"변경·원가 절감"]]]],"c01-centralized-purchasing":[["실무편",[["s1-supply-mode","사급·자급과 통합 구매",1,"소재·강판"]]]],"c06-design-change-history":[["실무편",[["s2-drawing-anatomy","도면의 구성: 표제란·부품표·개정란·주기",2,"도면 해독"],["s2-revision","도면 개정과 변경점 관리",2,"도면 해독"],["s9-approval-change","승인 판정과 변경점 재승인",9,"초도품 승인"]]],["금형편",[["d8-die-change","금형 수정·설계 변경(ECO)과 비용 부담",8,"금형 개발 프로세스"]]],["도료편",[["r9-change-control","도료 변경 관리: 4M 변경과 재승인",9,"변경·원가 절감"]]]],"c05-process-capability":[["실무편",[["s2-special-char","특별 특성(CC·SC)과 중요 치수",2,"도면 해독"],["s9-layout-insp","전 치수 측정(레이아웃 검사)과 판정",9,"초도품 승인"]]],["재료편",[["m2-variability","성질의 편차·규격 최소값과 안전율",2,"기계적 성질"]]]],"c06-qfd":[["실무편",[["s2-special-char","특별 특성(CC·SC)과 중요 치수",2,"도면 해독"]]]],"c06-target-spec-decision":[["실무편",[["s2-tolerance-stack","공차 누적과 공차·원가의 관계",2,"도면 해독"]]],["금형편",[["d6-dfm-die","금형 관점의 부품 설계 개선(DFM)",6,"공정 설계와 레이아웃"],["d7-material-select","수명과 소재 선택: 생산 수량·피가공재별",7,"금형 소재·열처리·코팅"],["d8-die-spec","금형 사양서: 무엇을 적어야 하나",8,"금형 개발 프로세스"]]],["재료편",[["m9-selection","재료 선정의 사고법: 요구 성질·가공성·원가·공급",9,"재료 선정·사양·관리"]]],["표면처리편",[["p1-selection","표면처리 선정의 사고법: 환경·수명·외관·형상·물량·원가",1,"표면처리 입문"]]],["도료편",[["r2-spec-sheet","도료 구매 사양서: 무엇을 적어야 같은 도료가 오나",2,"도료 사양"]]]],"c06-concurrent-engineering":[["실무편",[["s2-dfm-review","도면 검토(DFM) 체크포인트",2,"도면 해독"],["s4-bend-design","절곡 설계 규칙: 최소 플랜지·구멍 거리·릴리프·결 방향",4,"절곡"]]],["금형편",[["d6-process-plan","공정 설계 순서: 부품 도면에서 공정표까지",6,"공정 설계와 레이아웃"],["d8-design-review","금형 설계 검토(DR)",8,"금형 개발 프로세스"]]]],"c06-dev-feasibility":[["실무편",[["s2-dfm-review","도면 검토(DFM) 체크포인트",2,"도면 해독"],["s3-design-rules","레이저 가공 설계 규칙(최소 구멍·마이크로 조인트·태그)",3,"레이저 절단"]]],["재료편",[["m9-substitution","대체 재질과 소재 변경 승인",9,"재료 선정·사양·관리"]]]],"c07-cost-table":[["실무편",[["s3-laser-cost","레이저 절단 원가: 절단 길이·피어싱·시간 임률",3,"레이저 절단"],["s7-should-cost","목표 원가(Should-cost) 산출과 협상 활용",7,"원가계산서 검토"]]]],"c07-manufacturing-expense":[["실무편",[["s3-laser-cost","레이저 절단 원가: 절단 길이·피어싱·시간 임률",3,"레이저 절단"],["s7-rate-review","가공비 검토: 설비 임률(노무비 + 기계 경비)",7,"원가계산서 검토"]]]],"c08-specialty-outsourced-techniques":[["실무편",[["s3-punch-laser","터릿 펀칭·레이저·복합기 선택",3,"레이저 절단"],["s6-coating-cost","표면처리 원가: 면적·중량·걸이 기준",6,"용접·표면처리"]]],["금형편",[["d1-stamping-fit","프레스 가공에 맞는 부품: 주조·단조·절삭과 비교",1,"금형 입문"],["d3-fine-blanking","파인 블랭킹·셰이빙: 전단면 정밀도를 높이는 방법",3,"전단 금형"]]],["재료편",[["m9-process-routes","판금 밖의 제조 공법: 단조·주조·압출·분말야금과 재료 성질",9,"재료 선정·사양·관리"]]],["표면처리편",[["p1-outsourcing","표면처리 외주 구조: 전문 업체·라인 형태·물류·책임 경계",1,"표면처리 입문"]]]],"c01-break-even":[["실무편",[["s3-punch-laser","터릿 펀칭·레이저·복합기 선택",3,"레이저 절단"]]],["금형편",[["d1-volume-die-choice","물량과 금형 방식 선택: 단발·순차·트랜스퍼 손익분기",1,"금형 입문"]]]],"c05-root-cause-analysis":[["실무편",[["s4-bend-defects","절곡 불량과 검사 포인트",4,"절곡"]]],["금형편",[["d5-draw-defects","드로잉 불량: 주름·파단·이어링·표면 결함",5,"드로잉 금형"],["d8-tryout","트라이아웃 T0~Tn과 불량 원인 판정",8,"금형 개발 프로세스"]]],["재료편",[["m8-failure-analysis","파손 부품 조사와 클레임 대응",8,"파괴·피로·열적 성질"]]],["표면처리편",[["p9-defects","표면처리 불량 해석: 증상에서 원인으로",9,"품질·원가·환경"]]],["도료편",[["r6-paint-claim","도료 원인 불량 판별과 클레임",6,"성적서·수입검사"]]]],"c07-work-time-allowance":[["실무편",[["s4-bend-cost","절곡 원가: 타수·셋업·핸들링",4,"절곡"],["s6-weld-cost","용접 원가: 타점·용접 길이·지그",6,"용접·표면처리"],["s7-ct-review","공정 수·C/T·SPM·가동률 검증",7,"원가계산서 검토"],["s7-setup-lot","셋업 시간과 로트 크기 배분",7,"원가계산서 검토"],["s9-run-at-rate","양산 능력 검증(Run@Rate)",9,"초도품 승인"]]]],"c01-plc-strategy":[["실무편",[["s5-die-types","금형 방식: 단발·순차 이송·트랜스퍼·탠덤",5,"프레스·금형"]]],["금형편",[["d1-volume-die-choice","물량과 금형 방식 선택: 단발·순차·트랜스퍼 손익분기",1,"금형 입문"]]]],"c06-quotation-structure":[["실무편",[["s5-die-cost","금형비 견적 검토",5,"프레스·금형"],["s7-cost-sheet","판금·프레스 원가계산서의 구조",7,"원가계산서 검토"],["s7-overhead-profit","일반관리비·이윤의 적용 기준",7,"원가계산서 검토"]]],["금형편",[["d9-cost-structure","금형비 구성: 설계·소재·가공·열처리·조립·트라이아웃",9,"금형비와 금형 관리"]]]],"c09-quote-issue-analysis":[["실무편",[["s5-die-cost","금형비 견적 검토",5,"프레스·금형"],["s7-red-flags","원가계산서 레드 플래그",7,"원가계산서 검토"]]],["금형편",[["d9-quote-review","금형 견적 비교와 검토",9,"금형비와 금형 관리"]]],["도료편",[["r3-price-review","도료 단가 인상 요청 검증과 협상",3,"도료 단가"]]]],"c02-contracts":[["실무편",[["s5-die-management","금형 관리: 대장·타수·보수·소유권·이관",5,"프레스·금형"]]],["금형편",[["d9-transfer-storage","금형 이관·보관과 소유권",9,"금형비와 금형 관리"]]]],"c02-operational-kpis":[["실무편",[["s6-hazmat","유해 물질 규제: 6가 크롬·RoHS·REACH",6,"용접·표면처리"],["s8-capa","설비와 생산 능력(CAPA) 확인",8,"협력사 실사"],["s8-safety-env","인력·안전·환경",8,"협력사 실사"]]],["표면처리편",[["p9-environment","표면처리 환경 규제: 6가 크롬·PFAS·폐수·화학물질 관리",9,"품질·원가·환경"]]]],"c07-cost-structure":[["실무편",[["s7-cost-sheet","판금·프레스 원가계산서의 구조",7,"원가계산서 검토"]]],["금형편",[["d9-cost-structure","금형비 구성: 설계·소재·가공·열처리·조립·트라이아웃",9,"금형비와 금형 관리"]]],["표면처리편",[["p9-cost-model","표면처리 원가 모델: 라인 시간당 비용·걸이 수·재료비",9,"품질·원가·환경"]]],["도료편",[["r3-cost-structure","도료 원가 구조: 수지·안료·용제·첨가제·포장",3,"도료 단가"]]]],"c07-cost-review-sheet":[["실무편",[["s7-cost-sheet","판금·프레스 원가계산서의 구조",7,"원가계산서 검토"]]],["표면처리편",[["p9-cost-model","표면처리 원가 모델: 라인 시간당 비용·걸이 수·재료비",9,"품질·원가·환경"]]]],"c07-labor-cost":[["실무편",[["s7-rate-review","가공비 검토: 설비 임률(노무비 + 기계 경비)",7,"원가계산서 검토"]]]],"c04-eoq":[["실무편",[["s7-setup-lot","셋업 시간과 로트 크기 배분",7,"원가계산서 검토"]]],["도료편",[["r7-inventory","도료 재고와 발주: 포장 단위·최소 생산량·유효기간",7,"보관·재고"]]]],"c07-sga-profit":[["실무편",[["s7-outsourced-review","외주 가공비·포장비·운반비 검토",7,"원가계산서 검토"],["s7-overhead-profit","일반관리비·이윤의 적용 기준",7,"원가계산서 검토"]]]],"c07-cost-table-use":[["실무편",[["s7-red-flags","원가계산서 레드 플래그",7,"원가계산서 검토"]]],["금형편",[["d9-quote-review","금형 견적 비교와 검토",9,"금형비와 금형 관리"]]],["도료편",[["r3-price-basis","단가 비교 기준 환산: kg·L·고형분·m²당 단가",3,"도료 단가"]]]],"c09-negotiation-goal-zopa":[["실무편",[["s7-should-cost","목표 원가(Should-cost) 산출과 협상 활용",7,"원가계산서 검토"]]]],"c08-target-cost-allocation":[["실무편",[["s7-should-cost","목표 원가(Should-cost) 산출과 협상 활용",7,"원가계산서 검토"]]]],"c08-post-management":[["실무편",[["s7-price-change","단가 변경 요인과 연간 인하(CR)·물량 변동",7,"원가계산서 검토"]]]],"c07-variance-analysis":[["실무편",[["s7-price-change","단가 변경 요인과 연간 인하(CR)·물량 변동",7,"원가계산서 검토"]]]],"c02-selection-procedure":[["실무편",[["s8-audit-purpose","실사의 목적과 유형",8,"협력사 실사"]]]],"c03-evaluation-process":[["실무편",[["s8-audit-purpose","실사의 목적과 유형",8,"협력사 실사"]]]],"c03-supplier-kpi":[["실무편",[["s8-audit-purpose","실사의 목적과 유형",8,"협력사 실사"],["s8-warning-signs","현장에서 보이는 위험 신호",8,"협력사 실사"]]]],"c02-data-collection":[["실무편",[["s8-audit-prep","실사 사전 준비: 자료 요청·체크리스트·실사단",8,"협력사 실사"]]]],"c02-qualitative-checklist":[["실무편",[["s8-audit-prep","실사 사전 준비: 자료 요청·체크리스트·실사단",8,"협력사 실사"]]]],"c02-prospect-discovery":[["실무편",[["s8-audit-prep","실사 사전 준비: 자료 요청·체크리스트·실사단",8,"협력사 실사"]]]],"c02-financial-ratios":[["실무편",[["s8-finance-mgmt","경영·재무 건전성 확인",8,"협력사 실사"]]]],"c09-financial-statements":[["실무편",[["s8-finance-mgmt","경영·재무 건전성 확인",8,"협력사 실사"]]]],"c02-analysis-report":[["실무편",[["s8-finance-mgmt","경영·재무 건전성 확인",8,"협력사 실사"]]]],"c04-load-capacity-plan":[["실무편",[["s8-capa","설비와 생산 능력(CAPA) 확인",8,"협력사 실사"],["s9-run-at-rate","양산 능력 검증(Run@Rate)",9,"초도품 승인"]]],["금형편",[["d2-press-fit","금형과 프레스 맞추기: 셧 하이트·볼스터·톤수",2,"금형 구조와 표준 부품"],["d6-die-size-press","금형 크기와 프레스 선정",6,"공정 설계와 레이아웃"]]]],"c05-purchase-qms":[["실무편",[["s8-quality-system","품질 시스템 확인: 인증·검사·계측기 교정",8,"협력사 실사"],["s8-subtier","2차 협력사(외주 공정) 관리 확인",8,"협력사 실사"]]]],"c05-measurement-system":[["실무편",[["s8-quality-system","품질 시스템 확인: 인증·검사·계측기 교정",8,"협력사 실사"],["s9-ppap","PPAP 18개 요소와 제출 수준",9,"초도품 승인"]]],["표면처리편",[["p9-thickness","두께 측정 심화: 국부·평균 두께와 측정 위치·방법",9,"품질·원가·환경"]]]],"c05-nonconformity-correction":[["실무편",[["s8-quality-system","품질 시스템 확인: 인증·검사·계측기 교정",8,"협력사 실사"]]],["도료편",[["r6-lot-trace","도료 로트 추적과 부적합 격리",6,"성적서·수입검사"]]]],"c03-4m-5s":[["실무편",[["s8-process-control","공정 관리 확인: 작업 표준·초중종물·로트 추적·4M",8,"협력사 실사"],["s8-shopfloor","현장 5S·자재 보관·물류 동선",8,"협력사 실사"],["s9-approval-change","승인 판정과 변경점 재승인",9,"초도품 승인"]]],["도료편",[["r9-change-control","도료 변경 관리: 4M 변경과 재승인",9,"변경·원가 절감"]]]],"c05-living-inspection":[["실무편",[["s8-process-control","공정 관리 확인: 작업 표준·초중종물·로트 추적·4M",8,"협력사 실사"],["s9-cp-pfmea","공정 흐름도·PFMEA·관리 계획서",9,"초도품 승인"]]],["표면처리편",[["p2-pretreat-control","전처리 라인 관리: 농도·온도·시간·수세 오염",2,"전처리와 화성 처리"]]]],"c03-improvement-methods":[["실무편",[["s8-shopfloor","현장 5S·자재 보관·물류 동선",8,"협력사 실사"]]]],"c02-relationship-management":[["실무편",[["s8-subtier","2차 협력사(외주 공정) 관리 확인",8,"협력사 실사"]]]],"c02-selection-criteria-grades":[["실무편",[["s8-audit-report","실사 평가표·보고서와 후속 조치",8,"협력사 실사"]]]],"c03-supplier-grade":[["실무편",[["s8-audit-report","실사 평가표·보고서와 후속 조치",8,"협력사 실사"]]],["도료편",[["r9-supplier-review","도료사 정기 평가와 연간 계약",9,"변경·원가 절감"]]]],"c03-diagnosis-improvement":[["실무편",[["s8-audit-report","실사 평가표·보고서와 후속 조치",8,"협력사 실사"]]]],"c06-progress-checklist":[["실무편",[["s9-isir","초도품 검사(ISIR)의 목적과 절차",9,"초도품 승인"]]],["금형편",[["d8-schedule","금형 제작 일정과 마일스톤",8,"금형 개발 프로세스"],["d8-die-approval","금형 승인: 초도품·Run@Rate와 금형 검수",8,"금형 개발 프로세스"]]]],"c06-control-items":[["실무편",[["s9-isir","초도품 검사(ISIR)의 목적과 절차",9,"초도품 승인"]]]],"c05-corrective-preventive-action":[["실무편",[["s9-cp-pfmea","공정 흐름도·PFMEA·관리 계획서",9,"초도품 승인"]]],["도료편",[["r6-paint-claim","도료 원인 불량 판별과 클레임",6,"성적서·수입검사"]]]],"c01-make-or-buy-criteria":[["금형편",[["d1-what-is-die","금형이란: 프레스 금형의 역할과 구성",1,"금형 입문"]]],["도료편",[["r1-supply-mode","도료 사급과 도장 업체 구매: 누가 살지 정하는 기준",1,"도료 구매 입문"]]]],"c08-standard-item-techniques":[["금형편",[["d2-standard-parts","금형 표준 부품과 카탈로그 부품",2,"금형 구조와 표준 부품"]]]],"c08-ve-function-evaluation":[["금형편",[["d6-dfm-die","금형 관점의 부품 설계 개선(DFM)",6,"공정 설계와 레이아웃"]]],["재료편",[["m9-selection","재료 선정의 사고법: 요구 성질·가공성·원가·공급",9,"재료 선정·사양·관리"]]],["표면처리편",[["p1-selection","표면처리 선정의 사고법: 환경·수명·외관·형상·물량·원가",1,"표면처리 입문"]]]],"c09-rfp-supplier-selection":[["금형편",[["d8-rfq","금형 견적 요청(RFQ)과 업체 선정",8,"금형 개발 프로세스"]]]],"c06-supplier-pool":[["금형편",[["d8-rfq","금형 견적 요청(RFQ)과 업체 선정",8,"금형 개발 프로세스"]]]],"c06-dev-schedule-plan":[["금형편",[["d8-schedule","금형 제작 일정과 마일스톤",8,"금형 개발 프로세스"]]]],"c06-dev-problem-improvement":[["금형편",[["d8-tryout","트라이아웃 T0~Tn과 불량 원인 판정",8,"금형 개발 프로세스"]]]],"c05-sampling-inspection":[["재료편",[["m9-incoming-test","소재 수입 검사와 성분 분석: XRF·OES·인장·경도",9,"재료 선정·사양·관리"]]],["도료편",[["r6-incoming","도료 수입검사: 무엇을 얼마나 확인하나",6,"성적서·수입검사"]]]],"c01-outsourcing":[["표면처리편",[["p1-outsourcing","표면처리 외주 구조: 전문 업체·라인 형태·물류·책임 경계",1,"표면처리 입문"]]]],"c03-evaluation-scorecard":[["표면처리편",[["p9-supplier-audit","표면처리 업체 평가: CQI-11·CQI-12·공정 관리 계획",9,"품질·원가·환경"]]],["도료편",[["r9-supplier-review","도료사 정기 평가와 연간 계약",9,"변경·원가 절감"]]]],"c02-evaluation-items":[["표면처리편",[["p9-supplier-audit","표면처리 업체 평가: CQI-11·CQI-12·공정 관리 계획",9,"품질·원가·환경"]]],["도료편",[["r4-maker-eval","도료사 평가: 기술 지원·조색 능력·공급 안정",4,"도료사 선정·승인"]]]],"c05-qa-system":[["도료편",[["r2-approved-list","지정 도료 목록 운영: 승인된 도료만 쓰게 하는 장치",2,"도료 사양"]]]],"c07-price-quantity-variance":[["도료편",[["r3-index-linkage","원료 지수 연동 단가: 수지·이산화티타늄·용제 가격을 단가에 반영하기",3,"도료 단가"]]]],"c09-negotiation-plan":[["도료편",[["r3-price-review","도료 단가 인상 요청 검증과 협상",3,"도료 단가"]]]],"c02-strategy-based-criteria":[["도료편",[["r4-maker-eval","도료사 평가: 기술 지원·조색 능력·공급 안정",4,"도료사 선정·승인"]]]],"c06-project-phases":[["도료편",[["r4-new-paint-approval","새 도료 승인 절차: 시편 시험에서 양산 승인까지",4,"도료사 선정·승인"]]]],"c01-portfolio-matrix":[["도료편",[["r4-dual-source","도료 이원화와 동등성 평가",4,"도료사 선정·승인"]]]],"c09-contract-documents":[["도료편",[["r4-three-party","발주사·도장 업체·도료사의 책임 나누기",4,"도료사 선정·승인"]]]],"c05-qc-seven-tools":[["도료편",[["r5-lot-color","로트 간 색차와 조색 관리",5,"색 관리"]]]],"c05-inspection-methods":[["도료편",[["r6-incoming","도료 수입검사: 무엇을 얼마나 확인하나",6,"성적서·수입검사"]]]],"c04-key-material":[["도료편",[["r7-shelf-life","도료 유효기간과 재검사 연장",7,"보관·재고"]]]],"c04-ordering-types":[["도료편",[["r7-inventory","도료 재고와 발주: 포장 단위·최소 생산량·유효기간",7,"보관·재고"]]]],"c04-bom":[["도료편",[["r9-consumption","도료 소요량 관리: 이론량과 실적 대조",9,"변경·원가 절감"]]]],"c08-vrp":[["도료편",[["r9-cost-down","도료 원가 절감: 색 통합·품번 축소·고형분·분체 전환",9,"변경·원가 절감"]]]]};</script>
+<!-- shell:back:end -->
 <header class="top">
   <div class="top-in wrap">
     <a class="brand" href="#map"><b>개발구매 개념편</b><span>NCS 0204010101–10</span></a>
@@ -2904,6 +3155,7 @@ function renderMap(){
     <div>
       <h1>개발구매 개념편</h1>
       <p>신제품 개발 착수부터 양산·개선까지, 개발구매 담당자가 실제로 밟는 순서대로 NCS 구매조달 10개 학습모듈의 개념을 한 장에 펼쳤습니다. 개념을 누르면 연결된 개념이 함께 켜지고, 연결을 따라 이동하며 볼 수 있습니다.</p>
+      ${resumeBtn(next)}
     </div>
     <div class="tblock" aria-label="자료 정보">
       <div class="k">출처</div><div class="v">NCS 구매조달 0204010101–10</div>
@@ -2912,6 +3164,7 @@ function renderMap(){
       <div class="k">내 결재</div><div class="v mono">${nDone} / ${D.concepts.length}</div>
     </div>
   </div>
+  ${kyulStrip()}
   <div class="rm-tools">
     <label for="modsel">NCS 모듈 강조</label>
     <select id="modsel"><option value="">전체 보기</option>${D.modules.map(m => `<option value="${m.code}">${modShort(m.code)} ${esc(m.title)}</option>`).join("")}</select>
@@ -2931,7 +3184,7 @@ function renderMap(){
     <a class="card" href="#quiz"><div class="tag">복습 퀴즈</div><h3 style="margin-top:6px">랜덤 10문항</h3><p>단계별·오답 노트별로 골라 풉니다. 틀린 문제는 오답 노트에 남습니다.</p></a>
     <a class="card" href="#ncs"><div class="tag">NCS 체계</div><h3 style="margin-top:6px">원래 학습모듈 순서로 보기</h3><p>10개 모듈의 학습·학습내용·수행 순서와, 각 내용이 어느 개념 카드로 옮겨졌는지 확인합니다.</p></a>
   </div></section>`;
-  const map = $("#map");
+  const map = $("#map"); wireKyulStrip();
   $("#modsel").value = mapMod;
   $("#alledges").checked = allEdges;
   map.classList.toggle("all-edges", allEdges);
@@ -2948,6 +3201,40 @@ function renderMap(){
   applyMod();
   requestAnimationFrame(() => { drawEdges(); if(mapSel && C[mapSel]) selectNode(mapSel, true); });
 }
+/* shell:fn:start */
+function resumeBtn(next){
+  if(!next) return `<div class="rm-go"><a class="btn" href="#quiz">복습 퀴즈로 마무리</a><span>모든 개념을 결재했습니다.</span></div>`;
+  return `<div class="rm-go"><a class="btn" href="#${next.id}">${Object.keys(P.v).length ? "이어서 읽기" : "1단계부터 읽기"}</a><span>${esc(next.title)}</span></div>`;
+}
+function kyulStrip(){
+  return `<ol class="kstrip" aria-label="단계별 결재 현황">${D.stages.map(s => {
+    const cs = ORDER.filter(c => c.stage === s.id), dn = cs.filter(c => done(c.id)).length;
+    return `<li><button type="button" data-s="${s.id}" class="${dn ? (dn === cs.length ? "full" : "on") : ""}"><b>${esc(s.title)}</b><span>결재 ${dn}/${cs.length}</span></button></li>`;
+  }).join("")}</ol>`;
+}
+/* 표에서 값이 모두 숫자인 열은 오른쪽으로 맞춘다 */
+function alignNums(root){
+  const NUM = /^[~≈±+\-−–]?\d[\d,.]*(\s*[~–-]\s*\d[\d,.]*)?\s*[%가-힣A-Za-zμ㎡℃°]{0,4}$/;
+  $$(".tbl table", root).forEach(t => {
+    const rows = [...t.rows], n = rows.length ? rows[0].cells.length : 0;
+    for(let i = 0; i < n; i++){
+      const cells = rows.map(r => r.cells[i]).filter(Boolean), body = cells.filter(c => c.tagName === "TD" && c.textContent.trim());
+      if(body.length && body.every(c => NUM.test(c.textContent.trim()))) cells.forEach(c => c.classList.add("num"));
+    }
+  });
+}
+function wireKyulStrip(){
+  $$(".kstrip button").forEach(b => b.onclick = () => {
+    const t = $(`.stage[data-stage="${b.dataset.s}"]`);
+    if(t) t.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
+  });
+}
+/* 다른 권 카드가 이 개념을 가리킨 참조를 거꾸로 보여 준다. 데이터는 apply_shell.py가 만든다 */
+function backRefs(id){
+  const link = (() => { try { return window.self === window.top; } catch(e) { return false; } })();
+  return (window.DEVBUY_BACK && window.DEVBUY_BACK[id] || []).map(([vol, rows]) => `<div><h3>${vol}에서 함께 볼 개념</h3><ul class="ncs-ref">${rows.map(([k, title, no, stage]) => `<li><span class="mono">${no}단계</span><span>${link ? `<a href="${encodeURI("개발구매 " + vol + ".html")}#${k}" target="_blank" rel="noopener">${esc(title)}</a>` : esc(title)}<small>${esc(stage)}</small></span></li>`).join("")}</ul></div>`).join("");
+}
+/* shell:fn:end */
 function stageCol(s){
   const cs = ORDER.filter(c => c.stage === s.id);
   const mods = [...new Set(cs.map(c => c.module))];
@@ -2957,8 +3244,8 @@ function stageCol(s){
     const g = cs.filter(c => c.module === m);
     html += `<div class="grp"><div class="gl">NCS ${modShort(m)} ${esc(M[m].title)}</div>` + g.map(c => `<button class="node" data-id="${c.id}" data-mod="${c.module}" title="${esc(c.oneLiner)}"><span class="t">${esc(c.title)}</span>${W[c.id] ? `<span class="lab" title="실습 있음">▶</span>` : ""}<span class="st ${stDot(c.id)}" aria-label="${done(c.id)?"결재 완료":P.v[c.id]?"학습함":"미학습"}"></span></button>`).join("") + `</div>`;
   });
-  return `<section class="stage" aria-label="${s.no}단계 ${esc(s.title)}">
-    <div class="stage-h"><div class="no">STAGE ${String(s.no).padStart(2,"0")}</div><h2>${esc(s.title)}</h2><p>${esc(s.sub)}</p>
+  return `<section class="stage" data-stage="${s.id}" aria-label="${s.no}단계 ${esc(s.title)}">
+    <div class="stage-h"><div class="no">${s.no}단계</div><h2>${esc(s.title)}</h2><p>${esc(s.sub)}</p>
     <div class="mods">${mods.map(m => `<span class="tag" title="${esc(M[m].title)}">NCS ${modShort(m)}</span>`).join("")}<span class="prog">결재 ${dn}/${cs.length}</span></div></div>
     <div class="stage-nodes">${html}</div></section>`;
 }
@@ -2998,7 +3285,7 @@ function selectNode(id, quiet){
   const c = C[id], s = stageOf(c);
   const list = (ADJ[id]||[]).slice().sort((a,b) => POS[a.id]-POS[b.id]);
   pv.innerHTML = `<div class="preview" role="region" aria-label="선택한 개념">
-    <div><div class="meta">STAGE ${String(s.no).padStart(2,"0")} ${esc(s.title)} · NCS ${modShort(c.module)} ${esc(M[c.module].title)} · 학습 ${esc(c.unit)}</div>
+    <div><div class="meta">${s.no}단계 ${esc(s.title)} · NCS ${modShort(c.module)} ${esc(M[c.module].title)} · 학습 ${esc(c.unit)}</div>
     <h3>${esc(c.title)}</h3><p>${esc(c.oneLiner)}</p></div>
     <div style="display:flex;gap:6px;align-items:flex-start"><a class="btn" href="#${id}">개념 학습하기 →</a><button class="x-btn" aria-label="선택 해제" data-close>×</button></div>
     <div class="nbs">${list.length ? `<span style="font-size:12px;color:var(--ink-3);align-self:center">연결 ${list.length} ·</span>` : ""}${list.map(n => `<button class="chip ${n.x?"x":""}" data-go="${n.id}" title="${esc(n.why||"")}">${String(S[C[n.id].stage].no)} · ${esc(C[n.id].title)}</button>`).join("")}</div>
@@ -3025,7 +3312,7 @@ function renderConcept(id){
   const i = POS[id], prev = ORDER[i-1], next = ORDER[i+1];
   const sameContent = ORDER.filter(x => x.module === c.module && x.unit === c.unit);
   main.innerHTML = `
-  <nav class="crumb" aria-label="위치"><a href="#map">로드맵</a><span>›</span><span>STAGE ${String(s.no).padStart(2,"0")} ${esc(s.title)}</span><span>›</span><span class="tag">NCS ${modShort(c.module)}</span><span>${esc(m.title)} · 학습 ${esc(c.unit)}${unitObj ? " " + esc(unitObj.title) : ""}${c.page ? ` · p.${c.page}` : ""}</span></nav>
+  <nav class="crumb" aria-label="위치"><a href="#map">로드맵</a><span>›</span><span>${s.no}단계 ${esc(s.title)}</span><span>›</span><span class="tag">NCS ${modShort(c.module)}</span><span>${esc(m.title)} · 학습 ${esc(c.unit)}${unitObj ? " " + esc(unitObj.title) : ""}${c.page ? ` · p.${c.page}` : ""}</span></nav>
   <div class="c-grid">
     <article class="article">
       <h1>${esc(c.title)}</h1>
@@ -3047,11 +3334,12 @@ function renderConcept(id){
     <aside class="rail" aria-label="학습 상태와 연결">
       <div><h3>결재란</h3><div id="kyul"></div></div>
       ${nbs.length ? `<div><h3>연결 지도</h3><div class="ego" id="ego"></div></div>` : ""}
+      ${backRefs(id)}
       ${sameContent.length > 1 ? `<div><h3>학습 ${esc(c.unit)}의 개념</h3><ul class="mini-list">${sameContent.map(x => `<li><a href="#${x.id}" ${x.id===id?'aria-current="true"':""}><span class="st ${stDot(x.id)}"></span>${esc(x.title)}</a></li>`).join("")}</ul></div>` : ""}
       ${unitObj && unitObj.practice && (unitObj.practice.steps||[]).length ? `<div><h3>실무 수행 순서</h3><details class="prac"><summary>${esc(unitObj.practice.task || unitObj.title)}</summary><ol class="steps">${unitObj.practice.steps.map(x => `<li>${inline(x)}</li>`).join("")}</ol>${(unitObj.practice.tips||[]).length ? `<div class="tips"><b>수행 tip</b><ul style="margin:4px 0 0;padding-left:1.2em">${unitObj.practice.tips.map(t => `<li>${inline(t)}</li>`).join("")}</ul></div>` : ""}</details></div>` : ""}
     </aside>
   </div>`;
-  autolink($("#body"), id);
+  autolink($("#body"), id); alignNums($("#main"));
   renderKyul(id, firstVisit ? "v" : null);
   if(nbs.length) renderEgo(id, nbs);
   if(W[id]) renderWidget(id, $("#widget"));
@@ -3073,7 +3361,7 @@ function formulaHtml(f){
 }
 function linkCard(n){
   const c = C[n.id], s = stageOf(c);
-  return `<a class="lk ${n.x?"x":""}" href="#${c.id}"><span class="m"><span>STAGE ${String(s.no).padStart(2,"0")}</span><span class="tag">NCS ${modShort(c.module)}</span></span><b>${esc(c.title)}</b>${n.why ? `<span class="w">${esc(n.why)}</span>` : ""}</a>`;
+  return `<a class="lk ${n.x?"x":""}" href="#${c.id}"><span class="m"><span>${s.no}단계</span><span class="tag">NCS ${modShort(c.module)}</span></span><b>${esc(c.title)}</b>${n.why ? `<span class="w">${esc(n.why)}</span>` : ""}</a>`;
 }
 function stampHtml(label, fresh){ return `<span class="stamp ${fresh?"new":""}">${label}<small>확인</small></span>`; }
 function renderKyul(id, fresh){
@@ -3086,19 +3374,19 @@ function renderKyul(id, fresh){
 function markLab(id){ if(!id || P.l[id]) return; P.l[id] = 1; save(); if(location.hash.slice(1) === id) renderKyul(id, "l"); }
 function renderEgo(id, nbs){
   const el = $("#ego"); const list = nbs.slice(0, 12);
-  const W0 = 300, H0 = 250, cx = 150, cy = 122, rx = 96, ry = 84;
+  const W0 = 300, H0 = 250, cx = 150, cy = 122, rx = 70, ry = 84;
   let lines = "", nodes = "";
   list.forEach((n, i) => {
     const ang = -Math.PI/2 + i * 2*Math.PI/list.length;
     const x = cx + rx*Math.cos(ang), y = cy + ry*Math.sin(ang);
     const c = C[n.id]; const t = c.title.replace(/\s*\(.*?\)/g,"");
-    const label = t.length > 10 ? t.slice(0, 9) + "…" : t;
+    const label = t.length > 9 ? t.slice(0, 8) + "…" : t;
     const anchor = Math.abs(Math.cos(ang)) < .3 ? "middle" : (Math.cos(ang) > 0 ? "start" : "end");
     const lx = x + (anchor === "start" ? 9 : anchor === "end" ? -9 : 0), ly = y + (anchor === "middle" ? (Math.sin(ang) < 0 ? -10 : 17) : 4);
     lines += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" class="${n.x?"x":""}"/>`;
     nodes += `<a class="en ${n.x?"x":""}" href="#${c.id}" aria-label="${esc(c.title)}"><title>${esc(c.title)}${n.why ? " — " + esc(n.why) : ""}</title><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6"/><text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}">${esc(label)}</text></a>`;
   });
-  el.innerHTML = `<svg viewBox="-34 0 ${W0+68} ${H0}" role="img" aria-label="연결된 개념 ${nbs.length}개">${lines}${nodes}<g class="ctr"><circle cx="${cx}" cy="${cy}" r="22"/><text x="${cx}" y="${cy+4}" text-anchor="middle">지금</text></g></svg><div class="cap">실선: 같은 모듈 · 점선: 다른 모듈${nbs.length > 12 ? ` · ${nbs.length-12}개는 아래 목록 참고` : ""}</div>`;
+  el.innerHTML = `<svg viewBox="-60 0 ${W0+120} ${H0}" role="img" aria-label="연결된 개념 ${nbs.length}개">${lines}${nodes}<g class="ctr"><circle cx="${cx}" cy="${cy}" r="22"/><text x="${cx}" y="${cy+4}" text-anchor="middle">지금</text></g></svg><div class="cap">실선: 같은 모듈 · 점선: 다른 모듈${nbs.length > 12 ? ` · ${nbs.length-12}개는 아래 목록 참고` : ""}</div>`;
 }
 
 /* ---------- quizzes ---------- */
@@ -3147,7 +3435,7 @@ function renderQuiz(){
     <option value="all">전체</option>
     <option value="seen">내가 학습한 개념만</option>
     <option value="wrong">오답 노트 (${wrongN})</option>
-    ${D.stages.map(s => `<option value="${s.id}">STAGE ${String(s.no).padStart(2,"0")} ${esc(s.title)}</option>`).join("")}
+    ${D.stages.map(s => `<option value="${s.id}">${s.no}단계 ${esc(s.title)}</option>`).join("")}
   </select><button class="btn" id="qstart">문제 내기</button></div>
   <div id="qarea"></div>`;
   $("#qstart").onclick = startQuiz;
@@ -3171,7 +3459,7 @@ function startQuiz(){
       $("#qagain").onclick = startQuiz; return;
     }
     const it = qs[k];
-    area.innerHTML = `<div class="qbar" style="margin:0 0 4px"><span class="mono">${k+1} / ${qs.length}</span><span>·</span><a href="#${it.c.id}">${esc(it.c.title)}</a><span class="tag">STAGE ${String(stageOf(it.c).no).padStart(2,"0")}</span></div>`;
+    area.innerHTML = `<div class="qbar" style="margin:0 0 4px"><span class="mono">${k+1} / ${qs.length}</span><span>·</span><a href="#${it.c.id}">${esc(it.c.title)}</a><span class="tag">${stageOf(it.c).no}단계</span></div>`;
     area.appendChild(questionEl(it.q, k+1, ok => {
       if(ok){ score++; delete P.w[it.qid]; } else { P.w[it.qid] = 1; wrongs.push(it); }
       save();
@@ -3187,12 +3475,12 @@ function renderLab(arg){
   const main = $("#main");
   const sel = arg && W[arg] ? arg : (LABS[0] && LABS[0].id);
   main.innerHTML = `<div class="page-h"><h1>실습실</h1><p>원문의 공식·평가표·분류 기준을 그대로 옮긴 실습 ${LABS.length}종입니다. 값을 바꾸거나 분류해 보면 해당 개념의 결재란에 ‘실습’ 도장이 찍힙니다.</p></div>
-  <div class="lab-grid"><nav class="lab-list" aria-label="실습 목록">${D.stages.map(s => { const ls = LABS.filter(c => c.stage === s.id); return ls.length ? `<h4>STAGE ${String(s.no).padStart(2,"0")} ${esc(s.title)}</h4>` + ls.map(c => `<button data-id="${c.id}" ${c.id===sel?'aria-current="true"':""}><span>${esc(W[c.id].title || c.title)}</span>${P.l[c.id] ? `<span class="dn">실습✓</span>` : ""}</button>`).join("") : ""; }).join("")}</nav>
+  <div class="lab-grid"><nav class="lab-list" aria-label="실습 목록">${D.stages.map(s => { const ls = LABS.filter(c => c.stage === s.id); return ls.length ? `<h4>${s.no}단계 ${esc(s.title)}</h4>` + ls.map(c => `<button data-id="${c.id}" ${c.id===sel?'aria-current="true"':""}><span>${esc(W[c.id].title || c.title)}</span>${P.l[c.id] ? `<span class="dn">실습✓</span>` : ""}</button>`).join("") : ""; }).join("")}</nav>
   <div id="labmain" style="min-width:0"></div></div>`;
   $$(".lab-list button").forEach(b => b.onclick = () => { history.replaceState(null, "", "#lab." + b.dataset.id); renderLab(b.dataset.id); });
   if(!sel){ $("#labmain").innerHTML = `<div class="empty">실습이 없습니다.</div>`; return; }
   const c = C[sel];
-  $("#labmain").innerHTML = `<div class="crumb"><span>STAGE ${String(stageOf(c).no).padStart(2,"0")} ${esc(stageOf(c).title)}</span><span class="tag">NCS ${modShort(c.module)}</span><span>학습 ${esc(c.unit)}</span></div><h2 style="font-size:24px">${esc(c.title)}</h2><p style="color:var(--ink-2);margin:.3em 0 0">${esc(c.oneLiner)} <a href="#${c.id}">개념 카드 열기 →</a></p><div id="widget"></div>`;
+  $("#labmain").innerHTML = `<div class="crumb"><span>${stageOf(c).no}단계 ${esc(stageOf(c).title)}</span><span class="tag">NCS ${modShort(c.module)}</span><span>학습 ${esc(c.unit)}</span></div><h2 style="font-size:24px">${esc(c.title)}</h2><p style="color:var(--ink-2);margin:.3em 0 0">${esc(c.oneLiner)} <a href="#${c.id}">개념 카드 열기 →</a></p><div id="widget"></div>`;
   renderWidget(sel, $("#widget"));
 }
 
@@ -3359,7 +3647,7 @@ function setupSearch(){
     if(!q){ close(); return; }
     hits = idx.filter(x => x.hay.includes(q)).sort((a,b) => (b.c.title.toLowerCase().includes(q)) - (a.c.title.toLowerCase().includes(q))).slice(0, 12).map(x => x.c);
     const gl = D.glossary.filter(g => g.term.toLowerCase().includes(q)).slice(0, 5);
-    box.innerHTML = (hits.length ? hits.map((c, i) => `<a href="#${c.id}" class="${i===cur?"on":""}">${esc(c.title)}<small>STAGE ${String(stageOf(c).no).padStart(2,"0")} · NCS ${modShort(c.module)} · ${esc(c.oneLiner)}</small></a>`).join("") : "") + (gl.length ? `<div style="font-size:11px;color:var(--ink-3);padding:6px 10px 2px">용어집</div>` + gl.map(g => `<a href="${g.concept ? "#"+g.concept : "#glossary"}">${esc(g.term)}<small>${esc(g.def)}</small></a>`).join("") : "") || `<div style="padding:10px;color:var(--ink-3);font-size:13px">결과 없음</div>`;
+    box.innerHTML = (hits.length ? hits.map((c, i) => `<a href="#${c.id}" class="${i===cur?"on":""}">${esc(c.title)}<small>${stageOf(c).no}단계 · NCS ${modShort(c.module)} · ${esc(c.oneLiner)}</small></a>`).join("") : "") + (gl.length ? `<div style="font-size:11px;color:var(--ink-3);padding:6px 10px 2px">용어집</div>` + gl.map(g => `<a href="${g.concept ? "#"+g.concept : "#glossary"}">${esc(g.term)}<small>${esc(g.def)}</small></a>`).join("") : "") || `<div style="padding:10px;color:var(--ink-3);font-size:13px">결과 없음</div>`;
     box.hidden = false;
   };
   inp.addEventListener("input", () => { cur = -1; draw(); });
@@ -3376,13 +3664,13 @@ function setupSearch(){
 /* ---------- theme toggle ---------- */
 function setupTheme(){
   const b = $("#theme"); let t = null;
-  try { t = localStorage.getItem(KEY+":theme"); } catch(e) {}
+  try { t = localStorage.getItem("devbuy-theme") || localStorage.getItem(KEY+":theme"); } catch(e) {}
   if(t) document.documentElement.setAttribute("data-theme", t);
   b.onclick = () => {
     const cur = document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     const nx = cur === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", nx);
-    try { localStorage.setItem(KEY+":theme", nx); } catch(e) {}
+    try { localStorage.setItem("devbuy-theme", nx); } catch(e) {}
     if($("#map")) requestAnimationFrame(drawEdges);
   };
 }

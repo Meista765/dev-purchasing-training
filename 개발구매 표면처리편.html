@@ -3,7 +3,7 @@
 <meta name="description" content="판금·프레스 부품을 사는 개발구매 신입 사원을 위한 표면처리 교재 — 전처리·화성 처리·전기도금·도금 종류·양극산화·도료·도장 공정·법랑·품질·원가">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600;700&family=Song+Myung&display=swap">
 <style>
 /* Layout: sticky top bar + one view at a time. Roadmap = 9 stage columns on graph paper with a drawing title block;
    concept = reading column + side rail (결재란 stamps, ego map). Accent = drafting blue for anything clickable; seal red only for completion stamps. */
@@ -509,7 +509,256 @@ details.prac[open] summary{border-bottom:0}
 :root:not([data-theme="dark"]){--ink-3:#5E6A75}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ink-3:#8C98A4}}
 :root[data-theme="dark"]{--ink-3:#8C98A4}
+/* shell:css:start */
+/* 여섯 권 공통 틀. 여기만 고치고 `python 공용_소스/apply_shell.py` 후 다섯 권을 다시 빌드한다.
+   shortcut: 권별 CSS 위에 덮어쓰는 층이라 옛 규칙이 죽은 코드로 남는다. 권별 CSS를 정리할 일이 생기면 그때 합친다.
+   방향: 그을음 검정·흰 판·라임. 무채색 장부 앱이라 색은 결재 진도(인주 빨강)에만 쓴다. */
+:root{
+  --lime:#DAFA9C; --soot:#0F0F0F;
+  --paper:#F3F4F5; --sheet:#FFFFFF; --sunk:#E9EAEC; --ink:#0F0F0F; --ink-2:#3D3D3D;
+  --rule:#E2E3E5; --rule-2:#CBCCCF; --grid:transparent;
+  --accent:#0F0F0F; --accent-2:#000000; --accent-soft:#EEF9D6; --on-accent:#FFFFFF;
+  --seal:#C4382C; --seal-soft:#F9E7E4; --mark:#DAFA9C;
+  --shadow:0 14px 36px -18px rgba(0,0,0,.45);
+  --f-display:"Song Myung","Noto Serif KR","Nanum Myeongjo",serif;
+  --f-body:"Gothic A1","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  --f-mono:var(--f-body); --r:6px;
+}
+:root:not([data-theme="dark"]){--ink-3:#5C5C5C;--warn:#855800}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F0F0F; --sheet:#1A1A1A; --sunk:#262626; --ink:#F4F4F4; --ink-2:#C8C8C8; --ink-3:#A0A0A0;
+  --rule:#2A2A2A; --rule-2:#3D3D3D; --grid:transparent;
+  --accent:#DAFA9C; --accent-2:#E8FCC2; --accent-soft:#2B3419; --on-accent:#0F0F0F;
+  --seal:#F06A5C; --seal-soft:#3A1E1B; --mark:#4C5C1F;
+  --shadow:0 14px 36px -18px rgba(0,0,0,.9);
+}}
+:root[data-theme="dark"]{
+  --paper:#0F0F0F; --sheet:#1A1A1A; --sunk:#262626; --ink:#F4F4F4; --ink-2:#C8C8C8; --ink-3:#A0A0A0;
+  --rule:#2A2A2A; --rule-2:#3D3D3D; --grid:transparent;
+  --accent:#DAFA9C; --accent-2:#E8FCC2; --accent-soft:#2B3419; --on-accent:#0F0F0F;
+  --seal:#F06A5C; --seal-soft:#3A1E1B; --mark:#4C5C1F;
+  --shadow:0 14px 36px -18px rgba(0,0,0,.9);
+}
+html,body{background:var(--paper)}
+body{font-size:16px;line-height:1.65;background-image:none;word-break:keep-all;overflow-wrap:anywhere;font-synthesis:none}
+h1,h2,h3,h4{font-weight:400;letter-spacing:-.02em}
+h3,h4{font-family:var(--f-body);font-weight:600;letter-spacing:0}
+.lens-tech{--lc:var(--ink)} .lens-mgmt{--lc:var(--rule-2)}
+
+/* ---------- 책장: 허브와 여섯 권으로 가는 줄 ---------- */
+.shelf{background:var(--soot);color:#fff;font-size:14px}
+.shelf-in{display:flex;align-items:center;gap:2px;min-height:44px;max-width:1500px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+.shelf-in::-webkit-scrollbar{display:none}
+.shelf a{flex:none;padding:6px 10px;border-radius:var(--r);color:#fff;text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.shelf a:hover{background:#2A2A2A}
+.shelf a:focus-visible{outline:2px solid var(--lime);outline-offset:-2px}
+.shelf a.home{margin-right:auto;padding-left:0;font-weight:600}
+.shelf a.home:hover{background:transparent;text-decoration:underline;text-underline-offset:3px}
+.shelf a[aria-current="page"]{background:var(--lime);color:var(--soot);font-weight:600}
+.shelf a:active{transform:scale(.97)}
+
+/* ---------- 상단 바 ---------- */
+.top{background:var(--sheet);border-bottom:0}
+.brand b{font-family:var(--f-display);font-size:22px;font-weight:400;letter-spacing:-.02em}
+.brand span{font-family:var(--f-body);font-size:13px;color:var(--ink-3);letter-spacing:0}
+.nav a{font-size:15px;font-weight:400;color:var(--ink-2)}
+.nav a[aria-current="page"]{background:var(--sunk);color:var(--ink);font-weight:600}
+.search input{height:36px;border:0;background:var(--sunk);font-size:14px}
+.search svg{top:10px}
+.sres{border:0}
+.meter{font-size:13px}
+.theme-btn{border:0;background:var(--sunk);height:36px;width:36px}
+.btn{border-radius:var(--r);padding:9px 16px;font-size:15px;font-weight:600;min-height:38px;transition:transform .12s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn.sm{padding:5px 11px;font-size:14px;min-height:32px}
+
+/* ---------- 로드맵 ---------- */
+.rm-head{grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:24px 72px;align-items:start;margin:12px 0 28px}
+.rm-head h1{font-size:clamp(34px,3.4vw,48px);font-weight:400;letter-spacing:-.03em;line-height:1.08}
+.rm-head p{margin:.7em 0 0;color:var(--ink);font-size:17px;line-height:1.7;max-width:62ch}
+.rm-go{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:20px;font-size:15px}
+.tblock{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;border:0;background:transparent;font-size:14px;min-width:0;line-height:1.5}
+.tblock div{border:0!important;padding:0}
+.tblock .k{font-size:14px;font-weight:400;color:var(--ink-3)}
+.tblock .v{font-weight:500}
+.rm-tools{font-size:14px;margin:0 0 14px}
+.rm-tools select{height:36px;border:0;background:var(--sheet)}
+.legend{font-size:13px}
+
+/* 결재 현황: 이 교재만의 칸. 단계마다 결재란 한 칸, 누르면 그 단계로 간다 */
+.kstrip{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:4px}
+.kstrip li{min-width:0}
+.kstrip button{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:12px;width:100%;height:100%;min-height:96px;padding:10px 12px;text-align:left;border:0;border-radius:var(--r);background:var(--sheet);color:var(--ink);cursor:pointer;transition:background .15s,transform .12s}
+.kstrip button:hover{background:var(--sunk)}
+.kstrip button:active{transform:scale(.98)}
+.kstrip b{font-size:14px;font-weight:600;line-height:1.35}
+.kstrip span{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.kstrip .on span,.kstrip .full span{color:var(--seal);font-weight:600}
+.kstrip .full{background:var(--seal-soft)}
+
+.map-wrap{background:transparent;border:0;padding:0}
+.stage{grid-template-columns:220px minmax(0,1fr);gap:28px;padding:24px;margin-bottom:8px;background:var(--sheet);border:0;border-radius:8px;scroll-margin-top:72px}
+.stage:last-child{border:0}
+.stage-h{padding-left:0;border-left:0;z-index:3}  /* 연결선 레이어가 제목을 긋지 않도록 위로 */
+.stage:not(:last-child) .stage-h::after{display:none}
+.stage-h .no{font-size:13px;font-weight:400;color:var(--ink-3)}
+.stage-h h2{font-size:24px;line-height:1.2;margin:2px 0 6px}
+.stage-h p{font-size:14px;line-height:1.55;color:var(--ink)}
+.stage-h .mods{margin-top:10px;gap:4px 6px}
+.stage-h .prog{font-size:13px;color:var(--ink-3)}
+.tag{font-size:13px;line-height:1.5;padding:0 6px;border:0;background:var(--sunk);color:var(--ink-2)}
+.stage-nodes{gap:14px}
+.grp .gl{font-size:13px;font-weight:400;color:var(--ink-3);letter-spacing:0}
+.node{font-size:14px;line-height:1.4;max-width:340px;padding:7px 11px;border-radius:var(--r);border:1px solid transparent;background:var(--paper);color:var(--ink);transition:opacity .15s,background .15s}
+.node:hover{background:var(--sunk);border-color:transparent}
+.node:has(.st.full){background:var(--seal-soft)}
+.node .lab{font-size:13px;line-height:1;margin-top:3px;color:var(--ink-3)}
+.node .st{margin-top:5px}
+.map.focus .node.nb,.map.modf .node.mod{border-color:var(--ink);background:var(--accent-soft)}
+.map.focus .node.nb.xn{border-color:var(--seal)}
+.loop{border-top:0;padding:14px 24px 0;font-size:14px;color:var(--ink-2)}
+.preview{border:0;border-radius:8px}
+.preview h3{font-family:var(--f-display);font-weight:400;font-size:24px}
+.start{margin-top:48px}
+.start h2{font-size:28px;margin-bottom:14px}
+.start-grid{gap:8px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{border:0;border-radius:8px;padding:18px 20px}
+.card h3{font-size:17px;line-height:1.4}
+.card p{font-size:15px;color:var(--ink-2)}
+a.card{transition:background .15s}
+a.card:hover{background:var(--accent-soft)}
+
+/* ---------- 읽기 화면 ---------- */
+.crumb{font-size:13px;margin-bottom:14px}
+.c-grid{grid-template-columns:minmax(0,720px) minmax(0,300px);gap:72px}
+.article{max-width:720px;font-size:17px;line-height:1.8}
+.article h1{font-size:clamp(32px,3.1vw,46px);font-weight:400;line-height:1.16;letter-spacing:-.025em}
+.lead{font-size:20px;line-height:1.6;color:var(--ink);margin:.7em 0 1.6em}
+.article h2{font-size:26px;font-weight:400;margin:2.2em 0 .7em}
+.prose p{margin:0 0 1.1em}
+.prose strong{background:none;font-weight:700;text-decoration:underline;text-decoration-color:var(--mark);text-decoration-thickness:.42em;text-underline-offset:-.2em;text-decoration-skip-ink:none}
+.prose a.auto{text-decoration-color:var(--ink);text-decoration-thickness:1px;text-underline-offset:4px}
+.keys{border:0;border-left:0;background:var(--accent-soft);border-radius:8px;padding:18px 22px;margin:1.6em 0}
+.keys h3{font-size:15px;margin-bottom:8px;letter-spacing:0}
+.chk-box,.score{border:0;border-left:0;border-radius:8px}
+.tbl{border:0;border-radius:8px;margin:1.4em 0}
+.tbl table{font-size:15px}
+.tbl caption{font-size:14px;color:var(--ink);border-bottom:0;padding:12px 14px 4px}
+.tbl th{background:transparent;color:var(--ink-3);font-weight:500;white-space:normal}
+.tbl th,.tbl td{padding:9px 14px}
+.tbl table,.sc table,.sheet-tbl{font-variant-numeric:tabular-nums}
+.tbl th.num,.tbl td.num{text-align:right}
+.formula{border-left:0;border-radius:8px;padding:14px 18px;margin:1.2em 0}
+.formula .e{font-size:17px}
+.formula dt{color:var(--ink);font-weight:600}
+.formula dl,.formula .ex{font-size:14px}
+.example{background:var(--sheet);color:var(--ink);font-size:16px;border-radius:8px}
+.memo{font-size:14px}
+.source-note{font-size:13px;line-height:1.6;margin-top:14px}
+.pn{gap:8px}
+.pn a{border:0;font-size:15px;line-height:1.45;padding:14px 16px;border-radius:8px;transition:background .15s}
+.pn a small{font-size:13px;margin-bottom:2px}
+.lk{border:0;border-radius:8px;transition:background .15s}
+.lk.x{border:0;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--seal) 45%,transparent)}
+.lk b{font-size:15px}
+.fig img{border:0;border-radius:var(--r)}
+.fig figcaption{font-size:14px}
+.vid{border:0;border-radius:8px}
+.rail{gap:28px}
+.rail h3{font-family:var(--f-body);font-size:14px;font-weight:600;color:var(--ink);letter-spacing:0;margin-bottom:8px}
+.kyul th,.kyul td{border:1px solid var(--ink)}
+.kyul th{font-size:13px;background:transparent;padding:4px 0}
+.kyul td{height:76px}
+.kyul td .none{font-size:13px}
+.stamp{width:60px;height:60px;font-size:15px;font-weight:400}
+.stamp small{font-size:11px;line-height:1.1}
+.ego{border:0;border-radius:8px}
+.ego text{font-size:16px}
+.ego .cap{font-size:13px}
+.mini-list,.ncs-ref{font-size:14px;line-height:1.45}
+.mini-list a{padding:5px 0;transition:color .15s}
+.ncs-ref{list-style:none;margin:0;padding:0}  /* 개념편에는 이 목록의 기본 규칙이 없다 */
+.ncs-ref li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding-block:4px}
+.ncs-ref .mono{font-size:13px;padding-top:0;color:var(--ink-3)}
+.ncs-ref small{display:block;font-size:13px;color:var(--ink-3)}
+.ncs-ref a{color:var(--ink);text-decoration-thickness:1px}
+
+/* ---------- 나머지 화면: 구조는 그대로, 판과 글자만 맞춘다 ---------- */
+.page-h h1{font-size:clamp(30px,3vw,44px);font-weight:400;letter-spacing:-.025em}
+.page-h p{color:var(--ink);font-size:16px}
+.lab{border:0;border-radius:8px}
+.lab-h{background:var(--sunk);border-bottom:0}
+.lab-h h3{font-size:17px}
+.lab-list{border:0;border-radius:8px}
+.lab-list button{font-size:14px}
+.lab-list button[aria-current="true"]{background:var(--sunk);color:var(--ink)}
+.q,.ck-c,details.prac{border:0;border-radius:8px}
+.opt{font-size:15px;border:1px solid transparent;background:var(--paper);transition:background .15s}
+.opt:hover:not(:disabled){background:var(--sunk);border-color:transparent}
+.opt.right{border-color:var(--ok)} .opt.wrong{border-color:var(--bad)}
+.chip{border:0;background:var(--sunk);font-size:13px;padding:4px 10px}
+.chip:hover{background:var(--rule-2);color:var(--ink)}
+.chip.x{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--seal) 60%,transparent)}
+.chip.on{background:var(--ink);color:var(--sheet)}
+.gl dd{font-size:15px}
+.field .in{border:0;background:var(--sunk)}
+.out .v{font-size:22px}
+.ck-sec h2{font-size:24px;border-bottom:0}
+.empty{border:0;background:var(--sunk);color:var(--ink-2)}
+.toast{box-shadow:var(--shadow)}
+
+/* 13px 아래로 읽는 글자를 두지 않는다 */
+.sres small,.preview .meta,.lk .m,.lk span.w,.tbl caption,.formula .n,.cap,.fig .cr,.vid small,.field label,.field .u,.out .l,.out .s,
+.cell .cd,.cell .its .item,.bucket .its .item,.seq .n,.lab-list h4,.lab-list .dn,.ck-tools .ck-n,.ck-sec h2 .mono,.memo b,.an-cap .mono,.an-dot,.sc th,.sc td,.lab-b .hint{font-size:13px}
+.lab-list h4{letter-spacing:0;color:var(--ink-2)}
+
+@media (max-width:1180px){
+  .c-grid{gap:48px}
+}
+@media (max-width:1000px){
+  .c-grid{grid-template-columns:minmax(0,1fr)}
+  .article{max-width:none}
+  .rm-head{grid-template-columns:minmax(0,1fr);gap:20px}
+  .kstrip{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kstrip button{min-height:72px}
+}
+@media (max-width:760px){
+  .rm-head{grid-template-columns:minmax(0,1fr);gap:14px;margin:4px 0 18px}
+  .rm-head p{font-size:16px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+  .tblock div{display:none}
+  .tblock .k:nth-child(3),.tblock .v:nth-child(4){display:block}
+  /* 휴대폰은 한 줄로 밀어 본다: 첫 화면에 1단계가 보이도록 높이를 아낀다 */
+  .kstrip{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-left:16px;scrollbar-width:none;margin:0 -16px 20px;padding:0 16px}
+  .kstrip::-webkit-scrollbar{display:none}
+  .kstrip li{flex:0 0 calc((100vw - 40px)/3);scroll-snap-align:start}  /* 세 칸이 여백 안에 딱 들어가고 다음 칸은 글자 없이 살짝 보인다 */
+  .kstrip button{min-height:84px}
+  .start-grid{grid-template-columns:minmax(0,1fr)}
+  .rm-tools{gap:8px}
+  .legend{margin-left:0}
+  .stage{grid-template-columns:minmax(0,1fr);gap:14px;padding:18px 16px}
+  .node{max-width:100%}
+  .article{font-size:16.5px}
+  .lead{font-size:18px}
+}
+@media (max-width:640px){
+  .shelf a{padding:6px 8px}
+  .shelf .full{display:none}
+  .top-in{gap:8px 10px;padding-block:8px}
+  .search{order:5}
+  .nav{order:4;margin:0;scrollbar-width:none}
+  .brand b{font-size:21px}
+}
+@media print{
+  .shelf,.kstrip,.rm-go{display:none!important}
+}
+@media (prefers-reduced-motion:reduce){.btn,.kstrip button,.shelf a{transition:none}.btn:active,.kstrip button:active,.shelf a:active{transform:none}}
+
+/* shell:css:end */
 </style>
+<!-- shell:rail:start -->
+<nav class="shelf" id="shelf" aria-label="교재 여섯 권" hidden><div class="shelf-in wrap"><a class="home" href="index.html" aria-label="교재 전체">← 교재<span class="full"> 전체</span></a><a href="개발구매%20개념편.html" aria-label="개념편">개념<span class="full">편</span></a><a href="개발구매%20실무편.html" aria-label="실무편">실무<span class="full">편</span></a><a href="개발구매%20금형편.html" aria-label="금형편">금형<span class="full">편</span></a><a href="개발구매%20재료편.html" aria-label="재료편">재료<span class="full">편</span></a><a href="개발구매%20표면처리편.html" aria-label="표면처리편" aria-current="page">표면<span class="full">처리편</span></a><a href="개발구매%20도료편.html" aria-label="도료편">도료<span class="full">편</span></a></div></nav>
+<script>if(window.self===window.top)document.getElementById("shelf").hidden=false</script>
+<!-- shell:rail:end -->
 <header class="top">
   <div class="top-in wrap">
     <a class="brand" href="#map"><b>개발구매 표면처리편</b><span>도금·도장·법랑 실무 지식</span></a>
@@ -1570,6 +1819,7 @@ function renderMap(){
     <div>
       <h1>개발구매 표면처리편</h1>
       <p>판금·프레스 부품을 사는 개발구매 담당자가 알아야 할 표면처리를 한 장에 펼쳤습니다. 전처리와 화성 처리에서 시작해 전기도금의 원리, 도금·양극산화의 종류, 도료와 도장 공정, 법랑을 그림과 움직이는 도해로 익히고, 그 지식으로 표면처리 사양·업체 선정·성적서·불량 클레임·단가를 근거 있게 판단합니다. 개념을 누르면 연결된 개념이 함께 켜집니다.</p>
+      ${resumeBtn(next)}
     </div>
     <div class="tblock" aria-label="자료 정보">
       <div class="k">근거</div><div class="v">도금·도장 교재 · 공개 규격 · 업계 관행</div>
@@ -1579,6 +1829,7 @@ function renderMap(){
       <div class="k">내 결재</div><div class="v mono">${nDone} / ${D.concepts.length}</div>
     </div>
   </div>
+  ${kyulStrip()}
   <div class="rm-tools">
     <label for="modsel">관점 강조</label>
     <select id="modsel"><option value="">전체 보기</option>${D.lenses.map(l => `<option value="${l.code}">${esc(l.title)}</option>`).join("")}</select>
@@ -1598,7 +1849,7 @@ function renderMap(){
     <a class="card" href="#check"><div class="tag">체크리스트</div><h3 style="margin-top:6px">표면처리 사양·업체 실사·성적서·클레임·단가 체크리스트</h3><p>개념 카드의 '구매 담당자 체크포인트'를 표면처리 업무별로 모았습니다. 체크하며 쓰고, 업무·단계·관점별로 골라 볼 수 있습니다.</p></a>
     <a class="card" href="#quiz"><div class="tag">복습 퀴즈</div><h3 style="margin-top:6px">랜덤 10문항</h3><p>단계별·오답 노트별로 골라 풉니다. 틀린 문제는 오답 노트에 남습니다.</p></a>
   </div></section>`;
-  const map = $("#map");
+  const map = $("#map"); wireKyulStrip();
   $("#modsel").value = mapMod;
   $("#alledges").checked = allEdges;
   map.classList.toggle("all-edges", allEdges);
@@ -1615,6 +1866,35 @@ function renderMap(){
   applyMod();
   requestAnimationFrame(() => { drawEdges(); if(mapSel && C[mapSel]) selectNode(mapSel, true); });
 }
+/* shell:fn:start */
+function resumeBtn(next){
+  if(!next) return `<div class="rm-go"><a class="btn" href="#quiz">복습 퀴즈로 마무리</a><span>모든 개념을 결재했습니다.</span></div>`;
+  return `<div class="rm-go"><a class="btn" href="#${next.id}">${Object.keys(P.v).length ? "이어서 읽기" : "1단계부터 읽기"}</a><span>${esc(next.title)}</span></div>`;
+}
+function kyulStrip(){
+  return `<ol class="kstrip" aria-label="단계별 결재 현황">${D.stages.map(s => {
+    const cs = ORDER.filter(c => c.stage === s.id), dn = cs.filter(c => done(c.id)).length;
+    return `<li><button type="button" data-s="${s.id}" class="${dn ? (dn === cs.length ? "full" : "on") : ""}"><b>${esc(s.title)}</b><span>결재 ${dn}/${cs.length}</span></button></li>`;
+  }).join("")}</ol>`;
+}
+/* 표에서 값이 모두 숫자인 열은 오른쪽으로 맞춘다 */
+function alignNums(root){
+  const NUM = /^[~≈±+\-−–]?\d[\d,.]*(\s*[~–-]\s*\d[\d,.]*)?\s*[%가-힣A-Za-zμ㎡℃°]{0,4}$/;
+  $$(".tbl table", root).forEach(t => {
+    const rows = [...t.rows], n = rows.length ? rows[0].cells.length : 0;
+    for(let i = 0; i < n; i++){
+      const cells = rows.map(r => r.cells[i]).filter(Boolean), body = cells.filter(c => c.tagName === "TD" && c.textContent.trim());
+      if(body.length && body.every(c => NUM.test(c.textContent.trim()))) cells.forEach(c => c.classList.add("num"));
+    }
+  });
+}
+function wireKyulStrip(){
+  $$(".kstrip button").forEach(b => b.onclick = () => {
+    const t = $(`.stage[data-stage="${b.dataset.s}"]`);
+    if(t) t.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
+  });
+}
+/* shell:fn:end */
 function stageCol(s){
   const cs = ORDER.filter(c => c.stage === s.id);
   const lens = D.lenses.map(l => l.code).filter(code => cs.some(c => c.lens === code));
@@ -1625,8 +1905,8 @@ function stageCol(s){
     html += `<div class="grp"><div class="gl"><i class="ld lens-${m}"></i>${esc(LN[m].title)}</div>` + g.map(c => `<button class="node" data-id="${c.id}" data-mod="${c.lens}" title="${esc(c.oneLiner)}"><span class="t">${esc(c.title)}</span>${W[c.id] ? `<span class="lab" title="실습 있음">▶</span>` : ""}<span class="st ${stDot(c.id)}" aria-label="${done(c.id)?"결재 완료":P.v[c.id]?"학습함":"미학습"}"></span></button>`).join("") + `</div>`;
   });
   const ncsN = new Set(cs.flatMap(c => c.ncs || [])).size, silN = new Set(cs.flatMap(c => c.silmu || [])).size, geuN = new Set(cs.flatMap(c => c.geum || [])).size, jaeN = new Set(cs.flatMap(c => c.jae || [])).size, doN = new Set(cs.flatMap(c => c.do || [])).size;
-  return `<section class="stage" aria-label="${s.no}단계 ${esc(s.title)}">
-    <div class="stage-h"><div class="no">STAGE ${sNo(s)}</div><h2>${esc(s.title)}</h2><p>${esc(s.sub)}</p>
+  return `<section class="stage" data-stage="${s.id}" aria-label="${s.no}단계 ${esc(s.title)}">
+    <div class="stage-h"><div class="no">${s.no}단계</div><h2>${esc(s.title)}</h2><p>${esc(s.sub)}</p>
     <div class="mods">${silN ? `<span class="tag" title="실무편에서 함께 볼 개념 수">실무편 연결 ${silN}</span>` : ""}${geuN ? `<span class="tag" title="금형편에서 함께 볼 개념 수">금형편 연결 ${geuN}</span>` : ""}${jaeN ? `<span class="tag" title="재료편에서 원리를 볼 개념 수">재료편 연결 ${jaeN}</span>` : ""}${doN ? `<span class="tag" title="도료편에서 구매 관점을 볼 개념 수">도료편 연결 ${doN}</span>` : ""}${ncsN ? `<span class="tag" title="개념편에서 함께 볼 개념 수">개념편 연결 ${ncsN}</span>` : ""}<span class="prog">결재 ${dn}/${cs.length}</span></div></div>
     <div class="stage-nodes">${html}</div></section>`;
 }
@@ -1666,7 +1946,7 @@ function selectNode(id, quiet){
   const c = C[id], s = stageOf(c);
   const list = (ADJ[id]||[]).slice().sort((a,b) => POS[a.id]-POS[b.id]);
   pv.innerHTML = `<div class="preview" role="region" aria-label="선택한 개념">
-    <div><div class="meta">STAGE ${sNo(s)} ${esc(s.title)} · ${esc(LN[c.lens].title)}</div>
+    <div><div class="meta">${s.no}단계 ${esc(s.title)} · ${esc(LN[c.lens].title)}</div>
     <h3>${esc(c.title)}</h3><p>${esc(c.oneLiner)}</p></div>
     <div style="display:flex;gap:6px;align-items:flex-start"><a class="btn" href="#${id}">개념 학습하기 →</a><button class="x-btn" aria-label="선택 해제" data-close>×</button></div>
     <div class="nbs">${list.length ? `<span style="font-size:12px;color:var(--ink-3);align-self:center">연결 ${list.length} ·</span>` : ""}${list.map(n => `<button class="chip ${n.x?"x":""}" data-go="${n.id}" title="${esc(n.why||"")}">${String(S[C[n.id].stage].no)} · ${esc(C[n.id].title)}</button>`).join("")}</div>
@@ -1676,6 +1956,7 @@ function selectNode(id, quiet){
   if(!quiet){ const n = $(`.node[data-id="${id}"]`); n && n.focus({preventScroll:true}); }
 }
 let rzT; window.addEventListener("resize", () => { clearTimeout(rzT); rzT = setTimeout(() => { if($("#map")){ drawEdges(); hoverEdges(mapSel); } }, 120); });
+if(document.fonts) document.fonts.addEventListener("loadingdone", () => { if($("#map")){ drawEdges(); hoverEdges(mapSel); } });
 
 /* ---------- concept page ---------- */
 function renderConcept(id){
@@ -1690,7 +1971,7 @@ function renderConcept(id){
   const sameStage = ORDER.filter(x => x.stage === c.stage);
   const ncs = (c.ncs||[]).filter(k => NCS[k]), sil = (c.silmu||[]).filter(k => SILMU[k]), geu = (c.geum||[]).filter(k => GEUM[k]), jae = (c.jae||[]).filter(k => JAE[k]), dor = (c.do||[]).filter(k => DORYO[k]);
   main.innerHTML = `
-  <nav class="crumb" aria-label="위치"><a href="#map">로드맵</a><span>›</span><span>STAGE ${sNo(s)} ${esc(s.title)}</span><span>›</span>${lensTag(c.lens)}</nav>
+  <nav class="crumb" aria-label="위치"><a href="#map">로드맵</a><span>›</span><span>${s.no}단계 ${esc(s.title)}</span><span>›</span>${lensTag(c.lens)}</nav>
   <div class="c-grid">
     <article class="article">
       <h1>${esc(c.title)}</h1>
@@ -1720,11 +2001,11 @@ function renderConcept(id){
       ${refBox("금형편에서 함께 볼 개념", geu, GEUM, "개발구매 금형편.html", "개발구매 금형편")}
       ${refBox("재료편에서 원리를 볼 개념", jae, JAE, "개발구매 재료편.html", "개발구매 재료편")}
       ${refBox("도료편에서 구매 관점을 볼 개념", dor, DORYO, "개발구매 도료편.html", "개발구매 도료편")}
-      ${refBox("개념편에서 함께 볼 개념", ncs, NCS, null, "개발구매 개념편")}
-      <div><h3>STAGE ${sNo(s)}의 개념</h3><ul class="mini-list">${sameStage.map(x => `<li><a href="#${x.id}" ${x.id===id?'aria-current="true"':""}><span class="st ${stDot(x.id)}"></span>${esc(x.title)}</a></li>`).join("")}</ul></div>
+      ${refBox("개념편에서 함께 볼 개념", ncs, NCS, "개발구매 개념편.html", "개발구매 개념편")}
+      <div><h3>${s.no}단계의 개념</h3><ul class="mini-list">${sameStage.map(x => `<li><a href="#${x.id}" ${x.id===id?'aria-current="true"':""}><span class="st ${stDot(x.id)}"></span>${esc(x.title)}</a></li>`).join("")}</ul></div>
     </aside>
   </div>`;
-  autolink($("#body"), id);
+  autolink($("#body"), id); alignNums($("#main"));
   mountAnims(main);
   renderKyul(id, firstVisit ? "v" : null);
   if(nbs.length) renderEgo(id, nbs);
@@ -1743,7 +2024,7 @@ function figsHtml(c){
 function refBox(title, ids, idx, file, book){
   if(!ids.length) return "";
   const link = !!file && CAN_PRINT;
-  return `<div><h3>${title}</h3><ul class="ncs-ref">${ids.map(k => `<li><span class="mono">S${idx[k][1]}</span><span>${link ? `<a href="${encodeURI(file)}#${k}" target="_blank" rel="noopener">${esc(idx[k][0])}</a>` : esc(idx[k][0])}<small>${esc(idx[k][2])}</small></span></li>`).join("")}</ul><p class="cap">${link ? `「${book}」의 해당 카드가 새 탭에서 열립니다. 두 HTML 파일이 같은 폴더에 있어야 합니다.` : `짝 자료 「${book}」의 개념 카드 제목입니다. 그쪽 검색창에 제목을 넣으면 바로 찾을 수 있습니다.`}</p></div>`;
+  return `<div><h3>${title}</h3><ul class="ncs-ref">${ids.map(k => `<li><span class="mono">${idx[k][1]}단계</span><span>${link ? `<a href="${encodeURI(file)}#${k}" target="_blank" rel="noopener">${esc(idx[k][0])}</a>` : esc(idx[k][0])}<small>${esc(idx[k][2])}</small></span></li>`).join("")}</ul><p class="cap">${link ? `「${book}」의 해당 카드가 새 탭에서 열립니다. 두 HTML 파일이 같은 폴더에 있어야 합니다.` : `짝 자료 「${book}」의 개념 카드 제목입니다. 그쪽 검색창에 제목을 넣으면 바로 찾을 수 있습니다.`}</p></div>`;
 }
 /* step-controlled animations: engine/anims_*.js registers A[<id>] = {title, w, h, steps:[{cap, ms}], frame(step, t) → SVG markup} */
 const RM = matchMedia("(prefers-reduced-motion: reduce)");
@@ -1825,7 +2106,7 @@ function formulaHtml(f){
 }
 function linkCard(n){
   const c = C[n.id], s = stageOf(c);
-  return `<a class="lk ${n.x?"x":""}" href="#${c.id}"><span class="m"><span>STAGE ${sNo(s)}</span>${lensTag(c.lens)}</span><b>${esc(c.title)}</b>${n.why ? `<span class="w">${esc(n.why)}</span>` : ""}</a>`;
+  return `<a class="lk ${n.x?"x":""}" href="#${c.id}"><span class="m"><span>${s.no}단계</span>${lensTag(c.lens)}</span><b>${esc(c.title)}</b>${n.why ? `<span class="w">${esc(n.why)}</span>` : ""}</a>`;
 }
 function stampHtml(label, fresh){ return `<span class="stamp ${fresh?"new":""}">${label}<small>확인</small></span>`; }
 function renderKyul(id, fresh){
@@ -1838,19 +2119,19 @@ function renderKyul(id, fresh){
 function markLab(id){ if(!id || P.l[id]) return; P.l[id] = 1; save(); if(location.hash.slice(1) === id) renderKyul(id, "l"); }
 function renderEgo(id, nbs){
   const el = $("#ego"); const list = nbs.slice(0, 12);
-  const W0 = 300, H0 = 250, cx = 150, cy = 122, rx = 96, ry = 84;
+  const W0 = 300, H0 = 250, cx = 150, cy = 122, rx = 70, ry = 84;
   let lines = "", nodes = "";
   list.forEach((n, i) => {
     const ang = -Math.PI/2 + i * 2*Math.PI/list.length;
     const x = cx + rx*Math.cos(ang), y = cy + ry*Math.sin(ang);
     const c = C[n.id]; const t = c.title.replace(/\s*\(.*?\)/g,"");
-    const label = t.length > 10 ? t.slice(0, 9) + "…" : t;
+    const label = t.length > 9 ? t.slice(0, 8) + "…" : t;
     const anchor = Math.abs(Math.cos(ang)) < .3 ? "middle" : (Math.cos(ang) > 0 ? "start" : "end");
     const lx = x + (anchor === "start" ? 9 : anchor === "end" ? -9 : 0), ly = y + (anchor === "middle" ? (Math.sin(ang) < 0 ? -10 : 17) : 4);
     lines += `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" class="${n.x?"x":""}"/>`;
     nodes += `<a class="en ${n.x?"x":""}" href="#${c.id}" aria-label="${esc(c.title)}"><title>${esc(c.title)}${n.why ? " — " + esc(n.why) : ""}</title><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6"/><text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="${anchor}">${esc(label)}</text></a>`;
   });
-  el.innerHTML = `<svg viewBox="-34 0 ${W0+68} ${H0}" role="img" aria-label="연결된 개념 ${nbs.length}개">${lines}${nodes}<g class="ctr"><circle cx="${cx}" cy="${cy}" r="22"/><text x="${cx}" y="${cy+4}" text-anchor="middle">지금</text></g></svg><div class="cap">실선: 같은 단계 · 점선: 다른 단계${nbs.length > 12 ? ` · ${nbs.length-12}개는 아래 목록 참고` : ""}</div>`;
+  el.innerHTML = `<svg viewBox="-60 0 ${W0+120} ${H0}" role="img" aria-label="연결된 개념 ${nbs.length}개">${lines}${nodes}<g class="ctr"><circle cx="${cx}" cy="${cy}" r="22"/><text x="${cx}" y="${cy+4}" text-anchor="middle">지금</text></g></svg><div class="cap">실선: 같은 단계 · 점선: 다른 단계${nbs.length > 12 ? ` · ${nbs.length-12}개는 아래 목록 참고` : ""}</div>`;
 }
 
 /* ---------- quizzes ---------- */
@@ -1899,7 +2180,7 @@ function renderQuiz(){
     <option value="all">전체</option>
     <option value="seen">내가 학습한 개념만</option>
     <option value="wrong">오답 노트 (${wrongN})</option>
-    ${D.stages.map(s => `<option value="${s.id}">STAGE ${String(s.no).padStart(2,"0")} ${esc(s.title)}</option>`).join("")}
+    ${D.stages.map(s => `<option value="${s.id}">${s.no}단계 ${esc(s.title)}</option>`).join("")}
   </select><button class="btn" id="qstart">문제 내기</button></div>
   <div id="qarea"></div>`;
   $("#qstart").onclick = startQuiz;
@@ -1923,7 +2204,7 @@ function startQuiz(){
       $("#qagain").onclick = startQuiz; return;
     }
     const it = qs[k];
-    area.innerHTML = `<div class="qbar" style="margin:0 0 4px"><span class="mono">${k+1} / ${qs.length}</span><span>·</span><a href="#${it.c.id}">${esc(it.c.title)}</a><span class="tag">STAGE ${String(stageOf(it.c).no).padStart(2,"0")}</span></div>`;
+    area.innerHTML = `<div class="qbar" style="margin:0 0 4px"><span class="mono">${k+1} / ${qs.length}</span><span>·</span><a href="#${it.c.id}">${esc(it.c.title)}</a><span class="tag">${stageOf(it.c).no}단계</span></div>`;
     area.appendChild(questionEl(it.q, k+1, ok => {
       if(ok){ score++; delete P.w[it.qid]; } else { P.w[it.qid] = 1; wrongs.push(it); }
       save();
@@ -1939,12 +2220,12 @@ function renderLab(arg){
   const main = $("#main");
   const sel = arg && W[arg] ? arg : (LABS[0] && LABS[0].id);
   main.innerHTML = `<div class="page-h"><h1>실습실</h1><p>현장 계산과 판단을 직접 돌려 보는 실습 ${LABS.length}종입니다. 기본값은 모두 예시값이니 실제 견적서·도면의 숫자로 바꿔 넣어 보세요. 값을 바꾸거나 분류해 보면 해당 개념의 결재란에 ‘실습’ 도장이 찍힙니다.</p></div>
-  <div class="lab-grid"><nav class="lab-list" aria-label="실습 목록">${D.stages.map(s => { const ls = LABS.filter(c => c.stage === s.id); return ls.length ? `<h4>STAGE ${sNo(s)} ${esc(s.title)}</h4>` + ls.map(c => `<button data-id="${c.id}" ${c.id===sel?'aria-current="true"':""}><span>${esc(W[c.id].title || c.title)}</span>${P.l[c.id] ? `<span class="dn">실습✓</span>` : ""}</button>`).join("") : ""; }).join("")}</nav>
+  <div class="lab-grid"><nav class="lab-list" aria-label="실습 목록">${D.stages.map(s => { const ls = LABS.filter(c => c.stage === s.id); return ls.length ? `<h4>${s.no}단계 ${esc(s.title)}</h4>` + ls.map(c => `<button data-id="${c.id}" ${c.id===sel?'aria-current="true"':""}><span>${esc(W[c.id].title || c.title)}</span>${P.l[c.id] ? `<span class="dn">실습✓</span>` : ""}</button>`).join("") : ""; }).join("")}</nav>
   <div id="labmain" style="min-width:0"></div></div>`;
   $$(".lab-list button").forEach(b => b.onclick = () => { history.replaceState(null, "", "#lab." + b.dataset.id); renderLab(b.dataset.id); });
   if(!sel){ $("#labmain").innerHTML = `<div class="empty">실습이 없습니다.</div>`; return; }
   const c = C[sel];
-  $("#labmain").innerHTML = `<div class="crumb"><span>STAGE ${sNo(stageOf(c))} ${esc(stageOf(c).title)}</span>${lensTag(c.lens)}</div><h2 style="font-size:24px">${esc(c.title)}</h2><p style="color:var(--ink-2);margin:.3em 0 0">${esc(c.oneLiner)} <a href="#${c.id}">개념 카드 열기 →</a></p><div id="widget"></div>`;
+  $("#labmain").innerHTML = `<div class="crumb"><span>${stageOf(c).no}단계 ${esc(stageOf(c).title)}</span>${lensTag(c.lens)}</div><h2 style="font-size:24px">${esc(c.title)}</h2><p style="color:var(--ink-2);margin:.3em 0 0">${esc(c.oneLiner)} <a href="#${c.id}">개념 카드 열기 →</a></p><div id="widget"></div>`;
   renderWidget(sel, $("#widget"));
 }
 
@@ -2076,7 +2357,7 @@ function renderGlossary(){
   const draw = q => {
     q = (q||"").trim().toLowerCase();
     const list = D.glossary.filter(g => !q || g.term.toLowerCase().includes(q) || g.def.toLowerCase().includes(q));
-    $("#gl").innerHTML = list.length ? list.map(g => `<dl><dt>${esc(g.term)}${(g.stages||[]).map(k => S[k] ? `<span class="tag">STAGE ${sNo(S[k])}</span>` : "").join("")}</dt><dd>${esc(g.def)}${g.concept && C[g.concept] ? ` <a href="#${g.concept}">개념 카드 →</a>` : ""}</dd></dl>`).join("") : `<div class="empty">찾는 용어가 없습니다.</div>`;
+    $("#gl").innerHTML = list.length ? list.map(g => `<dl><dt>${esc(g.term)}${(g.stages||[]).map(k => S[k] ? `<span class="tag">${S[k].no}단계</span>` : "").join("")}</dt><dd>${esc(g.def)}${g.concept && C[g.concept] ? ` <a href="#${g.concept}">개념 카드 →</a>` : ""}</dd></dl>`).join("") : `<div class="empty">찾는 용어가 없습니다.</div>`;
   };
   $("#glq").addEventListener("input", e => draw(e.target.value));
   draw("");
@@ -2094,7 +2375,7 @@ function renderChecks(arg){
   const presets = (D.checkPresets||[]);
   main.innerHTML = `<div class="page-h"><h1>체크리스트</h1><p>개념 카드마다 붙은 ‘구매 담당자 체크포인트’를 모았습니다. 표면처리 사양을 정할 때, 업체를 고르고 공정을 실사할 때, 성적서와 입고품을 확인할 때, 불량·클레임을 조사할 때, 표면처리 단가를 검토할 때 해당 업무를 골라 체크하며 쓰고${CAN_PRINT ? ", 인쇄해 들고 갈 수 있습니다" : ""}. 체크 상태는 이 브라우저에만 저장됩니다.${CAN_PRINT ? "" : " 인쇄용 양식이 필요하면 HTML 파일을 브라우저에서 직접 열어 인쇄하세요."}</p></div>
   <div class="ck-tools">${presets.map(p => `<button class="chip ${chkSel===p.key?"on":""}" data-ps="${p.key}">${esc(p.label)}</button>`).join("")}
-    <select id="cksel" aria-label="범위 선택"><option value="all">전체 단계</option><optgroup label="업무별">${presets.map(p => `<option value="${p.key}">업무: ${esc(p.label)}</option>`).join("")}</optgroup><optgroup label="단계별">${D.stages.map(s => `<option value="${s.id}">STAGE ${sNo(s)} ${esc(s.title)}</option>`).join("")}</optgroup><optgroup label="관점별">${D.lenses.map(l => `<option value="${l.code}">관점: ${esc(l.title)}</option>`).join("")}</optgroup></select>
+    <select id="cksel" aria-label="범위 선택"><option value="all">전체 단계</option><optgroup label="업무별">${presets.map(p => `<option value="${p.key}">업무: ${esc(p.label)}</option>`).join("")}</optgroup><optgroup label="단계별">${D.stages.map(s => `<option value="${s.id}">${s.no}단계 ${esc(s.title)}</option>`).join("")}</optgroup><optgroup label="관점별">${D.lenses.map(l => `<option value="${l.code}">관점: ${esc(l.title)}</option>`).join("")}</optgroup></select>
     <span class="sp"></span><span class="mono ck-n" id="ckn"></span><button class="btn ghost sm" id="ckreset">이 범위 체크 지우기</button>${CAN_PRINT ? `<button class="btn sm" id="ckprint">인쇄</button>` : ""}</div>
   <div id="cklist"></div>`;
   $("#cksel").value = chkSel;
@@ -2105,8 +2386,8 @@ function renderChecks(arg){
     $$("[data-ps]").forEach(b => b.classList.toggle("on", b.dataset.ps === chkSel));
     const cs = pick();
     const byStage = D.stages.map(s => ({s, cs: cs.filter(c => c.stage === s.id)})).filter(g => g.cs.length);
-    const scope = SC[chkSel] ? `업무: ${SC[chkSel].label}` : S[chkSel] ? `STAGE ${sNo(S[chkSel])} ${S[chkSel].title}` : LN[chkSel] ? `관점: ${LN[chkSel].title}` : "전체 단계";
-    $("#cklist").innerHTML = `<div class="ck-print-h">개발구매 표면처리편 체크리스트 — ${esc(scope)}<span>업체명 ____________ 품번 ____________ 일자 ________ 확인자 ________</span></div>` + (byStage.length ? byStage.map(g => `<section class="ck-sec"><h2><span class="mono">STAGE ${sNo(g.s)}</span>${esc(g.s.title)}</h2>${g.cs.map(c => `<div class="ck-c"><h3><a href="#${c.id}">${esc(c.title)}</a>${lensTag(c.lens)}</h3><ul class="chk-list">${chkItems(c).map(chkLi).join("")}</ul></div>`).join("")}</section>`).join("") : `<div class="empty">체크포인트가 없습니다.</div>`);
+    const scope = SC[chkSel] ? `업무: ${SC[chkSel].label}` : S[chkSel] ? `${S[chkSel].no}단계 ${S[chkSel].title}` : LN[chkSel] ? `관점: ${LN[chkSel].title}` : "전체 단계";
+    $("#cklist").innerHTML = `<div class="ck-print-h">개발구매 표면처리편 체크리스트 — ${esc(scope)}<span>업체명 ____________ 품번 ____________ 일자 ________ 확인자 ________</span></div>` + (byStage.length ? byStage.map(g => `<section class="ck-sec"><h2><span class="mono">${g.s.no}단계</span>${esc(g.s.title)}</h2>${g.cs.map(c => `<div class="ck-c"><h3><a href="#${c.id}">${esc(c.title)}</a>${lensTag(c.lens)}</h3><ul class="chk-list">${chkItems(c).map(chkLi).join("")}</ul></div>`).join("")}</section>`).join("") : `<div class="empty">체크포인트가 없습니다.</div>`);
     wireChk($("#cklist"), count); count();
   };
   $("#cksel").addEventListener("change", e => { chkSel = e.target.value; history.replaceState(null, "", "#check." + chkSel); draw(); });
@@ -2127,7 +2408,7 @@ function setupSearch(){
     if(!q){ close(); return; }
     hits = idx.filter(x => x.hay.includes(q)).sort((a,b) => (b.c.title.toLowerCase().includes(q)) - (a.c.title.toLowerCase().includes(q))).slice(0, 12).map(x => x.c);
     const gl = D.glossary.filter(g => g.term.toLowerCase().includes(q)).slice(0, 5);
-    box.innerHTML = (hits.length ? hits.map((c, i) => `<a href="#${c.id}" class="${i===cur?"on":""}">${esc(c.title)}<small>STAGE ${sNo(stageOf(c))} · ${esc(LN[c.lens].title)} · ${esc(c.oneLiner)}</small></a>`).join("") : "") + (gl.length ? `<div style="font-size:11px;color:var(--ink-3);padding:6px 10px 2px">용어집</div>` + gl.map(g => `<a href="${g.concept ? "#"+g.concept : "#glossary"}">${esc(g.term)}<small>${esc(g.def)}</small></a>`).join("") : "") || `<div style="padding:10px;color:var(--ink-3);font-size:13px">결과 없음</div>`;
+    box.innerHTML = (hits.length ? hits.map((c, i) => `<a href="#${c.id}" class="${i===cur?"on":""}">${esc(c.title)}<small>${stageOf(c).no}단계 · ${esc(LN[c.lens].title)} · ${esc(c.oneLiner)}</small></a>`).join("") : "") + (gl.length ? `<div style="font-size:11px;color:var(--ink-3);padding:6px 10px 2px">용어집</div>` + gl.map(g => `<a href="${g.concept ? "#"+g.concept : "#glossary"}">${esc(g.term)}<small>${esc(g.def)}</small></a>`).join("") : "") || `<div style="padding:10px;color:var(--ink-3);font-size:13px">결과 없음</div>`;
     box.hidden = false;
   };
   inp.addEventListener("input", () => { cur = -1; draw(); });
@@ -2144,13 +2425,13 @@ function setupSearch(){
 /* ---------- theme toggle ---------- */
 function setupTheme(){
   const b = $("#theme"); let t = null;
-  try { t = localStorage.getItem(KEY+":theme"); } catch(e) {}
+  try { t = localStorage.getItem("devbuy-theme") || localStorage.getItem(KEY+":theme"); } catch(e) {}
   if(t) document.documentElement.setAttribute("data-theme", t);
   b.onclick = () => {
     const cur = document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     const nx = cur === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", nx);
-    try { localStorage.setItem(KEY+":theme", nx); } catch(e) {}
+    try { localStorage.setItem("devbuy-theme", nx); } catch(e) {}
     if($("#map")) requestAnimationFrame(drawEdges);
   };
 }
