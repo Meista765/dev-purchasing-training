@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 370" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" fill="#18202A">
+  <title>새 도료 승인 다섯 단계(서류, 시편 시험, 라인 시험, 시작품, 양산 승인)를 거쳐 지정 도료 목록에 등록되고, 불합격이면 앞 단계로 돌아가는 흐름</title>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#465260"/></marker><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#C4382C"/></marker></defs>
+  <rect width="100%" height="100%" fill="#FAFCFB"/>
+  <text x="30" y="34" font-size="17" fill="#18202A" text-anchor="start" font-weight="700">새 도료는 다섯 관문을 지나야 지정 도료 목록에 오른다</text>
+  <rect x="30" y="80" width="118" height="86" rx="6" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.6"/>
+  <text x="89" y="114" font-size="16" fill="#1D5BB8" text-anchor="middle" font-weight="700">서류</text>
+  <text x="89" y="142" font-size="14" fill="#465260" text-anchor="middle">TDS·MSDS·규제</text>
+  <line x1="150" y1="123" x2="164" y2="123" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="166" y="80" width="118" height="86" rx="6" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.6"/>
+  <text x="225" y="114" font-size="16" fill="#1D5BB8" text-anchor="middle" font-weight="700">시편 시험</text>
+  <text x="225" y="142" font-size="14" fill="#465260" text-anchor="middle">부착·내식·색</text>
+  <line x1="286" y1="123" x2="300" y2="123" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="302" y="80" width="118" height="86" rx="6" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.6"/>
+  <text x="361" y="114" font-size="16" fill="#1D5BB8" text-anchor="middle" font-weight="700">라인 시험</text>
+  <text x="361" y="142" font-size="14" fill="#465260" text-anchor="middle">작업성·경화</text>
+  <line x1="422" y1="123" x2="436" y2="123" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="438" y="80" width="118" height="86" rx="6" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.6"/>
+  <text x="497" y="114" font-size="16" fill="#1D5BB8" text-anchor="middle" font-weight="700">시작품</text>
+  <text x="497" y="142" font-size="14" fill="#465260" text-anchor="middle">조립·외관</text>
+  <line x1="558" y1="123" x2="572" y2="123" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="574" y="80" width="118" height="86" rx="6" fill="#FFFFFF" stroke="#2F8F5B" stroke-width="1.6"/>
+  <text x="633" y="114" font-size="16" fill="#2F8F5B" text-anchor="middle" font-weight="700">양산 승인</text>
+  <text x="633" y="142" font-size="14" fill="#465260" text-anchor="middle">PPAP·기록</text>
+  <line x1="689" y1="168" x2="689" y2="222" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <rect x="430" y="226" width="260" height="96" rx="6" fill="#5E8FC9" stroke="#5E8FC9" stroke-width="1.2"/>
+  <text x="560" y="260" font-size="17" fill="#FFFFFF" text-anchor="middle" font-weight="700">지정 도료 목록</text>
+  <text x="560" y="288" font-size="15" fill="#FFFFFF" text-anchor="middle">도료사·품번·용도·승인일</text>
+  <text x="30" y="300" font-size="15" fill="#465260" text-anchor="start">한 관문이라도 불합격이면</text>
+  <text x="30" y="324" font-size="15" fill="#465260" text-anchor="start">앞 단계로 돌아간다</text>
+  <path d="M300,170 C300,250 120,250 89,172" fill="none" stroke="#C4382C" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <text x="195" y="258" font-size="15" fill="#C4382C" text-anchor="middle">불합격 → 처방 수정·재시험</text>
+
+</svg>

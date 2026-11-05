@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 370" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" fill="#18202A">
+  <title>도료 변경 관리 순환(변경 발생, 사전 통보, 등급 판정, 재시험·재승인)과 원가 절감 네 갈래(색·품번 통합, 막두께 과잉 줄이기, 고형분 상향·분체 전환, 포장 대형화·연간 계약) 개념도</title>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#465260"/></marker><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#C4382C"/></marker></defs>
+  <rect width="100%" height="100%" fill="#FAFCFB"/>
+  <text x="30" y="34" font-size="17" fill="#18202A" text-anchor="start" font-weight="700">바뀌면 다시 승인하고, 가짓수와 쓰는 양을 줄여 값을 낮춘다</text>
+  <rect x="62" y="64" width="116" height="52" rx="6" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.6"/>
+  <text x="120" y="96" font-size="15" fill="#1D5BB8" text-anchor="middle" font-weight="700">변경 발생</text>
+  <rect x="192" y="64" width="116" height="52" rx="6" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.6"/>
+  <text x="250" y="96" font-size="15" fill="#1D5BB8" text-anchor="middle" font-weight="700">사전 통보</text>
+  <rect x="192" y="174" width="116" height="52" rx="6" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.6"/>
+  <text x="250" y="206" font-size="15" fill="#1D5BB8" text-anchor="middle" font-weight="700">등급 판정</text>
+  <rect x="62" y="174" width="116" height="52" rx="6" fill="#FFFFFF" stroke="#1D5BB8" stroke-width="1.6"/>
+  <text x="120" y="206" font-size="15" fill="#1D5BB8" text-anchor="middle" font-weight="700">재시험·재승인</text>
+  <line x1="180" y1="90" x2="190" y2="90" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="250" y1="118" x2="250" y2="172" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="190" y1="200" x2="180" y2="200" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="120" y1="172" x2="120" y2="118" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="185" y="268" font-size="15" fill="#465260" text-anchor="middle">원료·처방·공장·품번이 바뀌면</text>
+  <text x="185" y="292" font-size="15" fill="#465260" text-anchor="middle">도료사가 먼저 알려야 한다</text>
+  <rect x="380" y="60" width="310" height="270" rx="6" fill="#FFFFFF" stroke="#465260" stroke-width="1.2"/>
+  <text x="396" y="90" font-size="16" fill="#18202A" text-anchor="start" font-weight="700">원가 절감 네 갈래 (예시)</text>
+  <text x="396" y="122" font-size="15" fill="#18202A" text-anchor="start" font-weight="700">색·품번 통합</text>
+  <text x="396" y="144" font-size="14" fill="#465260" text-anchor="start">물량 집중·재고 축소</text>
+  <rect x="590" y="108" width="75.6" height="18" rx="2" fill="#2F8F5B" stroke="#2F8F5B" stroke-width="1"/>
+  <text x="396" y="174" font-size="15" fill="#18202A" text-anchor="start" font-weight="700">막두께 과잉 줄이기</text>
+  <text x="396" y="196" font-size="14" fill="#465260" text-anchor="start">사양 상한 근처 → 중앙</text>
+  <rect x="590" y="160" width="58.8" height="18" rx="2" fill="#2F8F5B" stroke="#2F8F5B" stroke-width="1"/>
+  <text x="396" y="226" font-size="15" fill="#18202A" text-anchor="start" font-weight="700">고형분↑·분체 전환</text>
+  <text x="396" y="248" font-size="14" fill="#465260" text-anchor="start">m²당 도료량 감소</text>
+  <rect x="590" y="212" width="67.2" height="18" rx="2" fill="#2F8F5B" stroke="#2F8F5B" stroke-width="1"/>
+  <text x="396" y="278" font-size="15" fill="#18202A" text-anchor="start" font-weight="700">포장 대형화·연간 계약</text>
+  <text x="396" y="300" font-size="14" fill="#465260" text-anchor="start">단가·물류비</text>
+  <rect x="590" y="264" width="42.0" height="18" rx="2" fill="#2F8F5B" stroke="#2F8F5B" stroke-width="1"/>
+  <text x="674" y="322" font-size="13" fill="#77838F" text-anchor="end">막대 = 효과 크기 개념</text>
+
+</svg>

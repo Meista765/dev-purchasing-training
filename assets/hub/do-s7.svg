@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 370" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" fill="#18202A">
+  <title>예시값 타임라인: 월 40kg 쓰는 특색 도료 500kg을 사면 9개월 동안 360kg을 쓰고 140kg은 유효기간을 넘겨 폐기되어 실질 단가가 12,694원/kg이 된다</title>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#465260"/></marker><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#C4382C"/></marker></defs>
+  <rect width="100%" height="100%" fill="#FAFCFB"/>
+  <text x="30" y="34" font-size="17" fill="#18202A" text-anchor="start" font-weight="700">최소 생산량이 소비 속도보다 크면, 남은 도료는 기한을 넘겨 버려진다</text>
+  <line x1="60" y1="190" x2="680" y2="190" stroke="#465260" stroke-width="1.2"/>
+  <line x1="60.0" y1="186" x2="60.0" y2="194" stroke="#465260"/>
+  <text x="60.0" y="212" font-size="14" fill="#465260" text-anchor="middle">0</text>
+  <line x1="151.9" y1="186" x2="151.9" y2="194" stroke="#465260"/>
+  <text x="151.9" y="212" font-size="14" fill="#465260" text-anchor="middle">2</text>
+  <line x1="243.7" y1="186" x2="243.7" y2="194" stroke="#465260"/>
+  <text x="243.7" y="212" font-size="14" fill="#465260" text-anchor="middle">4</text>
+  <line x1="335.6" y1="186" x2="335.6" y2="194" stroke="#465260"/>
+  <text x="335.6" y="212" font-size="14" fill="#465260" text-anchor="middle">6</text>
+  <line x1="427.4" y1="186" x2="427.4" y2="194" stroke="#465260"/>
+  <text x="427.4" y="212" font-size="14" fill="#465260" text-anchor="middle">8</text>
+  <line x1="519.3" y1="186" x2="519.3" y2="194" stroke="#465260"/>
+  <text x="519.3" y="212" font-size="14" fill="#465260" text-anchor="middle">10</text>
+  <line x1="611.1" y1="186" x2="611.1" y2="194" stroke="#465260"/>
+  <text x="611.1" y="212" font-size="14" fill="#465260" text-anchor="middle">12</text>
+  <text x="370.0" y="236" font-size="15" fill="#465260" text-anchor="middle">입고 후 개월</text>
+  <rect x="60.0" y="140" width="413.3" height="36" rx="3" fill="#1D5BB8" stroke="#1D5BB8" stroke-width="1.2"/>
+  <text x="266.65" y="164" font-size="15" fill="#FFFFFF" text-anchor="middle" font-weight="700">기한 안에 쓰는 360kg</text>
+  <rect x="473.3" y="140" width="160.8" height="36" rx="3" fill="#C4382C" stroke="#C4382C" stroke-width="1.2" opacity="0.85"/>
+  <text x="553.7" y="164" font-size="15" fill="#FFFFFF" text-anchor="middle" font-weight="700">폐기 140kg</text>
+  <line x1="519.3" y1="96" x2="519.3" y2="138" stroke="#C4382C" stroke-width="2"/><line x1="519.3" y1="178" x2="519.3" y2="190" stroke="#C4382C" stroke-width="2"/>
+  <text x="519.3" y="90" font-size="15" fill="#C4382C" text-anchor="middle" font-weight="700">유효기간 만료</text>
+  <line x1="473.3" y1="118" x2="473.3" y2="138" stroke="#E8A23A" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="473.3" y1="178" x2="473.3" y2="190" stroke="#E8A23A" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="467.3" y="116" font-size="15" fill="#9A6512" text-anchor="end">사용 한계(여유 1개월)</text>
+  <rect x="30" y="262" width="660" height="84" rx="6" fill="#FFFFFF" stroke="#465260" stroke-width="1.2"/>
+  <text x="46" y="290" font-size="15" fill="#18202A" text-anchor="start">월 40kg 쓰는 특색을 최소 생산량 500kg으로 샀다면 (예시값)</text>
+  <text x="46" y="318" font-size="16" fill="#C4382C" text-anchor="start" font-weight="700">표시 단가 9,000원/kg → 폐기까지 넣은 실질 단가 12,694원/kg</text>
+
+</svg>

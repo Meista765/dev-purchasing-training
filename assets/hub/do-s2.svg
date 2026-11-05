@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 370" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" fill="#18202A">
+  <title>도료 구매 사양서 예시 양식: 용도부터 성적서 항목까지 적은 항목은 숫자로 판정되고, 포장·유효기간·규제 적합을 빠뜨리면 반품 근거가 없다</title>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#465260"/></marker><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#C4382C"/></marker></defs>
+  <rect width="100%" height="100%" fill="#FAFCFB"/>
+  <text x="30" y="34" font-size="17" fill="#18202A" text-anchor="start" font-weight="700">구매 사양서에 적힌 것만 같은 도료로 온다</text>
+  <rect x="30" y="56" width="300" height="290" rx="4" fill="#FFFFFF" stroke="#465260" stroke-width="1.2"/>
+  <text x="46" y="84" font-size="15" fill="#465260" text-anchor="start" font-weight="700">도료 구매 사양서 (예시 양식)</text>
+  <rect x="48" y="97" width="18" height="18" rx="3" fill="#FFFFFF" stroke="#2F8F5B" stroke-width="1.6"/>
+  <path d="M51,106 l5,5 l8,-10" fill="none" stroke="#2F8F5B" stroke-width="2.2"/>
+  <text x="78" y="112" font-size="15" fill="#18202A" text-anchor="start">용도·도장계</text>
+  <rect x="48" y="130" width="18" height="18" rx="3" fill="#FFFFFF" stroke="#2F8F5B" stroke-width="1.6"/>
+  <path d="M51,139 l5,5 l8,-10" fill="none" stroke="#2F8F5B" stroke-width="2.2"/>
+  <text x="78" y="145" font-size="15" fill="#18202A" text-anchor="start">수지 계열·색·광택</text>
+  <rect x="48" y="163" width="18" height="18" rx="3" fill="#FFFFFF" stroke="#2F8F5B" stroke-width="1.6"/>
+  <path d="M51,172 l5,5 l8,-10" fill="none" stroke="#2F8F5B" stroke-width="2.2"/>
+  <text x="78" y="178" font-size="15" fill="#18202A" text-anchor="start">막두께·경화 조건</text>
+  <rect x="48" y="196" width="18" height="18" rx="3" fill="#FFFFFF" stroke="#2F8F5B" stroke-width="1.6"/>
+  <path d="M51,205 l5,5 l8,-10" fill="none" stroke="#2F8F5B" stroke-width="2.2"/>
+  <text x="78" y="211" font-size="15" fill="#18202A" text-anchor="start">물성 시험과 판정값</text>
+  <rect x="48" y="229" width="18" height="18" rx="3" fill="#FFFFFF" stroke="#2F8F5B" stroke-width="1.6"/>
+  <path d="M51,238 l5,5 l8,-10" fill="none" stroke="#2F8F5B" stroke-width="2.2"/>
+  <text x="78" y="244" font-size="15" fill="#18202A" text-anchor="start">성적서 항목</text>
+  <rect x="48" y="262" width="18" height="18" rx="3" fill="#FFFFFF" stroke="#C4382C" stroke-width="1.6"/>
+  <text x="57" y="277" font-size="15" fill="#C4382C" text-anchor="middle" font-weight="700">?</text>
+  <text x="78" y="277" font-size="15" fill="#C4382C" text-anchor="start">포장·유효기간</text>
+  <rect x="48" y="295" width="18" height="18" rx="3" fill="#FFFFFF" stroke="#C4382C" stroke-width="1.6"/>
+  <text x="57" y="310" font-size="15" fill="#C4382C" text-anchor="middle" font-weight="700">?</text>
+  <text x="78" y="310" font-size="15" fill="#C4382C" text-anchor="start">규제 적합(MSDS·SVHC)</text>
+  <line x1="340" y1="150" x2="410" y2="150" stroke="#465260" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="340" y1="290" x2="410" y2="290" stroke="#C4382C" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="420" y="100" width="270" height="100" rx="6" fill="#E9F4EE" stroke="#2F8F5B" stroke-width="1.4"/>
+  <text x="436" y="130" font-size="16" fill="#2F8F5B" text-anchor="start" font-weight="700">적은 항목</text>
+  <text x="436" y="156" font-size="15" fill="#18202A" text-anchor="start">로트가 바뀌어도 숫자로 판정</text>
+  <text x="436" y="180" font-size="15" fill="#18202A" text-anchor="start">도료사가 바꾸려면 통보가 온다</text>
+  <rect x="420" y="240" width="270" height="100" rx="6" fill="#FBECEA" stroke="#C4382C" stroke-width="1.4"/>
+  <text x="436" y="270" font-size="16" fill="#C4382C" text-anchor="start" font-weight="700">빠뜨린 항목</text>
+  <text x="436" y="296" font-size="15" fill="#18202A" text-anchor="start">유효기간 짧은 로트가 와도</text>
+  <text x="436" y="320" font-size="15" fill="#18202A" text-anchor="start">반품 근거가 없다</text>
+
+</svg>

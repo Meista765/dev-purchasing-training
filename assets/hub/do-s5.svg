@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 370" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif" font-size="16" fill="#18202A">
+  <title>예시값 그래프: 도료 로트 11개의 기준 판 대비 ΔE 추이. 허용 한계 1.0 아래에서도 한쪽으로 쏠리다가 10번째 로트가 한계를 넘는다</title>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#465260"/></marker><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#C4382C"/></marker></defs>
+  <rect width="100%" height="100%" fill="#FAFCFB"/>
+  <text x="30" y="34" font-size="17" fill="#18202A" text-anchor="start" font-weight="700">색은 로트마다 흔들린다 — 기준 판과 비교한 ΔE를 로트별로 쌓는다</text>
+  <line x1="80" y1="70" x2="80" y2="300" stroke="#465260" stroke-width="1.2"/><line x1="80" y1="300" x2="670" y2="300" stroke="#465260" stroke-width="1.2"/>
+  <text x="72" y="305.0" font-size="14" fill="#465260" text-anchor="end">0.0</text>
+  <text x="72" y="233.1" font-size="14" fill="#465260" text-anchor="end">0.5</text>
+  <text x="72" y="161.2" font-size="14" fill="#465260" text-anchor="end">1.0</text>
+  <text x="72" y="89.4" font-size="14" fill="#465260" text-anchor="end">1.5</text>
+  <line x1="80" y1="156.25" x2="670" y2="156.25" stroke="#C4382C" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="88" y="148.25" font-size="15" fill="#C4382C" text-anchor="start">허용 한계 ΔE 1.0 (예시)</text>
+  <polyline points="110,254.0 162,235.3 214,259.8 266,225.2 318,212.3 370,216.6 422,193.6 474,200.8 526,176.4 578,139.0 630,241.1" fill="none" stroke="#1D5BB8" stroke-width="1.8"/>
+  <circle cx="110" cy="254.0" r="4.5" fill="#1D5BB8"/>
+  <circle cx="162" cy="235.3" r="4.5" fill="#1D5BB8"/>
+  <circle cx="214" cy="259.8" r="4.5" fill="#1D5BB8"/>
+  <circle cx="266" cy="225.2" r="4.5" fill="#1D5BB8"/>
+  <circle cx="318" cy="212.3" r="4.5" fill="#1D5BB8"/>
+  <circle cx="370" cy="216.6" r="4.5" fill="#1D5BB8"/>
+  <circle cx="422" cy="193.6" r="4.5" fill="#1D5BB8"/>
+  <circle cx="474" cy="200.8" r="4.5" fill="#1D5BB8"/>
+  <circle cx="526" cy="176.4" r="4.5" fill="#1D5BB8"/>
+  <circle cx="578" cy="139.0" r="6" fill="#C4382C"/>
+  <circle cx="630" cy="241.1" r="4.5" fill="#1D5BB8"/>
+  <text x="578" y="127.0" font-size="15" fill="#C4382C" text-anchor="middle" font-weight="700">불합격 로트</text>
+  <text x="412" y="143.6" font-size="15" fill="#E8A23A" text-anchor="middle" font-weight="700">합격이지만 한쪽으로 쏠림</text>
+  <path d="M266,211.2 L526,162.4" stroke="#E8A23A" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+  <text x="375.0" y="330" font-size="15" fill="#465260" text-anchor="middle">도료 로트 순서 → (예시값)</text>
+  <text x="28" y="185.0" font-size="15" fill="#465260" text-anchor="middle">ΔE</text>
+
+</svg>
